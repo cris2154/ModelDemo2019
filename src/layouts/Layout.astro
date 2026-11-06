@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import { storeInfo, products } from '../data/products';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonical?: string;
+}
+
+const {
+	title = 'ElectroNova | Edles Tech-Zubehör & Hardware de Precisión 2026',
+	description = 'Inspirado en la ingeniería alemana y materiales de élite: laptops OLED, smartphones de titanio, audio de estudio ANC y accesorios de alta gama. Despacho express y 2 años de garantía.',
+	image = '/images/hero-electronics.png',
+	canonical = 'https://electronova.pe/',
+} = Astro.props;
+
+// Schema JSON-LD estructurado para Tienda de Electrónica
+const schemaStore = {
+	'@context': 'https://schema.org',
+	'@type': 'ElectronicsStore',
+	name: storeInfo.name,
+	description: storeInfo.description,
+	url: canonical,
+	logo: 'https://electronova.pe/images/logo-electronova.svg',
+	image: `https://electronova.pe${image}`,
+	telephone: storeInfo.contact.phone,
+	priceRange: '$$$',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Av. Javier Prado Este 2450, Piso 8, San Borja',
+		addressLocality: 'Lima',
+		addressRegion: 'Lima',
+		addressCountry: 'PE',
+	},
+	openingHours: 'Mo-Sa 09:00-20:30',
+	hasOfferCatalog: {
+		'@type': 'OfferCatalog',
+		name: 'Catálogo Oficial de Equipos Electrónicos 2026',
+		itemListElement: products.map((p) => ({
+			'@type': 'Offer',
+			itemOffered: {
+				'@type': 'Product',
+				name: p.name,
+				image: `https://electronova.pe${p.image}`,
+				description: p.shortDesc,
+				sku: p.sku,
+				aggregateRating: {
+					'@type': 'AggregateRating',
+					ratingValue: p.rating,
+					reviewCount: p.reviews,
+				},
+			},
+			price: p.price,
+			priceCurrency: 'USD',
+			availability: 'https://schema.org/InStock',
+		})),
+	},
+};
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- SEO Primario -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+		<meta name="author" content="ElectroNova Hardware Tech" />
+		<meta name="keywords" content="equipos electrónicos, titanio, laptops oled, audifonos anc, teclado hall effect, drone 4k, smartwatch titanio, bandwerk style, hardware de lujo" />
+		<link rel="canonical" href={canonical} />
+		<meta name="theme-color" content="#060608" />
+
+		<!-- Open Graph / Redes Sociales / WhatsApp -->
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_PE" />
+		<meta property="og:site_name" content="ElectroNova Showroom" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		<meta property="og:image:alt" content="ElectroNova Ecosistema de Equipos Electrónicos" />
+		<meta property="og:url" content={canonical} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={image} />
+
+		<!-- Datos Estructurados JSON-LD Schema.org para Motores de Búsqueda -->
+		<script type="application/ld+json" set:html={JSON.stringify(schemaStore)} />
+
+		<!-- Tipografías Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="bandwerk-showroom-bg text-white antialiased min-h-screen selection:bg-[#ff5500] selection:text-white">
+		<!-- Trama de fondo minimalista estilo BandWerk -->
+		<div class="fixed inset-0 pointer-events-none bandwerk-grid-pattern opacity-40 z-0"></div>
+		
+		<!-- Resplandor sutil en naranja BandWerk superior -->
+		<div class="fixed top-0 left-1/2 -translate-x-1/2 w-[650px] h-[300px] bg-gradient-to-b from-[#ff5500]/12 via-white/2 to-transparent blur-3xl pointer-events-none z-0"></div>
+
+		<div class="relative z-10 flex flex-col min-h-screen">
+			<slot />
+		</div>
+	</body>
+</html>

@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* Integración nativa de Lenis Smooth Scroll */
+html.lenis,
+html.lenis body {
+	height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+	overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-smooth iframe {
+	pointer-events: none;
+}
+
+.lenis.lenis-autoToggle {
+	transition-property: overflow;
+	transition-duration: 1ms;
+	transition-behavior: allow-discrete;
+}
+
+@layer base {
+	:root {
+		--brand-orange: #ff5500;
+		--brand-orange-hover: #ff6a1a;
+		--brand-orange-glow: rgba(255, 85, 0, 0.4);
+		--brand-white: #ffffff;
+		--brand-black: #000000;
+		--bg-obsidian-950: #050507;
+		--bg-obsidian-900: #0a0a0e;
+		--bg-card: rgba(12, 12, 16, 0.92);
+	}
+
+	html {
+		scroll-behavior: auto; /* Controlado con fluidez por Lenis */
+		color-scheme: dark;
+	}
+
+	body {
+		background-color: #050507;
+		color: #ffffff;
+		font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+		overflow-x: hidden;
+	}
+
+	/* Barra de desplazamiento minimalista en negro y naranja BandWerk */
+	::-webkit-scrollbar {
+		width: 7px;
+		height: 7px;
+	}
+	::-webkit-scrollbar-track {
+		background: #050507;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #202028;
+		border-radius: 9999px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: #ff5500;
+	}
+}
+
+/* Fondo Estilo BandWerk: Negro Puro, Blanco Nítido y Pizcas de Naranja */
+.bandwerk-showroom-bg {
+	background-color: #050507;
+	background-image: 
+		radial-gradient(circle at 50% 0%, rgba(255, 85, 0, 0.12) 0%, transparent 45%),
+		radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.035) 0%, transparent 40%),
+		radial-gradient(circle at 10% 60%, rgba(255, 85, 0, 0.05) 0%, transparent 35%),
+		linear-gradient(to bottom, #050507, #09090d, #050507);
+	background-attachment: fixed;
+}
+
+/* Micro-trama técnica ultra limpia */
+.bandwerk-grid-pattern {
+	background-size: 32px 32px;
+	background-image: 
+		linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+}
+
+/* Acabado de Tarjeta con 2rem de curvatura obligatoria y Hover BandWerk 3D Tilt */
+.card-2rem {
+	border-radius: 2rem !important;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	background: linear-gradient(155deg, rgba(16, 16, 20, 0.92) 0%, rgba(7, 7, 10, 0.97) 100%);
+	box-shadow: 
+		0 20px 45px -15px rgba(0, 0, 0, 0.9),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(16px);
+	position: relative;
+	--mouse-x: 50%;
+	--mouse-y: 50%;
+	transition: border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+				box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: transform, border-color, box-shadow;
+}
+
+/* Reflejo especular táctil que sigue la posición del cursor */
+.card-2rem::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 2rem;
+	background: radial-gradient(circle 260px at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.09) 0%, rgba(255, 85, 0, 0.03) 40%, transparent 70%);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease;
+	z-index: 1;
+}
+
+.card-2rem:hover::before {
+	opacity: 1;
+}
+
+/* Hover de iluminación perimetral BandWerk */
+.card-2rem:hover {
+	border-color: rgba(255, 85, 0, 0.5);
+	box-shadow: 
+		0 30px 60px -15px rgba(0, 0, 0, 0.95),
+		0 0 35px -8px rgba(255, 85, 0, 0.22),
+		inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Tarjeta Metálica de Crédito con contraste BandWerk */
+.metallic-gold-card {
+	background: linear-gradient(135deg, #0b0b0e 0%, #15151c 45%, #08080b 80%, #121217 100%);
+	border: 1px solid rgba(255, 85, 0, 0.35);
+	box-shadow: 
+		0 25px 50px -12px rgba(0, 0, 0, 0.95),
+		0 0 25px rgba(255, 85, 0, 0.15),
+		inset 0 1px 1px rgba(255, 255, 255, 0.2),
+		inset 0 -1px 1px rgba(0, 0, 0, 0.9);
+}
+
+/* Glow en naranja BandWerk */
+.orange-track-glow {
+	box-shadow: 0 0 20px rgba(255, 85, 0, 0.55);
+}
+
+/* Botones con micro-interacciones táctiles */
+.event-btn-pop {
+	transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+				filter 0.2s ease,
+				box-shadow 0.2s ease;
+}
+.event-btn-pop:active {
+	transform: scale(0.95);
+}
+
+/* Píldoras de acento BandWerk */
+.bandwerk-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.375rem;
+	border-radius: 9999px;
+	padding: 0.25rem 0.875rem;
+	font-size: 0.6875rem;
+	font-weight: 800;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.bandwerk-pill-orange {
+	border: 1px solid rgba(255, 85, 0, 0.4);
+	background: rgba(255, 85, 0, 0.1);
+	color: #ff5500;
+}
+
+.bandwerk-pill-white {
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	background: rgba(255, 255, 255, 0.08);
+	color: #ffffff;
+}

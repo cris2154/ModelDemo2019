@@ -1,0 +1,429 @@
+---
+import PaymentBadges from './PaymentBadges.astro';
+---
+
+<section id="tab-checkout" class="tab-panel hidden mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+	<!-- Encabezado de la Pasarela de Pago Ficticia Estilo BandWerk -->
+	<div class="card-2rem rounded-[2rem] p-6 sm:p-8 border border-white/10 bg-[#0a0a0e]">
+		<div class="flex flex-wrap items-center justify-between gap-4">
+			<div>
+				<span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-400 border border-emerald-500/25">
+					<span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+					<span>Checkout Encriptado SSL 256-Bit • Garantía Oficial Directa</span>
+				</span>
+				<h2 class="mt-2 text-3xl sm:text-4xl font-black text-white">Pasarela de Pago y Resumen de Compra</h2>
+				<p class="mt-1 text-sm text-stone-300">
+					Inspecciona tus equipos seleccionados, verifica el cupón de descuento y simula tu orden de laboratorio en tiempo real.
+				</p>
+			</div>
+
+			<button
+				type="button"
+				data-tab-target="catalogo"
+				class="event-btn-pop cursor-pointer rounded-2xl border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
+			>
+				&larr; Seguir explorando catálogo
+			</button>
+		</div>
+	</div>
+
+	<div class="grid gap-8 lg:grid-cols-12">
+		<!-- Columna Izquierda: Formulario de Despacho y Pasarela -->
+		<div class="lg:col-span-7 space-y-6">
+			<form id="checkout-form" class="space-y-6">
+				<!-- Paso 1: Datos del Comprador y Despacho con Curvatura de 2rem -->
+				<div class="card-2rem rounded-[2rem] p-6 sm:p-8">
+					<h3 class="flex items-center gap-3 text-lg font-black text-white">
+						<span class="flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-black text-black">1</span>
+						<span>Datos de Despacho y Facturación</span>
+					</h3>
+
+					<div class="mt-5 grid gap-4 sm:grid-cols-2">
+						<div>
+							<label class="block text-xs font-bold text-stone-300 mb-1.5">Nombre Completo *</label>
+							<input
+								type="text"
+								required
+								id="buyer-name"
+								placeholder="Ej. Carlos Mendoza"
+								value="Carlos Mendoza"
+								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:ring-1 focus:ring-[#ff5500] focus:outline-none transition"
+							/>
+						</div>
+						<div>
+							<label class="block text-xs font-bold text-stone-300 mb-1.5">Correo Electrónico *</label>
+							<input
+								type="email"
+								required
+								id="buyer-email"
+								placeholder="carlos@empresa.com"
+								value="carlos@electronova.pe"
+								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:ring-1 focus:ring-[#ff5500] focus:outline-none transition"
+							/>
+						</div>
+						<div>
+							<label class="block text-xs font-bold text-stone-300 mb-1.5">Teléfono / WhatsApp *</label>
+							<input
+								type="tel"
+								required
+								placeholder="+51 999 888 777"
+								value="+51 987 654 321"
+								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none transition"
+							/>
+						</div>
+						<div>
+							<label class="block text-xs font-bold text-stone-300 mb-1.5">Tipo de Comprobante</label>
+							<select class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white focus:border-[#ff5500] focus:outline-none transition">
+								<option value="boleta">Boleta Electrónica (DNI)</option>
+								<option value="factura">Factura Electrónica (RUC 20)</option>
+							</select>
+						</div>
+						<div class="sm:col-span-2">
+							<label class="block text-xs font-bold text-stone-300 mb-1.5">Dirección de Entrega en Lima / Provincias *</label>
+							<input
+								type="text"
+								required
+								id="buyer-address"
+								placeholder="Av. Javier Prado Este 2450, San Borja, Lima"
+								value="Av. Javier Prado Este 2450, San Borja, Lima"
+								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none transition"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- Paso 2: Método de Pago con Curvatura de 2rem -->
+				<div class="card-2rem rounded-[2rem] p-6 sm:p-8">
+					<h3 class="flex items-center gap-3 text-lg font-black text-white">
+						<span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#ff5500] text-xs font-black text-white">2</span>
+						<span>Selecciona tu Método de Pago</span>
+					</h3>
+
+					<!-- Pestañas de Método de Pago -->
+					<div class="mt-4 grid grid-cols-3 gap-2.5">
+						<button
+							type="button"
+							data-pay-method="card"
+							class="pay-method-btn cursor-pointer rounded-2xl border border-[#ff5500] bg-[#ff5500]/15 p-3 text-center text-xs font-black text-white transition"
+						>
+							Tarjeta Crédito / Débito
+						</button>
+						<button
+							type="button"
+							data-pay-method="qr"
+							class="pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition"
+						>
+							Yape / Plin QR
+						</button>
+						<button
+							type="button"
+							data-pay-method="transfer"
+							class="pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition"
+						>
+							Transferencia CIP
+						</button>
+					</div>
+
+					<!-- Panel 1: Tarjeta Interactiva con Acabado BandWerk Metálico -->
+					<div id="pay-panel-card" class="pay-panel mt-6 space-y-5">
+						<!-- Tarjeta Visual en Tiempo Real con Curvatura 2rem -->
+						<div class="metallic-gold-card relative mx-auto max-w-md overflow-hidden rounded-[2rem] p-6 text-white shadow-2xl">
+							<div class="flex items-center justify-between">
+								<span class="text-xs font-black uppercase tracking-widest text-[#ff5500]">ElectroNova Titanium</span>
+								<span id="card-brand-label" class="font-mono text-sm font-black italic text-white">VISA / MC</span>
+							</div>
+							<div class="mt-6 flex items-center gap-3">
+								<div class="h-8 w-11 rounded-lg bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 shadow-md"></div>
+								<span class="text-xs font-bold text-stone-300">Contactless NFC</span>
+							</div>
+							<p id="card-preview-number" class="mt-5 font-mono text-xl sm:text-2xl tracking-widest text-white font-black">
+								4539 •••• •••• 8842
+							</p>
+							<div class="mt-5 flex items-center justify-between text-xs">
+								<div>
+									<span class="block text-[10px] uppercase text-stone-400 font-semibold">Titular</span>
+									<span id="card-preview-holder" class="font-black tracking-wider uppercase text-white">CARLOS MENDOZA</span>
+								</div>
+								<div>
+									<span class="block text-[10px] uppercase text-stone-400 font-semibold">Expira</span>
+									<span id="card-preview-expiry" class="font-mono font-bold text-white">09/29</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="grid gap-4 sm:grid-cols-2">
+							<div class="sm:col-span-2">
+								<label class="block text-xs font-bold text-stone-300 mb-1.5">Número de Tarjeta</label>
+								<input
+									type="text"
+									id="input-card-number"
+									maxlength="19"
+									placeholder="4539 1488 2039 8842"
+									value="4539 1488 2039 8842"
+									class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+								/>
+							</div>
+							<div>
+								<label class="block text-xs font-bold text-stone-300 mb-1.5">Nombre en la Tarjeta</label>
+								<input
+									type="text"
+									id="input-card-holder"
+									placeholder="CARLOS MENDOZA"
+									value="CARLOS MENDOZA"
+									class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm uppercase text-white focus:border-[#ff5500] focus:outline-none transition"
+								/>
+							</div>
+							<div class="grid grid-cols-2 gap-3">
+								<div>
+									<label class="block text-xs font-bold text-stone-300 mb-1.5">Vencimiento</label>
+									<input
+										type="text"
+										id="input-card-expiry"
+										maxlength="5"
+										placeholder="09/29"
+										value="09/29"
+										class="w-full rounded-xl border border-white/15 bg-black/70 px-3 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+									/>
+								</div>
+								<div>
+									<label class="block text-xs font-bold text-stone-300 mb-1.5">CVV</label>
+									<input
+										type="password"
+										maxlength="4"
+										placeholder="•••"
+										value="849"
+										class="w-full rounded-xl border border-white/15 bg-black/70 px-3 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+									/>
+								</div>
+							</div>
+							<div class="sm:col-span-2">
+								<label class="block text-xs font-bold text-stone-300 mb-1.5">Plan de Cuotas Sin Intereses</label>
+								<select class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white focus:border-[#ff5500] focus:outline-none transition">
+									<option value="1">Pago directo (1 cuota sin intereses)</option>
+									<option value="3">3 cuotas sin intereses (0% TCEA)</option>
+									<option value="6">6 cuotas sin intereses (0% TCEA)</option>
+									<option value="12">12 cuotas sin intereses BBVA / BCP / Interbank</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- Panel 2: Pago QR (Yape / Plin) -->
+					<div id="pay-panel-qr" class="pay-panel hidden mt-6 rounded-[2rem] border border-white/10 bg-black/70 p-6 text-center">
+						<p class="text-sm font-bold text-white">Escanea el código QR desde Yape, Plin o tu banca móvil</p>
+						<div class="mx-auto my-4 flex h-44 w-44 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
+							<svg viewBox="0 0 100 100" class="h-full w-full text-black" fill="currentColor">
+								<rect x="5" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6" />
+								<rect x="13" y="13" width="12" height="12" />
+								<rect x="67" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6" />
+								<rect x="75" y="13" width="12" height="12" />
+								<rect x="5" y="67" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6" />
+								<rect x="13" y="75" width="12" height="12" />
+								<rect x="42" y="10" width="8" height="8" />
+								<rect x="42" y="26" width="16" height="8" />
+								<rect x="42" y="42" width="16" height="16" />
+								<rect x="10" y="42" width="20" height="8" />
+								<rect x="66" y="42" width="24" height="8" />
+								<rect x="42" y="66" width="10" height="24" />
+								<rect x="62" y="62" width="14" height="14" />
+								<rect x="82" y="76" width="12" height="18" />
+							</svg>
+						</div>
+						<p class="text-xs text-stone-400">A nombre de: <strong class="text-white">ELECTRONOVA HARDWARE LABS S.A.C.</strong></p>
+						<div class="mt-4 mx-auto max-w-xs">
+							<label class="block text-xs font-bold text-stone-300 mb-1">Código de aprobación (6 dígitos)</label>
+							<input
+								type="text"
+								maxlength="6"
+								placeholder="Ej. 482910"
+								value="482910"
+								class="w-full rounded-xl border border-white/15 bg-black/80 px-3 py-2 text-center font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none"
+							/>
+						</div>
+					</div>
+
+					<!-- Panel 3: Transferencia / CIP -->
+					<div id="pay-panel-transfer" class="pay-panel hidden mt-6 rounded-[2rem] border border-white/10 bg-black/70 p-6 space-y-3">
+						<div class="flex items-center justify-between border-b border-white/10 pb-3">
+							<span class="text-xs text-stone-400">Código CIP PagoEfectivo:</span>
+							<span class="font-mono text-lg font-black text-[#ff5500]">928-441-092</span>
+						</div>
+						<p class="text-xs text-stone-300 leading-relaxed">
+							Puedes abonar este código desde la app de BCP, BBVA, Interbank o Scotiabank. Tu reserva de stock de laboratorio se mantiene garantizada por 12 horas.
+						</p>
+					</div>
+
+					<!-- Medios de Pago Aceptados al pie del formulario -->
+					<div class="mt-6 pt-5 border-t border-white/10">
+						<PaymentBadges variant="card" />
+					</div>
+				</div>
+
+				<!-- Botón Principal de Procesar Pago -->
+				<button
+					type="submit"
+					id="submit-payment-btn"
+					class="event-btn-pop cursor-pointer w-full flex items-center justify-center gap-3 rounded-2xl bg-white text-black hover:bg-stone-200 px-6 py-4 text-base font-black shadow-2xl hover:brightness-105 active:scale-[0.98] transition"
+				>
+					<svg class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+					</svg>
+					<span>Confirmar y Procesar Orden de Laboratorio</span>
+				</button>
+			</form>
+		</div>
+
+		<!-- Columna Derecha: Resumen del Carrito con Curvatura de 2rem -->
+		<div class="lg:col-span-5 space-y-6">
+			<div class="card-2rem sticky top-24 rounded-[2rem] p-6 sm:p-7 shadow-2xl">
+				<div class="flex items-center justify-between border-b border-white/10 pb-4">
+					<h3 class="text-lg font-black text-white">Resumen de tu Bolsa</h3>
+					<button
+						type="button"
+						id="clear-cart-btn"
+						class="cursor-pointer text-xs font-bold text-rose-400 hover:text-rose-300 transition"
+					>
+						Vaciar bolsa
+					</button>
+				</div>
+
+				<!-- Lista dinámica de items del carrito -->
+				<div id="checkout-cart-items" class="mt-4 max-h-80 space-y-3 overflow-y-auto pr-1"></div>
+
+				<!-- Estado cuando el carrito está vacío -->
+				<div id="checkout-empty-state" class="hidden py-8 text-center space-y-3">
+					<p class="text-sm text-stone-400">Tu bolsa aún no tiene equipos seleccionados.</p>
+					<div class="flex flex-wrap justify-center gap-2">
+						<button
+							type="button"
+							data-tab-target="catalogo"
+							class="event-btn-pop cursor-pointer rounded-xl bg-white px-4 py-2 text-xs font-black text-black hover:bg-stone-200 transition"
+						>
+							Ir al Catálogo
+						</button>
+						<button
+							type="button"
+							id="load-demo-cart-btn"
+							class="event-btn-pop cursor-pointer rounded-xl border border-[#ff5500]/40 bg-[#ff5500]/10 px-4 py-2 text-xs font-bold text-[#ff5500] hover:bg-[#ff5500]/20 transition"
+						>
+							Cargar Equipos Demo
+						</button>
+					</div>
+				</div>
+
+				<!-- Validación de Cupones con Chips Rápidos para Probar la Arquitectura Zustand -->
+				<div class="mt-5 border-t border-white/10 pt-4">
+					<div class="flex items-center justify-between mb-1.5">
+						<label class="block text-xs font-bold text-stone-300">
+							Cupón Oficial de Descuento
+						</label>
+						<span class="text-[10px] text-[#ff5500] font-bold">Validador Zustand</span>
+					</div>
+
+					<!-- Chips Rápidos Clickables -->
+					<div class="flex flex-wrap gap-1.5 mb-2.5">
+						<button
+							type="button"
+							data-coupon-quick="NOVA2026"
+							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
+						>
+							NOVA2026 (-$150)
+						</button>
+						<button
+							type="button"
+							data-coupon-quick="TITANIUM10"
+							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
+						>
+							TITANIUM10 (-10%)
+						</button>
+						<button
+							type="button"
+							data-coupon-quick="DESPACHO"
+							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
+						>
+							DESPACHO (-$50)
+						</button>
+					</div>
+
+					<div class="flex gap-2">
+						<input
+							type="text"
+							id="coupon-input"
+							placeholder="Ingresa código..."
+							class="flex-1 rounded-xl border border-white/15 bg-black/70 px-3 py-2 text-xs uppercase text-white focus:border-[#ff5500] focus:outline-none transition"
+						/>
+						<button
+							type="button"
+							id="apply-coupon-btn"
+							class="event-btn-pop cursor-pointer rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
+						>
+							Aplicar
+						</button>
+					</div>
+					<p id="coupon-feedback" class="mt-1.5 text-xs hidden"></p>
+				</div>
+
+				<!-- Desglose de Costos Computado desde Zustand -->
+				<div class="mt-5 space-y-2.5 border-t border-white/10 pt-4 text-sm">
+					<div class="flex justify-between text-stone-400">
+						<span>Subtotal Equipos</span>
+						<span id="summary-subtotal" class="font-extrabold text-white">$0.00</span>
+					</div>
+					<div class="flex justify-between text-[#ff5500]">
+						<span>Descuento Aplicado</span>
+						<span id="summary-discount" class="font-bold">-$0.00</span>
+					</div>
+					<div class="flex justify-between text-stone-400">
+						<span>Envío Express Asegurado</span>
+						<span class="font-bold text-emerald-400">GRATIS</span>
+					</div>
+					<div class="flex justify-between border-t border-white/10 pt-3 text-lg font-black text-white">
+						<span>Total a Pagar</span>
+						<span id="summary-total" class="text-2xl text-white font-black">$0.00</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal de Confirmación de Pago Exitoso con Curvatura de 2rem -->
+	<div
+		id="payment-success-modal"
+		class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+	>
+		<div id="payment-success-card" class="card-2rem w-full max-w-md rounded-[2rem] p-8 text-center shadow-2xl border border-white/20 bg-[#0e0e14]">
+			<div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ff5500]/20 text-[#ff5500] border border-[#ff5500]/40">
+				<svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+				</svg>
+			</div>
+			<h3 class="mt-4 text-2xl font-black text-white">¡Orden Registrada con Éxito!</h3>
+			<p class="mt-2 text-xs text-stone-300">
+				Tu pedido de hardware oficial ha sido verificado con la arquitectura del laboratorio y programado para despacho prioritario.
+			</p>
+
+			<div class="mt-5 rounded-2xl border border-white/10 bg-black/60 p-4 text-left text-xs space-y-2">
+				<div class="flex justify-between">
+					<span class="text-stone-400">N° de Orden:</span>
+					<span id="receipt-order-id" class="font-mono font-black text-[#ff5500]">#EN-2026-8941</span>
+				</div>
+				<div class="flex justify-between">
+					<span class="text-stone-400">Cliente Titular:</span>
+					<span id="receipt-buyer" class="font-bold text-white">Carlos Mendoza</span>
+				</div>
+				<div class="flex justify-between">
+					<span class="text-stone-400">Importe Total Pagado:</span>
+					<span id="receipt-total" class="font-black text-white text-sm">$0.00</span>
+				</div>
+			</div>
+
+			<button
+				type="button"
+				id="close-success-btn"
+				class="event-btn-pop cursor-pointer mt-6 w-full rounded-2xl bg-white text-black hover:bg-stone-200 py-3.5 text-sm font-black active:scale-95 transition"
+			>
+				Volver al Showroom Insignia
+			</button>
+		</div>
+	</div>
+</section>

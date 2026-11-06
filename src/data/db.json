@@ -1,0 +1,354 @@
+{
+	"storeInfo": {
+		"name": "ElectroNova Showroom",
+		"tagline": "Hardware de Élite & Ecosistema Electrónico 2026",
+		"description": "Showroom oficial especializado en equipos electrónicos de alta fidelidad, chasis forjados en titanio, semiconductores de 3nm y calibración óptica en laboratorio.",
+		"about": {
+			"badge": "MANIFIESTO CORPORATIVO & ORIGEN DE MARCA",
+			"title": "Nuestra Historia: De la Mesa de Pruebas al Showroom Insignia",
+			"lead": "ElectroNova no nació en una sala de juntas, sino frente a un osciloscopio digital y un banco de soldadura de precisión. Fundada por ingenieros en hardware y diseñadores industriales en Lima, nuestro propósito fundacional fue desterrar los componentes genéricos y ofrecer hardware de élite certificado.",
+			"history": "Tras años de someter a prueba equipos comerciales que fallaban por estrangulamiento térmico o materiales plásticos deficientes, decidimos construir el estándar que nosotros mismos exigiríamos: chasis unibody forjados en titanio grado 5, calibración espectrofotométrica individual en paneles OLED y arquitecturas térmicas de cámara de vapor silenciosa.",
+			"stats": [
+				{ "label": "Equipos Calibrados", "value": "15,800+" },
+				{ "label": "Tolerancia de Calibración", "value": "Delta E < 0.8" },
+				{ "label": "Despacho Inmediato", "value": "< 24h" },
+				{ "label": "Garantía Oficial Directa", "value": "2 Años" }
+			],
+			"milestones": [
+				{
+					"step": "01",
+					"year": "2021",
+					"phase": "Fundación del Laboratorio",
+					"title": "Pruebas de Estrés y Calibración Acústica",
+					"description": "Establecimos nuestro primer laboratorio con cámaras de prueba térmica y análisis espectral para verificar que cada componente rindiese al 100% de su capacidad nominal sin caídas de voltaje.",
+					"image": "/images/lab-engineering.jpg",
+					"tag": "Control de Calidad Nivel 4"
+				},
+				{
+					"step": "02",
+					"year": "2023",
+					"phase": "Metalurgia Avanzada",
+					"title": "Forjado de Titanio Grado 5 & Carga Silicio-Carbono",
+					"description": "Iniciamos el mecanizado CNC de aleaciones aeroespaciales e integramos las primeras celdas de silicio-carbono con 140W de entrega continua, duplicando la vida útil de cada batería.",
+					"image": "/images/craftsmanship-titanium.jpg",
+					"tag": "Mecanizado CNC Micrométrico"
+				},
+				{
+					"step": "03",
+					"year": "2025",
+					"phase": "Espacio Presencial",
+					"title": "Apertura del Showroom Flagship en San Borja",
+					"description": "Creamos un espacio minimalista de arquitectura acústica donde cada cliente puede probar en tiempo real la latencia de 0.1ms, la fidelidad de los drivers de berilio y la potencia gráfica.",
+					"image": "/images/showroom-flagship.jpg",
+					"tag": "Experiencia Inmersiva 1 a 1"
+				},
+				{
+					"step": "04",
+					"year": "2026",
+					"phase": "Liderazgo en Rendimiento",
+					"title": "La Serie Titanium Pro y Despacho Seguro",
+					"description": "Consolidamos nuestro catálogo con la arquitectura Nova Silicon de 3nm, seguro total contra pérdidas o daños y una política de reemplazo exprés directo en tienda.",
+					"image": "/images/hero-electronics.png",
+					"tag": "Garantía Oficial 2 Años"
+				}
+			],
+			"pillars": [
+				{
+					"title": "Calibración Individual en Laboratorio",
+					"desc": "Cada panel OLED y transductor acústico es analizado con espectrofotómetro antes de ser sellado para entrega al cliente."
+				},
+				{
+					"title": "Despacho con Póliza Contra Todo Riesgo",
+					"desc": "Tu equipo viaja con embalaje blindado de polietileno de alta densidad y monitoreo satelital hasta la puerta de tu domicilio."
+				},
+				{
+					"title": "Soporte Técnico Especializado en Hardware",
+					"desc": "Atención directa con ingenieros capacitados en arquitectura de computadores y periféricos analógicos, sin bots ni desvíos."
+				}
+			]
+		},
+		"contact": {
+			"phone": "+51 (01) 480-9200",
+			"whatsapp": "+51 987 654 321",
+			"email": "ventas@electronova.pe",
+			"supportEmail": "soporte@electronova.pe",
+			"address": "Av. Javier Prado Este 2450, Centro Empresarial Titanium, Piso 8, San Borja, Lima, Perú",
+			"hours": "Lunes a Sábado: 09:00 AM - 08:30 PM",
+			"mapLink": "https://maps.google.com"
+		}
+	},
+	"categories": [
+		{ "id": "cat-laptops", "name": "Laptops", "count": "12 modelos", "iconName": "laptop", "desc": "OLED 4K, Chips de 3nm y Workstations", "featured": true },
+		{ "id": "cat-smartphones", "name": "Smartphones", "count": "18 modelos", "iconName": "smartphone", "desc": "Chasis de Titanio, 5G y Cámaras 200MP", "featured": true },
+		{ "id": "cat-audio", "name": "Audio", "count": "24 modelos", "iconName": "audio", "desc": "Cancelación ANC -48dB y Drivers Berilio", "featured": true },
+		{ "id": "cat-wearables", "name": "Wearables", "count": "9 modelos", "iconName": "wearables", "desc": "Cristal de Zafiro y GPS Doble Banda", "featured": true },
+		{ "id": "cat-gaming", "name": "Gaming", "count": "30 modelos", "iconName": "gaming", "desc": "Switches Hall-Effect Analógicos 8KHz", "featured": true },
+		{ "id": "cat-drones", "name": "Drones", "count": "7 modelos", "iconName": "drones", "desc": "Cámaras 4K/120fps con Gimbal de 3 Ejes", "featured": true }
+	],
+	"seasonalOffers": [
+		{
+			"id": "season-1",
+			"seasonName": "Colección Black Titanium Series",
+			"tag": "Combo Workstation Pro",
+			"title": "NovaBook Pro 16 + Auriculares SonicPulse Studio",
+			"description": "La combinación definitiva para creadores y desarrolladores. Ahorra $450 directos e incluye estuche rígido de aluminio anodizado y cable Thunderbolt 5 trenzado.",
+			"discountAmount": 450,
+			"price": 2048,
+			"originalPrice": 2498,
+			"stockUnits": 4,
+			"validUntil": "Hasta agotar stock de temporada",
+			"image": "/images/laptop-pro.png"
+		},
+		{
+			"id": "season-2",
+			"seasonName": "Pack de Expedición & Vuelo",
+			"tag": "Especial Titanio & Aire",
+			"title": "ApexWatch Ultra Titanio + SkyVision Air 4K",
+			"description": "Navegación satelital dual y captura aérea 4K cinematográfica. Incluye seguro por colisión gratuito por 12 meses y 2 baterías inteligentes adicionales.",
+			"discountAmount": 280,
+			"price": 1168,
+			"originalPrice": 1448,
+			"stockUnits": 6,
+			"validUntil": "Edición limitada oficial 2026",
+			"image": "/images/smartwatch-titan.png"
+		}
+	],
+	"skills": [
+		{
+			"id": "skill-cpu",
+			"category": "Arquitectura & Potencia",
+			"title": "Nova Silicon 3nm & NPU Neuronal",
+			"metric": "45 TOPS IA",
+			"percentage": 99,
+			"badge": "Rendimiento Extremo",
+			"desc": "Arquitectura híbrida de 14 núcleos con aceleración gráfica por trazado de rayos por hardware y cero estrangulamiento térmico en renders continuos.",
+			"tags": ["3nm FinFET", "120 FPS Ray Tracing", "Memoria 8533MHz"],
+			"iconName": "cpu"
+		},
+		{
+			"id": "skill-display",
+			"category": "Óptica & Pantalla",
+			"title": "Ultra OLED ProMotion 4K 120Hz",
+			"metric": "1600 Nits HDR",
+			"percentage": 97,
+			"badge": "Delta E < 0.8",
+			"desc": "Calibración fotométrica de fábrica con 100% de cobertura DCI-P3 y tasa de refresco adaptativa de 1Hz a 120Hz con protección Gorilla Armor.",
+			"tags": ["Gorilla Armor", "Contraste 1,000,000:1", "Dolby Vision IQ"],
+			"iconName": "display"
+		},
+		{
+			"id": "skill-battery",
+			"category": "Energía & Autonomía",
+			"title": "Células de Silicio-Carbono 140W",
+			"metric": "22h Autonomía",
+			"percentage": 94,
+			"badge": "Carga 80% en 20m",
+			"desc": "Densidad electroquímica de última generación con disipador de grafeno, manteniendo el 90% de capacidad tras 1,500 ciclos de recarga ultrarrápida.",
+			"tags": ["MagFlash 140W", "Gestión Térmica IA", "Modo Eco Continuo"],
+			"iconName": "battery"
+		},
+		{
+			"id": "skill-latency",
+			"category": "Respuesta & Conectividad",
+			"title": "Switches Hall-Effect & Wi-Fi 7",
+			"metric": "0.1ms Latencia",
+			"percentage": 98,
+			"badge": "8000 Hz Polling",
+			"desc": "Actuación analógica por inducción magnética personalizable punto por punto y enlace inalámbrico tribanda de 40 Gbps sin interferencias.",
+			"tags": ["Rapid Trigger", "Tri-Band 40 Gbps", "Bluetooth 5.4 LE"],
+			"iconName": "latency"
+		},
+		{
+			"id": "skill-build",
+			"category": "Materiales & Resistencia",
+			"title": "Chasis de Titanio Grado 5 & Zafiro",
+			"metric": "10 ATM Submarino",
+			"percentage": 96,
+			"badge": "Grado Aeroespacial",
+			"desc": "Monobloque forjado bajo 100 toneladas de presión hidráulica, con tratamiento de microgranallado mate resistente a la corrosión salina y rayaduras.",
+			"tags": ["Cristal Zafiro", "Sellado IP68", "Norma Militar MIL-STD"],
+			"iconName": "shield"
+		}
+	],
+	"coupons": [
+		{ "code": "TECH10", "type": "percentage", "value": 0.1, "description": "10% de descuento directo en toda la orden", "active": true },
+		{ "code": "NOVA2026", "type": "fixed", "value": 50, "description": "Bono de $50 USD de bienvenida institucional", "active": true }
+	],
+	"products": [
+		{
+			"id": "laptop-nova-pro-16",
+			"sku": "NV-LP16-M4",
+			"name": "NovaBook Pro 16\" OLED Ultra",
+			"category": "Laptops",
+			"price": 1899,
+			"oldPrice": 2199,
+			"rating": 4.9,
+			"reviews": 142,
+			"stock": 8,
+			"badge": "Más Vendido",
+			"image": "/images/laptop-pro.png",
+			"shortDesc": "Chip Ultra X12, 32GB RAM unificada, pantalla OLED 4K 120Hz y chasis de aluminio aeroespacial.",
+			"description": "Diseñada para desarrolladores, creadores 3D y profesionales exigentes. La NovaBook Pro 16 combina una arquitectura térmica silenciosa con una pantalla OLED ProMotion de 120Hz con calibración de color de fábrica y hasta 22 horas de autonomía real.",
+			"warranty": "2 años de garantía oficial directa + soporte técnico prioritario",
+			"specs": [
+				{ "label": "Procesador", "value": "Nova Silicon X12 Pro (14 núcleos CPU / 20 núcleos GPU)" },
+				{ "label": "Memoria RAM", "value": "32 GB LPDDR5X (8533 MHz)" },
+				{ "label": "Almacenamiento", "value": "1 TB SSD NVMe PCIe Gen 5 (7400 MB/s)" },
+				{ "label": "Pantalla", "value": "16.2\" OLED 3840x2400, 120Hz, 1600 nits HDR" },
+				{ "label": "Batería", "value": "100 Wh (Hasta 22 h reproducción, carga rápida 140W)" },
+				{ "label": "Conectividad", "value": "Wi-Fi 7, Bluetooth 5.4, 3x Thunderbolt 5, HDMI 2.1, SD Express" },
+				{ "label": "Peso", "value": "1.78 kg" }
+			],
+			"highlights": [
+				"Chasis unibody de aluminio reciclado de grado aeroespacial",
+				"Sistema de 6 altavoces con Audio Espacial Dolby Atmos",
+				"Lector de huella ultrasónico y cámara 1080p con encuadre IA"
+			]
+		},
+		{
+			"id": "smartphone-titan-x",
+			"sku": "NV-PH15-TI",
+			"name": "TitanPhone X Pro Max 512GB",
+			"category": "Smartphones",
+			"price": 1199,
+			"oldPrice": 1349,
+			"rating": 4.8,
+			"reviews": 218,
+			"stock": 15,
+			"badge": "Nuevo Lanzamiento",
+			"image": "/images/smartphone-ultra.png",
+			"shortDesc": "Cuerpo de titanio grado 5, triple cámara periscópica 200MP y pantalla LTPO AMOLED de 3000 nits.",
+			"description": "El smartphone definitivo en fotografía computacional y rendimiento móvil. Con su chasis de titanio forjado, procesador neuronal de 3nm y teleobjetivo óptico 5x sin pérdida, captura video en 8K ProRes y ejecuta juegos AAA con trazado de rayos por hardware.",
+			"warranty": "1 año de garantía internacional + seguro de pantalla 6 meses",
+			"specs": [
+				{ "label": "Procesador", "value": "SnapCore Gen 4 Octa-Core (3 nm) + NPU IA" },
+				{ "label": "Pantalla", "value": "6.8\" LTPO AMOLED 1-120Hz, Gorilla Armor, 3000 nits" },
+				{ "label": "Cámaras Traseras", "value": "200MP Principal OIS + 50MP Periscopio 5x + 50MP Ultra Gran Angular" },
+				{ "label": "Memoria / Almacenamiento", "value": "16 GB RAM + 512 GB UFS 4.0" },
+				{ "label": "Batería", "value": "5500 mAh Silicio-Carbono (Carga 80W cable / 50W MagCharge)" },
+				{ "label": "Resistencia", "value": "Certificación IP68 (Sumergible hasta 6m por 30 min)" }
+			],
+			"highlights": [
+				"Bordes ultradelgados simétricos de 1.15 mm",
+				"Grabación de video 4K a 120 fps en formato Log profesional",
+				"Conectividad satelital de emergencia y Wi-Fi 7 tribanda"
+			]
+		},
+		{
+			"id": "headphones-sonic-anc",
+			"sku": "NV-AU90-BK",
+			"name": "SonicPulse Studio ANC Pro",
+			"category": "Audio",
+			"price": 349,
+			"oldPrice": 429,
+			"rating": 4.9,
+			"reviews": 310,
+			"stock": 22,
+			"badge": "Top Audio Hi-Res",
+			"image": "/images/headphones-anc.png",
+			"shortDesc": "Cancelación activa híbrida de 8 micrófonos, drivers de berilio de 45mm y 60 horas de batería.",
+			"description": "Experimenta un silencio absoluto y una fidelidad acústica de estudio. Los auriculares SonicPulse Studio ANC Pro integran un doble procesador acústico que analiza el ruido ambiental 48,000 veces por segundo y ofrecen soporte nativo para audio sin pérdidas por USB-C y LDAC.",
+			"warranty": "2 años de garantía oficial",
+			"specs": [
+				{ "label": "Drivers", "value": "Dinámicos de 45 mm con diafragma recubierto de berilio" },
+				{ "label": "Cancelación de Ruido", "value": "ANC Adaptativa Híbrida (-48 dB) + Modo Transparencia Natural" },
+				{ "label": "Códecs soportados", "value": "LDAC, aptX Lossless, AAC, SBC y Audio USB-C DAC 24-bit/192kHz" },
+				{ "label": "Autonomía", "value": "Hasta 60 h con ANC activado (Carga rápida: 5 min = 6 h)" },
+				{ "label": "Materiales", "value": "Diadema de aluminio anodizado y almohadillas viscoelásticas de cuero proteico" },
+				{ "label": "Peso", "value": "254 g" }
+			],
+			"highlights": [
+				"Conexión multipunto simultánea con hasta 3 dispositivos",
+				"Sensores de detección de uso con pausa automática instantánea",
+				"Incluye estuche rígido magnético, cable trenzado USB-C y adaptador de avión"
+			]
+		},
+		{
+			"id": "smartwatch-apex-titan",
+			"sku": "NV-WT04-TI",
+			"name": "ApexWatch Ultra Titanium GPS",
+			"category": "Wearables",
+			"price": 499,
+			"oldPrice": 579,
+			"rating": 4.7,
+			"reviews": 89,
+			"stock": 11,
+			"badge": "Edición Titanio",
+			"image": "/images/smartwatch-titan.png",
+			"shortDesc": "Cristal de zafiro, GPS de doble frecuencia L1+L5, monitoreo ECG y batería de hasta 14 días.",
+			"description": "Construido para resistir desde expediciones de alta montaña hasta entrenamientos de triatlón y uso ejecutivo diario. Cuenta con caja de titanio aeroespacial, cristal de zafiro plano y sensores bioeléctricos de última generación.",
+			"warranty": "2 años de garantía oficial",
+			"specs": [
+				{ "label": "Caja y Cristal", "value": "Titanio Grado 5 de 47mm + Cristal de Zafiro Sintético" },
+				{ "label": "Pantalla", "value": "1.5\" AMOLED LTPO Siempre Activa (2500 nits)" },
+				{ "label": "Sensores de Salud", "value": "ECG, SpO2 continuo, Temperatura cutánea, VO2 Max y Bioimpedancia" },
+				{ "label": "Posicionamiento", "value": "GNSS Doble Banda (L1 + L5) con mapas offline topográficos" },
+				{ "label": "Resistencia al Agua", "value": "10 ATM (100 metros) + Certificación de buceo EN13319" },
+				{ "label": "Batería", "value": "Hasta 14 días en uso típico / 42 horas con GPS dual continuo" }
+			],
+			"highlights": [
+				"Sirena de seguridad integrada de 86 decibelios",
+				"Pagos sin contacto NFC y contestador de llamadas Bluetooth",
+				"Correa fluoroelastómero de alta densidad incluida"
+			]
+		},
+		{
+			"id": "keyboard-k75-cyber",
+			"sku": "NV-GM75-RGB",
+			"name": "KeyChronos K75 Pro Hall-Effect",
+			"category": "Gaming",
+			"price": 219,
+			"oldPrice": 259,
+			"rating": 4.9,
+			"reviews": 176,
+			"stock": 19,
+			"badge": "Switches Magnéticos",
+			"image": "/images/mechanical-keyboard.png",
+			"shortDesc": "Teclado mecánico 75% en aluminio CNC, switches magnéticos Rapid Trigger 0.1mm y 8000Hz polling rate.",
+			"description": "Precisión milimétrica para eSports y una experiencia de escritura acústica inigualable. Su estructura Gasket Mount con cuerpo completo de aluminio mecanizado CNC y switches de efecto Hall permiten configurar el punto de actuación tecla por tecla desde 0.1 mm hasta 4.0 mm.",
+			"warranty": "1 año de garantía oficial",
+			"specs": [
+				{ "label": "Formato", "value": "75% Compacto (82 teclas + perilla rotativa programable de metal)" },
+				{ "label": "Switches", "value": "Magnéticos Analógicos Hall-Effect (Hot-Swappable, lubricados de fábrica)" },
+				{ "label": "Tasa de Sondeo", "value": "8000 Hz por cable USB-C / 4000 Hz inalámbrico 2.4GHz / Bluetooth 5.3" },
+				{ "label": "Construcción", "value": "Aluminio 6063 CNC anodizado con montaje Gasket de silicona" },
+				{ "label": "Keycaps", "value": "PBT Double-Shot perfil Cherry resistentes al brillo" },
+				{ "label": "Batería", "value": "4000 mAh (Hasta 180 horas con RGB apagado)" }
+			],
+			"highlights": [
+				"Tecnología Rapid Trigger y Dynamic Keystroke (DKS) configurable vía Web",
+				"Triple capa de espuma acústica Poron e IXPE para sonido 'thocky'",
+				"Compatible nativamente con Windows, macOS y Linux"
+			]
+		},
+		{
+			"id": "drone-skyvision-4k",
+			"sku": "NV-DR08-4K",
+			"name": "SkyVision Air 4K Pro Gimbal",
+			"category": "Drones",
+			"price": 849,
+			"oldPrice": 999,
+			"rating": 4.8,
+			"reviews": 64,
+			"stock": 5,
+			"badge": "Últimas Unidades",
+			"image": "/images/drone-4k.png",
+			"shortDesc": "Sensor CMOS de 1 pulgada, grabación 4K/120fps HDR, evasión omnidireccional y 45 min de vuelo.",
+			"description": "Captura tomas aéreas cinematográficas con total seguridad. Equipado con un sensor de cámara de 1 pulgada en un estabilizador mecánico de 3 ejes, transmisión de video FHD a 20 km de distancia y sensores de visión binocular en 360 grados.",
+			"warranty": "1 año de garantía + 1 reemplazo express por colisión",
+			"specs": [
+				{ "label": "Sensor de Cámara", "value": "CMOS 1\" de 50 MP, apertura f/1.8, perfil D-Log M de 10 bits" },
+				{ "label": "Resolución de Video", "value": "5.4K a 60fps / 4K HDR a 120fps / Slow Motion 1080p a 240fps" },
+				{ "label": "Tiempo Máx. de Vuelo", "value": "45 minutos por batería (Hub de 2 baterías inteligentes incluido)" },
+				{ "label": "Transmisión de Video", "value": "OcuLink 4.0 hasta 20 km en 1080p/60fps baja latencia" },
+				{ "label": "Seguridad", "value": "Detección de obstáculos omnidireccional 360° + Regreso a casa" },
+				{ "label": "Peso de Despegue", "value": "248 g (Ultrafácil transporte y plegable)" }
+			],
+			"highlights": [
+				"Seguimiento activo de sujetos en movimiento ActiveTrack 360°",
+				"Resistencia a vientos de nivel 5 (hasta 43 km/h)",
+				"Almacenamiento interno de 64 GB + ranura microSD hasta 512 GB"
+			]
+		}
+	]
+}

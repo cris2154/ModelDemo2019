@@ -1,0 +1,1040 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import LandingTab from '../components/LandingTab.astro';
+import CatalogTab from '../components/CatalogTab.astro';
+import CheckoutTab from '../components/CheckoutTab.astro';
+import ProductModal from '../components/ProductModal.astro';
+import { products, storeInfo } from '../data/products';
+import PaymentBadges from '../components/PaymentBadges.astro';
+---
+
+<Layout
+	title="ElectroNova | Showroom Oficial de Equipos Electrónicos 2026"
+	description="Showroom oficial especializado en laptops OLED 4K, smartphones de titanio, audio de estudio ANC y periféricos de alta gama con chips de 3nm. Despacho express y 2 años de garantía."
+>
+	<!-- Menú Superior Estilo BandWerk (Negro, Blanco y Acentos Naranja) -->
+	<Navbar />
+
+	<!-- Contenedor Principal de las Pestañas -->
+	<main class="pb-20">
+		<!-- Pestaña 1: Showroom (Landing) -->
+		<LandingTab />
+
+		<!-- Pestaña 2: Catálogo e Información Técnica -->
+		<CatalogTab />
+
+		<!-- Pestaña 3: Pasarela de Pago (Solo mostrada al iniciar el proceso de compra ficticio) -->
+		<CheckoutTab />
+	</main>
+
+	<!-- Modal de Información Completa de cada Card -->
+	<ProductModal />
+
+	<!-- Toast Flotante de Notificación con Animación GSAP -->
+	<div
+		id="toast-notification"
+		class="pointer-events-none fixed bottom-6 right-6 z-50 flex translate-y-12 items-center gap-3 rounded-2xl border border-white/20 bg-[#0e0e14]/95 px-5 py-3.5 text-xs font-bold text-white opacity-0 shadow-2xl backdrop-blur-md"
+	>
+		<span id="toast-icon-badge" class="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff5500] text-white font-black">✓</span>
+		<span id="toast-message">Equipo añadido a la bolsa</span>
+	</div>
+
+	<!-- Pie de página Oficial Reutilizando Mini-Pestañas Estilo BandWerk -->
+	<footer class="border-t border-white/10 bg-[#050507] py-14 text-stone-400">
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
+			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
+				<!-- Logo y Manifiesto de la Marca -->
+				<div class="lg:col-span-5 space-y-4">
+					<img
+						src="/images/logo-electronova.svg"
+						alt="ElectroNova Hardware Labs"
+						class="h-10 w-auto object-contain"
+					/>
+					<p class="text-xs text-stone-400 leading-relaxed max-w-sm">
+						{storeInfo.description}
+					</p>
+					<div class="flex items-center gap-3 text-xs text-stone-400">
+						<span class="inline-flex items-center gap-1.5 text-white font-bold">
+							<span class="h-2 w-2 rounded-full bg-[#ff5500]"></span>
+							Laboratorio & Showroom Abierto
+						</span>
+						<span>•</span>
+						<span>San Borja, Lima</span>
+					</div>
+
+					<div class="pt-2">
+						<PaymentBadges variant="hero" showInstallments={false} />
+					</div>
+				</div>
+
+				<!-- Mini-Pestañas Reutilizadas en el Footer -->
+				<div class="lg:col-span-3 space-y-3">
+					<h4 class="text-xs font-black uppercase tracking-wider text-white">Navegación & Secciones</h4>
+					<ul class="space-y-2 text-xs">
+						<li>
+							<button type="button" data-tab-target="landing" class="cursor-pointer hover:text-[#ff5500] transition">
+								1. Showroom Insignia
+							</button>
+						</li>
+						<li>
+							<button type="button" data-tab-target="catalogo" class="cursor-pointer hover:text-[#ff5500] transition">
+								2. Catálogo Oficial 2026
+							</button>
+						</li>
+						<li>
+							<button type="button" data-scroll-anchor="section-temporada" class="cursor-pointer hover:text-[#ff5500] transition flex items-center gap-1.5">
+								<span>3. Temporada Black Titanium</span>
+								<span class="rounded bg-[#ff5500]/20 px-1.5 py-0.2 text-[9px] font-black text-[#ff5500]">EDICIÓN</span>
+							</button>
+						</li>
+						<li>
+							<button type="button" data-scroll-anchor="section-nosotros" class="cursor-pointer hover:text-[#ff5500] transition">
+								4. Nosotros & Laboratorio
+							</button>
+						</li>
+						<li>
+							<button type="button" data-scroll-anchor="section-contacto" class="cursor-pointer hover:text-[#ff5500] transition">
+								5. Contacto & Asesoría Directa
+							</button>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Métodos y Respaldo de Compra -->
+				<div class="lg:col-span-4 space-y-3">
+					<h4 class="text-xs font-black uppercase tracking-wider text-white">Garantía & Proceso de Compra</h4>
+					<p class="text-xs text-stone-400 leading-relaxed">
+						La pasarela de pago se activa al seleccionar cualquier equipo en el showroom o catálogo. Certificación SSL 256-Bit con seguro contra daños.
+					</p>
+					<div class="flex flex-wrap gap-2 pt-2">
+						<button
+							type="button"
+							data-tab-target="checkout"
+							class="event-btn-pop cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
+						>
+							<span>Ver Bolsa / Iniciar Checkout Seguro &rarr;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Barra de Copyright -->
+			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-stone-400">
+				<p>© 2026 <strong class="text-white font-bold">ElectroNova Showroom S.A.C.</strong> RUC 20608920194 • Lima, Perú.</p>
+				<p class="font-mono text-[11px] text-stone-400">Astro • GSAP ScrollTrigger • Lenis Engine • Zustand Store</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- Datos serializados de productos para el cliente -->
+	<script is:inline define:vars={{ productsData: products }}>
+		window.__ELECTRONOVA_PRODUCTS__ = productsData;
+	</script>
+</Layout>
+
+<script>
+	import Lenis from 'lenis';
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import { shopStore } from '../store/shopStore';
+
+	// Registrar Plugin de ScrollTrigger con GSAP
+	gsap.registerPlugin(ScrollTrigger);
+
+	// ==============================================================
+	// 1. INICIALIZACIÓN DE LENIS SMOOTH SCROLL (FLUIDO, SIN LAG)
+	// ==============================================================
+	const lenis = new Lenis({
+		duration: 1.2,
+		easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+		smoothWheel: true,
+		touchMultiplier: 1.5,
+	});
+
+	// Sincronizar Lenis con GSAP ScrollTrigger
+	lenis.on('scroll', ScrollTrigger.update);
+
+	gsap.ticker.add((time) => {
+		lenis.raf(time * 1000);
+	});
+	gsap.ticker.lagSmoothing(0);
+
+	(window as any).__lenisInstance = lenis;
+
+	// ==============================================================
+	// 2. ANIMACIÓN 3D TILT + REFLEJO ESPECULAR EN CARDS (ESTILO BANDWERK)
+	// ==============================================================
+	function initCard3DTilt() {
+		const cards = document.querySelectorAll<HTMLElement>('.card-2rem');
+		cards.forEach((card) => {
+			// Evitar registrar múltiples listeners en rerenders
+			if ((card as any).__tiltInitialized) return;
+			(card as any).__tiltInitialized = true;
+
+			card.style.transformStyle = 'preserve-3d';
+
+			const onMouseMove = (e: MouseEvent) => {
+				const rect = card.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				const centerX = rect.width / 2;
+				const centerY = rect.height / 2;
+
+				// Rotación 3D sutil (máximo ±6 grados para máxima elegancia)
+				const rotateX = ((y - centerY) / centerY) * -5.5;
+				const rotateY = ((x - centerX) / centerX) * 5.5;
+
+				gsap.to(card, {
+					rotateX,
+					rotateY,
+					y: -6,
+					transformPerspective: 1000,
+					duration: 0.2,
+					ease: 'power1.out',
+					overwrite: 'auto',
+				});
+
+				// Coordenadas relativas para el reflejo de luz especular
+				card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+				card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
+			};
+
+			const onMouseLeave = () => {
+				gsap.to(card, {
+					rotateX: 0,
+					rotateY: 0,
+					y: 0,
+					duration: 0.55,
+					ease: 'elastic.out(1, 0.45)',
+					overwrite: 'auto',
+				});
+			};
+
+			card.addEventListener('mousemove', onMouseMove);
+			card.addEventListener('mouseleave', onMouseLeave);
+		});
+	}
+
+	// ==============================================================
+	// 3. COREOGRAFÍA HERO ENTRANCE (ESTILO FLAGSHIP LAUNCH)
+	// ==============================================================
+	function initHeroEntrance() {
+		const heroCard = document.querySelector('#tab-landing > div:first-child');
+		if (!heroCard) return;
+
+		const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+		tl.fromTo(
+			heroCard,
+			{ opacity: 0, scale: 0.94, y: 30 },
+			{ opacity: 1, scale: 1, y: 0, duration: 0.85 }
+		);
+
+		tl.fromTo(
+			'#tab-landing h1',
+			{ opacity: 0, y: 25 },
+			{ opacity: 1, y: 0, duration: 0.7 },
+			'-=0.5'
+		);
+
+		tl.fromTo(
+			'#tab-landing p.max-w-xl',
+			{ opacity: 0, y: 15 },
+			{ opacity: 1, y: 0, duration: 0.6 },
+			'-=0.4'
+		);
+
+		tl.fromTo(
+			'#hero-image-parallax',
+			{ scale: 1.1, opacity: 0.8 },
+			{ scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out' },
+			'-=0.6'
+		);
+	}
+
+	// ==============================================================
+	// 4. PARALLAX EN IMÁGENES SINCRONIZADO CON LENIS SCROLL
+	// ==============================================================
+	function initParallaxEffects() {
+		const heroImg = document.getElementById('hero-image-parallax');
+		if (heroImg) {
+			gsap.to(heroImg, {
+				yPercent: 12,
+				ease: 'none',
+				scrollTrigger: {
+					trigger: '#tab-landing',
+					start: 'top top',
+					end: 'bottom top',
+					scrub: 1,
+				},
+			});
+		}
+
+		gsap.utils.toArray<HTMLElement>('.milestone-parallax-img').forEach((img) => {
+			gsap.fromTo(
+				img,
+				{ scale: 1.14, yPercent: -4 },
+				{
+					scale: 1,
+					yPercent: 4,
+					ease: 'none',
+					scrollTrigger: {
+						trigger: img,
+						start: 'top bottom',
+						end: 'bottom top',
+						scrub: 1,
+					},
+				}
+			);
+		});
+	}
+
+	// ==============================================================
+	// 5. ANIMACIONES DE ESCALA AL ENTRAR (ENTRANCE STAGGER)
+	// ==============================================================
+	function initCardScrollAnimations() {
+		gsap.utils
+			.toArray<HTMLElement>('.featured-card, .seasonal-card, .benefit-card, .catalog-card')
+			.forEach((card) => {
+				gsap.fromTo(
+					card,
+					{ opacity: 0, scale: 0.88, y: 35 },
+					{
+						opacity: 1,
+						scale: 1,
+						y: 0,
+						duration: 0.7,
+						ease: 'power3.out',
+						scrollTrigger: {
+							trigger: card,
+							start: 'top 88%',
+							toggleActions: 'play none none none',
+						},
+					}
+				);
+			});
+	}
+
+	// ==============================================================
+	// 6. ANIMACIÓN DE ESCALERA (STAIRCASE) EN LA SECCIÓN NOSOTROS
+	// ==============================================================
+	function initNosotrosStaircaseAnimation() {
+		const steps = gsap.utils.toArray<HTMLElement>('.staircase-step');
+		if (steps.length === 0) return;
+
+		steps.forEach((step, index) => {
+			gsap.fromTo(
+				step,
+				{
+					opacity: 0,
+					y: 60 + index * 12,
+					x: -30,
+					scale: 0.9,
+				},
+				{
+					opacity: 1,
+					y: 0,
+					x: 0,
+					scale: 1,
+					duration: 0.8,
+					ease: 'power3.out',
+					scrollTrigger: {
+						trigger: step,
+						start: 'top 85%',
+						toggleActions: 'play none none none',
+					},
+				}
+			);
+		});
+	}
+
+	// ==============================================================
+	// 7. ANIMACIÓN NUMÉRICA (COUNT-UP) CON SCROLLTRIGGER
+	// ==============================================================
+	function initStatsCounters() {
+		const counters = document.querySelectorAll<HTMLElement>('[data-counter-target]');
+		counters.forEach((el) => {
+			const targetVal = parseFloat(el.getAttribute('data-counter-target') || '0');
+			const prefix = el.getAttribute('data-counter-prefix') || '';
+			const suffix = el.getAttribute('data-counter-suffix') || '';
+
+			const obj = { val: 0 };
+			gsap.to(obj, {
+				val: targetVal,
+				duration: 1.8,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: el,
+					start: 'top 90%',
+					toggleActions: 'play none none none',
+				},
+				onUpdate: () => {
+					el.textContent = `${prefix}${Math.round(obj.val).toLocaleString()}${suffix}`;
+				},
+			});
+		});
+	}
+
+	// ==============================================================
+	// 8. ANIMACIÓN: SKILLS SCROLL TIMELINE & SCROLL REACT
+	// ==============================================================
+	function initSkillsScrollTimeline() {
+		const timelineSection = document.getElementById('skills-timeline-section');
+		const progressBar = document.getElementById('skills-timeline-progress');
+
+		if (timelineSection && progressBar) {
+			gsap.to(progressBar, {
+				height: '100%',
+				ease: 'none',
+				scrollTrigger: {
+					trigger: timelineSection,
+					start: 'top 75%',
+					end: 'bottom 85%',
+					scrub: 0.5,
+				},
+			});
+		}
+
+		gsap.utils.toArray<HTMLElement>('.skill-timeline-item').forEach((item) => {
+			const card = item.querySelector('.skill-card') as HTMLElement | null;
+			const bar = item.querySelector('.skill-progress-bar') as HTMLElement | null;
+			const dot = item.querySelector('.skill-timeline-dot') as HTMLElement | null;
+			const targetWidth = bar?.getAttribute('data-target-width') || '90%';
+
+			if (card) {
+				gsap.fromTo(
+					card,
+					{ opacity: 0, scale: 0.85, y: 40 },
+					{
+						opacity: 1,
+						scale: 1,
+						y: 0,
+						duration: 0.75,
+						ease: 'back.out(1.2)',
+						scrollTrigger: {
+							trigger: item,
+							start: 'top 85%',
+							toggleActions: 'play none none none',
+						},
+					}
+				);
+			}
+
+			if (bar) {
+				gsap.to(bar, {
+					width: targetWidth,
+					duration: 1.1,
+					ease: 'power3.out',
+					scrollTrigger: {
+						trigger: item,
+						start: 'top 80%',
+						toggleActions: 'play none none none',
+					},
+				});
+			}
+
+			if (dot) {
+				ScrollTrigger.create({
+					trigger: item,
+					start: 'top 65%',
+					end: 'bottom 45%',
+					onEnter: () => {
+						gsap.to(dot, {
+							scale: 1.3,
+							backgroundColor: '#ff5500',
+							color: '#ffffff',
+							boxShadow: '0 0 20px rgba(255, 85, 0, 0.7)',
+							duration: 0.3,
+						});
+					},
+					onLeave: () => {
+						gsap.to(dot, {
+							scale: 1,
+							backgroundColor: '#0c0c10',
+							color: '#ff5500',
+							boxShadow: 'none',
+							duration: 0.3,
+						});
+					},
+					onEnterBack: () => {
+						gsap.to(dot, {
+							scale: 1.3,
+							backgroundColor: '#ff5500',
+							color: '#ffffff',
+							boxShadow: '0 0 20px rgba(255, 85, 0, 0.7)',
+							duration: 0.3,
+						});
+					},
+					onLeaveBack: () => {
+						gsap.to(dot, {
+							scale: 1,
+							backgroundColor: '#0c0c10',
+							color: '#ff5500',
+							boxShadow: 'none',
+							duration: 0.3,
+						});
+					},
+				});
+			}
+		});
+	}
+
+	// Ejecutar inicializaciones de animación al cargar
+	initHeroEntrance();
+	initParallaxEffects();
+	initCardScrollAnimations();
+	initNosotrosStaircaseAnimation();
+	initSkillsScrollTimeline();
+	initCard3DTilt();
+	initStatsCounters();
+
+	// ==============================================================
+	// 9. FUNCIÓN TOAST DE VALIDACIÓN CON GSAP
+	// ==============================================================
+	function showToast(msg: string, isError = false) {
+		const toast = document.getElementById('toast-notification');
+		const text = document.getElementById('toast-message');
+		const badge = document.getElementById('toast-icon-badge');
+		if (!toast || !text) return;
+
+		text.textContent = msg;
+		if (badge) {
+			badge.textContent = isError ? '✕' : '✓';
+			badge.className = isError
+				? 'flex h-6 w-6 items-center justify-center rounded-full bg-rose-500 text-white font-black'
+				: 'flex h-6 w-6 items-center justify-center rounded-full bg-[#ff5500] text-white font-black';
+		}
+
+		gsap.killTweensOf(toast);
+		gsap.fromTo(
+			toast,
+			{ opacity: 0, y: 30, scale: 0.9 },
+			{
+				opacity: 1,
+				y: 0,
+				scale: 1,
+				duration: 0.35,
+				ease: 'back.out(1.4)',
+				onComplete: () => {
+					gsap.to(toast, { opacity: 0, y: 20, scale: 0.9, delay: 2.4, duration: 0.3 });
+				},
+			}
+		);
+	}
+
+	// ==============================================================
+	// 10. NAVEGACIÓN ENTRE PESTAÑAS CON GSAP Y LENIS
+	// ==============================================================
+	function switchTab(tabName: 'landing' | 'catalogo' | 'checkout', onCompleteCallback?: () => void) {
+		shopStore.getState().setActiveTab(tabName);
+
+		const panels: Record<string, HTMLElement | null> = {
+			landing: document.getElementById('tab-landing'),
+			catalogo: document.getElementById('tab-catalogo'),
+			checkout: document.getElementById('tab-checkout'),
+		};
+
+		Object.entries(panels).forEach(([key, panel]) => {
+			if (!panel) return;
+			if (key === tabName) {
+				panel.classList.remove('hidden');
+				gsap.fromTo(
+					panel,
+					{ opacity: 0, y: 18, scale: 0.98 },
+					{
+						opacity: 1,
+						y: 0,
+						scale: 1,
+						duration: 0.45,
+						ease: 'power2.out',
+						onComplete: () => {
+							ScrollTrigger.refresh();
+							initCard3DTilt();
+							if (onCompleteCallback) onCompleteCallback();
+						},
+					}
+				);
+			} else {
+				panel.classList.add('hidden');
+			}
+		});
+
+		document.querySelectorAll<HTMLElement>('.nav-tab-btn').forEach((btn) => {
+			const target = btn.getAttribute('data-tab-target');
+			if (target === tabName) {
+				btn.className =
+					'nav-tab-btn active-tab event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold transition-all duration-200 bg-white text-black shadow-md';
+			} else {
+				btn.className =
+					'nav-tab-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold text-stone-300 hover:text-white hover:bg-white/10 transition-all duration-200';
+			}
+		});
+
+		if (!onCompleteCallback) {
+			lenis.scrollTo(0, { duration: 0.8 });
+		}
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-tab-target]').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const target = btn.getAttribute('data-tab-target') as 'landing' | 'catalogo' | 'checkout';
+			if (target) switchTab(target);
+		});
+	});
+
+	document.querySelectorAll<HTMLElement>('[data-scroll-anchor]').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const anchorId = btn.getAttribute('data-scroll-anchor');
+			if (!anchorId) return;
+
+			const currentTab = shopStore.getState().activeTab;
+			if (currentTab !== 'landing') {
+				switchTab('landing', () => {
+					setTimeout(() => {
+						const targetEl = document.getElementById(anchorId);
+						if (targetEl) {
+							lenis.scrollTo(targetEl, { offset: -90, duration: 1.2 });
+						}
+					}, 100);
+				});
+			} else {
+				const targetEl = document.getElementById(anchorId);
+				if (targetEl) {
+					lenis.scrollTo(targetEl, { offset: -90, duration: 1.2 });
+				}
+			}
+		});
+	});
+
+	document.querySelectorAll<HTMLElement>('[data-jump-category]').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const cat = btn.getAttribute('data-jump-category') || 'Todos';
+			switchTab('catalogo', () => {
+				applyCatalogFilter(cat, '');
+			});
+		});
+	});
+
+	// Filtros y Buscador del Catálogo
+	const searchInput = document.getElementById('catalog-search') as HTMLInputElement | null;
+
+	function applyCatalogFilter(category: string, query: string) {
+		shopStore.getState().setCategory(category);
+		shopStore.getState().setSearchQuery(query);
+		const normalizedQuery = query.trim().toLowerCase();
+
+		document.querySelectorAll<HTMLElement>('.cat-filter-btn').forEach((btn) => {
+			const btnCat = btn.getAttribute('data-filter-cat');
+			if (btnCat === category) {
+				btn.className =
+					'cat-filter-btn cursor-pointer rounded-xl px-4 py-2 text-xs font-bold transition bg-white text-black shadow-md';
+			} else {
+				btn.className =
+					'cat-filter-btn cursor-pointer rounded-xl px-4 py-2 text-xs font-bold transition border border-white/10 bg-white/5 text-stone-300 hover:border-white/30 hover:text-white';
+			}
+		});
+
+		let visibleCount = 0;
+		const visibleCards: HTMLElement[] = [];
+
+		document.querySelectorAll<HTMLElement>('.catalog-card').forEach((card) => {
+			const cardCat = card.getAttribute('data-card-category') || '';
+			const cardName = card.getAttribute('data-card-name') || '';
+
+			const matchesCat = category === 'Todos' || cardCat === category;
+			const matchesSearch = !normalizedQuery || cardName.includes(normalizedQuery);
+
+			if (matchesCat && matchesSearch) {
+				card.classList.remove('hidden');
+				visibleCount++;
+				visibleCards.push(card);
+			} else {
+				card.classList.add('hidden');
+			}
+		});
+
+		const countEl = document.getElementById('catalog-count');
+		if (countEl) countEl.textContent = String(visibleCount);
+
+		if (visibleCards.length > 0) {
+			gsap.fromTo(
+				visibleCards,
+				{ opacity: 0, scale: 0.88, y: 20 },
+				{ opacity: 1, scale: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' }
+			);
+		}
+	}
+
+	document.querySelectorAll<HTMLElement>('.cat-filter-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const cat = btn.getAttribute('data-filter-cat') || 'Todos';
+			applyCatalogFilter(cat, searchInput?.value || '');
+		});
+	});
+
+	searchInput?.addEventListener('input', () => {
+		const currentCat = shopStore.getState().currentCategory;
+		applyCatalogFilter(currentCat, searchInput.value);
+	});
+
+	// Modal de Producto
+	const modal = document.getElementById('product-info-modal');
+	const modalDialog = document.getElementById('modal-dialog');
+
+	function openProductModal(productId: string) {
+		const products = shopStore.getState().products;
+		const product = products.find((p) => p.id === productId);
+		if (!product || !modal || !modalDialog) return;
+
+		shopStore.getState().openModal(product.id);
+
+		const imgEl = document.getElementById('modal-img') as HTMLImageElement | null;
+		const badgeEl = document.getElementById('modal-badge');
+		const catEl = document.getElementById('modal-category');
+		const skuEl = document.getElementById('modal-sku');
+		const ratingEl = document.getElementById('modal-rating');
+		const titleEl = document.getElementById('modal-title');
+		const priceEl = document.getElementById('modal-price');
+		const oldPriceEl = document.getElementById('modal-old-price');
+		const stockEl = document.getElementById('modal-stock');
+		const descEl = document.getElementById('modal-description');
+		const warrantyEl = document.getElementById('modal-warranty');
+		const highlightsEl = document.getElementById('modal-highlights');
+		const specsEl = document.getElementById('modal-specs');
+
+		if (imgEl) {
+			imgEl.src = product.image;
+			imgEl.alt = product.name;
+		}
+		if (badgeEl) badgeEl.textContent = product.badge || product.category;
+		if (catEl) catEl.textContent = product.category;
+		if (skuEl) skuEl.textContent = `SKU: ${product.sku}`;
+		if (ratingEl) ratingEl.textContent = `★ ${product.rating} (${product.reviews} reseñas)`;
+		if (titleEl) titleEl.textContent = product.name;
+		if (priceEl) priceEl.textContent = `$${product.price.toLocaleString()}`;
+		if (oldPriceEl) oldPriceEl.textContent = product.oldPrice ? `$${product.oldPrice.toLocaleString()}` : '';
+		if (stockEl) stockEl.textContent = `En Stock (${product.stock} disponibles)`;
+		if (descEl) descEl.textContent = product.description;
+		if (warrantyEl) warrantyEl.textContent = product.warranty;
+
+		if (highlightsEl) {
+			highlightsEl.innerHTML = product.highlights
+				.map(
+					(h) =>
+						`<li class="flex items-start gap-2"><span class="text-[#ff5500] font-black">✓</span><span>${h}</span></li>`
+				)
+				.join('');
+		}
+
+		if (specsEl) {
+			specsEl.innerHTML = product.specs
+				.map(
+					(s) => `
+					<div class="grid grid-cols-1 sm:grid-cols-3 gap-1 px-4 py-2.5 text-xs">
+						<span class="font-bold text-stone-400">${s.label}</span>
+						<span class="sm:col-span-2 font-semibold text-white">${s.value}</span>
+					</div>
+				`
+				)
+				.join('');
+		}
+
+		modal.classList.remove('hidden');
+		modal.classList.add('flex');
+
+		gsap.fromTo(
+			modalDialog,
+			{ opacity: 0, scale: 0.88, y: 24 },
+			{ opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'power3.out' }
+		);
+	}
+
+	function closeProductModal() {
+		if (!modal || !modalDialog) return;
+		shopStore.getState().closeModal();
+		gsap.to(modalDialog, {
+			opacity: 0,
+			scale: 0.92,
+			duration: 0.2,
+			onComplete: () => {
+				modal.classList.add('hidden');
+				modal.classList.remove('flex');
+			},
+		});
+	}
+
+	document.querySelectorAll<HTMLElement>('[data-open-modal]').forEach((el) => {
+		el.addEventListener('click', () => {
+			const id = el.getAttribute('data-open-modal');
+			if (id) openProductModal(id);
+		});
+	});
+
+	document.getElementById('modal-close-btn')?.addEventListener('click', closeProductModal);
+	document.getElementById('modal-backdrop')?.addEventListener('click', closeProductModal);
+
+	// VALIDACIÓN ZUSTAND: Añadir al carrito desde el modal
+	document.getElementById('modal-add-cart-btn')?.addEventListener('click', () => {
+		const activeId = shopStore.getState().activeModalProductId;
+		if (activeId) {
+			const res = shopStore.getState().addToCart(activeId);
+			showToast(res.message, !res.success);
+			if (res.success) closeProductModal();
+		}
+	});
+
+	document.getElementById('modal-buy-now-btn')?.addEventListener('click', () => {
+		const activeId = shopStore.getState().activeModalProductId;
+		if (activeId) {
+			const res = shopStore.getState().addToCart(activeId);
+			if (res.success) {
+				closeProductModal();
+				switchTab('checkout');
+			} else {
+				showToast(res.message, true);
+			}
+		}
+	});
+
+	// VALIDACIÓN ZUSTAND: Añadir al carrito desde cualquier botón
+	document.querySelectorAll<HTMLElement>('[data-add-cart]').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const id = btn.getAttribute('data-add-cart');
+			if (id) {
+				const res = shopStore.getState().addToCart(id);
+				showToast(res.message, !res.success);
+			}
+		});
+	});
+
+	function renderCartFromStore() {
+		const state = shopStore.getState();
+		const totalCount = state.getTotalItemsCount();
+		const finalTotal = state.getTotal();
+		const subtotal = state.getSubtotal();
+		const discount = state.getDiscount();
+
+		const navBadge = document.getElementById('nav-cart-badge');
+		const navTotal = document.getElementById('nav-cart-total');
+		if (navBadge) {
+			navBadge.textContent = String(totalCount);
+			gsap.fromTo(navBadge, { scale: 1.5 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+		}
+		if (navTotal) navTotal.textContent = `$${finalTotal.toLocaleString()}`;
+
+		const itemsContainer = document.getElementById('checkout-cart-items');
+		const emptyState = document.getElementById('checkout-empty-state');
+
+		if (itemsContainer && emptyState) {
+			if (state.cart.length === 0) {
+				itemsContainer.innerHTML = '';
+				emptyState.classList.remove('hidden');
+			} else {
+				emptyState.classList.add('hidden');
+				itemsContainer.innerHTML = state.cart
+					.map(
+						(item) => `
+						<div class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/60 p-3">
+							<img src="${item.product.image}" alt="${item.product.name}" class="h-14 w-14 rounded-xl object-cover border border-white/10 shrink-0" />
+							<div class="min-w-0 flex-1">
+								<p class="truncate text-xs font-bold text-white">${item.product.name}</p>
+								<p class="text-[11px] text-[#ff5500] font-bold">$${item.product.price.toLocaleString()} c/u</p>
+							</div>
+							<div class="flex items-center gap-1.5">
+								<button type="button" data-cart-dec="${item.product.id}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-xs font-bold text-white hover:border-[#ff5500]">-</button>
+								<span class="w-5 text-center text-xs font-bold text-white">${item.qty}</span>
+								<button type="button" data-cart-inc="${item.product.id}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-xs font-bold text-white hover:border-[#ff5500]">+</button>
+							</div>
+						</div>
+					`
+					)
+					.join('');
+
+				itemsContainer.querySelectorAll<HTMLElement>('[data-cart-inc]').forEach((btn) => {
+					btn.addEventListener('click', () => {
+						const id = btn.getAttribute('data-cart-inc');
+						if (id) {
+							const res = shopStore.getState().updateQuantity(id, 1);
+							if (!res.success && res.message) showToast(res.message, true);
+						}
+					});
+				});
+
+				itemsContainer.querySelectorAll<HTMLElement>('[data-cart-dec]').forEach((btn) => {
+					btn.addEventListener('click', () => {
+						const id = btn.getAttribute('data-cart-dec');
+						if (id) {
+							const res = shopStore.getState().updateQuantity(id, -1);
+							if (!res.success && res.message) showToast(res.message, true);
+						}
+					});
+				});
+			}
+		}
+
+		const subEl = document.getElementById('summary-subtotal');
+		const discEl = document.getElementById('summary-discount');
+		const totEl = document.getElementById('summary-total');
+
+		if (subEl) subEl.textContent = `$${subtotal.toLocaleString()}`;
+		if (discEl) discEl.textContent = `-$${discount.toLocaleString()}`;
+		if (totEl) totEl.textContent = `$${finalTotal.toLocaleString()}`;
+	}
+
+	shopStore.subscribe(() => {
+		renderCartFromStore();
+	});
+
+	document.getElementById('clear-cart-btn')?.addEventListener('click', () => {
+		shopStore.getState().clearCart();
+		showToast('Bolsa de compra vaciada');
+	});
+
+	document.getElementById('load-demo-cart-btn')?.addEventListener('click', () => {
+		shopStore.getState().loadDemoCart();
+		showToast('Equipos demo cargados a la bolsa');
+	});
+
+	// VALIDACIÓN ZUSTAND: Cupones con Feedback Visual y Chips Rápidos
+	function handleApplyCoupon(code: string) {
+		const input = document.getElementById('coupon-input') as HTMLInputElement | null;
+		const feedback = document.getElementById('coupon-feedback');
+		if (!feedback) return;
+
+		if (input) input.value = code;
+		const result = shopStore.getState().applyCouponCode(code);
+		feedback.classList.remove('hidden');
+		feedback.textContent = result.message;
+		feedback.className = result.success
+			? 'mt-1.5 text-xs font-bold text-white bg-white/10 p-2 rounded-lg border border-white/20'
+			: 'mt-1.5 text-xs font-bold text-rose-400 bg-rose-500/10 p-2 rounded-lg border border-rose-500/20';
+		showToast(result.message, !result.success);
+	}
+
+	document.getElementById('apply-coupon-btn')?.addEventListener('click', () => {
+		const input = document.getElementById('coupon-input') as HTMLInputElement | null;
+		if (input) handleApplyCoupon(input.value);
+	});
+
+	// Chips rápidos para probar cupones de Zustand
+	document.querySelectorAll<HTMLElement>('[data-coupon-quick]').forEach((chip) => {
+		chip.addEventListener('click', () => {
+			const code = chip.getAttribute('data-coupon-quick');
+			if (code) handleApplyCoupon(code);
+		});
+	});
+
+	// Pestañas de Métodos de Pago
+	document.querySelectorAll<HTMLElement>('.pay-method-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const method = btn.getAttribute('data-pay-method');
+
+			document.querySelectorAll<HTMLElement>('.pay-method-btn').forEach((b) => {
+				if (b.getAttribute('data-pay-method') === method) {
+					b.className =
+						'pay-method-btn cursor-pointer rounded-2xl border border-[#ff5500] bg-[#ff5500]/15 p-3 text-center text-xs font-black text-white transition';
+				} else {
+					b.className =
+						'pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition';
+				}
+			});
+
+			document.getElementById('pay-panel-card')?.classList.toggle('hidden', method !== 'card');
+			document.getElementById('pay-panel-qr')?.classList.toggle('hidden', method !== 'qr');
+			document.getElementById('pay-panel-transfer')?.classList.toggle('hidden', method !== 'transfer');
+		});
+	});
+
+	// Validación y Auto-formateo en Tiempo Real de Tarjeta de Crédito Ficticia
+	const inputCardNum = document.getElementById('input-card-number') as HTMLInputElement | null;
+	const inputCardHolder = document.getElementById('input-card-holder') as HTMLInputElement | null;
+	const inputCardExp = document.getElementById('input-card-expiry') as HTMLInputElement | null;
+	const cardBrandLabel = document.getElementById('card-brand-label');
+
+	inputCardNum?.addEventListener('input', () => {
+		const digits = inputCardNum.value.replace(/\D/g, '').slice(0, 16);
+		const formatted = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+		inputCardNum.value = formatted;
+		const preview = document.getElementById('card-preview-number');
+		if (preview) preview.textContent = formatted || '•••• •••• •••• ••••';
+
+		// Detección en vivo de franquicia bancaria
+		if (cardBrandLabel) {
+			if (digits.startsWith('4')) {
+				cardBrandLabel.textContent = 'VISA SIGNATURE';
+			} else if (digits.startsWith('5')) {
+				cardBrandLabel.textContent = 'MASTERCARD BLACK';
+			} else if (digits.startsWith('3')) {
+				cardBrandLabel.textContent = 'AMERICAN EXPRESS';
+			} else {
+				cardBrandLabel.textContent = 'TITANIUM CARD';
+			}
+		}
+	});
+
+	inputCardHolder?.addEventListener('input', () => {
+		const preview = document.getElementById('card-preview-holder');
+		if (preview) preview.textContent = inputCardHolder.value.toUpperCase() || 'TITULAR';
+	});
+
+	inputCardExp?.addEventListener('input', () => {
+		let v = inputCardExp.value.replace(/\D/g, '').slice(0, 4);
+		if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2);
+		inputCardExp.value = v;
+		const preview = document.getElementById('card-preview-expiry');
+		if (preview) preview.textContent = v || 'MM/AA';
+	});
+
+	// VALIDACIÓN ZUSTAND: Procesamiento de Pago y Creación de Orden
+	const checkoutForm = document.getElementById('checkout-form') as HTMLFormElement | null;
+	const successModal = document.getElementById('payment-success-modal');
+	const successCard = document.getElementById('payment-success-card');
+
+	checkoutForm?.addEventListener('submit', (e) => {
+		e.preventDefault();
+
+		const buyerName = (document.getElementById('buyer-name') as HTMLInputElement | null)?.value || '';
+		const buyerEmail = (document.getElementById('buyer-email') as HTMLInputElement | null)?.value || '';
+		const buyerAddress = (document.getElementById('buyer-address') as HTMLInputElement | null)?.value || '';
+
+		const res = shopStore.getState().processCheckout({
+			name: buyerName,
+			email: buyerEmail,
+			address: buyerAddress,
+		});
+
+		if (!res.success) {
+			showToast(res.message || 'Verifica los datos ingresados', true);
+			return;
+		}
+
+		const orderEl = document.getElementById('receipt-order-id');
+		const buyerEl = document.getElementById('receipt-buyer');
+		const totalEl = document.getElementById('receipt-total');
+
+		if (orderEl) orderEl.textContent = res.orderId || '#EN-2026';
+		if (buyerEl) buyerEl.textContent = buyerName;
+		if (totalEl) totalEl.textContent = `$${(res.total || 0).toLocaleString()}`;
+
+		if (successModal && successCard) {
+			successModal.classList.remove('hidden');
+			successModal.classList.add('flex');
+			gsap.fromTo(
+				successCard,
+				{ opacity: 0, scale: 0.82, y: 30 },
+				{ opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)' }
+			);
+		}
+	});
+
+	document.getElementById('close-success-btn')?.addEventListener('click', () => {
+		if (successModal) {
+			successModal.classList.add('hidden');
+			successModal.classList.remove('flex');
+		}
+		switchTab('landing');
+	});
+
+	renderCartFromStore();
+</script>
