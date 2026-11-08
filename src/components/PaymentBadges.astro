@@ -7,88 +7,30 @@ interface Props {
 const { variant = 'hero', showInstallments = true } = Astro.props;
 ---
 
-{variant === 'hero' && (
-	<div class="rounded-2xl border border-stone-800/80 bg-stone-950/70 p-3.5 sm:p-4 backdrop-blur-md">
-		<div class="flex flex-wrap items-center justify-between gap-3 text-xs">
-			<div class="flex items-center gap-2">
-				<span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-400">
-					<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-					</svg>
-				</span>
-				<span class="font-bold text-stone-300 text-[11px] uppercase tracking-wider">
-					Medios de Pago Oficiales & Encriptación SSL 256-Bit
-				</span>
-			</div>
-			{showInstallments && (
-				<span class="rounded-md bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 text-[10px] font-black text-amber-300">
-					Hasta 12 Cuotas 0% Interés
-				</span>
-			)}
-		</div>
-
-		<!-- Fila de Marcas de Pago Oficiales -->
-		<div class="mt-3 flex flex-wrap items-center gap-2">
-			<!-- Visa -->
-			<div class="flex h-7 items-center justify-center rounded-lg border border-stone-800 bg-stone-900 px-2.5 shadow-sm" title="Visa">
-				<span class="font-black italic text-xs tracking-tighter text-amber-100">VISA</span>
-			</div>
-
-			<!-- Mastercard -->
-			<div class="flex h-7 items-center justify-center gap-1 rounded-lg border border-stone-800 bg-stone-900 px-2.5 shadow-sm" title="Mastercard">
-				<span class="flex -space-x-1.5 items-center">
-					<span class="h-3.5 w-3.5 rounded-full bg-red-500 opacity-90 inline-block"></span>
-					<span class="h-3.5 w-3.5 rounded-full bg-amber-400 opacity-90 inline-block"></span>
-				</span>
-				<span class="font-extrabold text-[10px] text-stone-200 tracking-tight ml-1">mastercard</span>
-			</div>
-
-			<!-- American Express -->
-			<div class="flex h-7 items-center justify-center rounded-lg border border-stone-800 bg-stone-900 px-2 shadow-sm" title="American Express">
-				<span class="font-black text-[10px] tracking-widest text-amber-300 bg-amber-500/10 px-1 rounded">AMEX</span>
-			</div>
-
-			<!-- Apple Pay -->
-			<div class="flex h-7 items-center justify-center gap-1 rounded-lg border border-stone-800 bg-stone-900 px-2.5 shadow-sm" title="Apple Pay">
-				<svg class="h-3 w-3 fill-current text-white" viewBox="0 0 170 170">
-					<path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.6-7.7-11.71-13.98-6.19-9.47-11.04-20.2-14.54-32.2-3.5-12-5.26-23.23-5.26-33.68 0-14.8 3.73-26.79 11.19-35.97 7.46-9.17 16.73-13.89 27.81-14.15 4.8 0 10.15 1.25 16.06 3.76 5.91 2.5 9.77 3.82 11.58 3.94 1.45-.12 5.56-1.52 12.33-4.22 6.78-2.69 12.37-3.86 16.78-3.51 12.56.77 22.25 5.37 29.07 13.8-10.98 6.64-16.35 15.77-16.12 27.38.23 9.04 3.74 16.63 10.53 22.77 6.79 6.13 14.86 9.58 24.21 10.35-2.01 6.13-4.39 12.18-7.14 18.15zM119.22 33.55c-.24-7.2 2.29-13.92 7.59-20.15 5.3-6.23 11.76-10.36 19.38-12.4 1.21 6.86-.78 13.44-5.97 19.74-5.19 6.3-11.77 10.43-19.75 12.4-.41-.74-.83-1.47-1.25-2.19z" />
-				</svg>
-				<span class="font-bold text-[10px] text-white">Pay</span>
-			</div>
-
-			<!-- Google Pay -->
-			<div class="flex h-7 items-center justify-center gap-1 rounded-lg border border-stone-800 bg-stone-900 px-2.5 shadow-sm" title="Google Pay">
-				<span class="font-black text-xs text-stone-200">G</span>
-				<span class="font-semibold text-[10px] text-stone-300">Pay</span>
-			</div>
-
-			<!-- Yape / Plin QR Inmediato -->
-			<div class="flex h-7 items-center justify-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 shadow-sm" title="Yape / Plin">
-				<span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-				<span class="font-black text-[10px] text-emerald-300">YAPE • PLIN QR</span>
-			</div>
-
-			<!-- Transferencia CIP -->
-			<div class="flex h-7 items-center justify-center rounded-lg border border-stone-800 bg-stone-900 px-2.5 shadow-sm" title="PagoEfectivo CIP">
-				<span class="font-mono font-bold text-[10px] text-stone-300">CIP Bancario</span>
-			</div>
-		</div>
-	</div>
-)}
-
-{variant === 'card' && (
-	<div class="mt-3 flex items-center justify-between gap-1 border-t border-stone-800/60 pt-2 text-[10px] text-stone-400">
-		<div class="flex items-center gap-1.5">
-			<span class="font-black italic text-[9px] text-amber-200">VISA</span>
-			<span class="flex -space-x-1 items-center">
-				<span class="h-2.5 w-2.5 rounded-full bg-red-500 opacity-90 inline-block"></span>
-				<span class="h-2.5 w-2.5 rounded-full bg-amber-400 opacity-90 inline-block"></span>
-			</span>
-			<span class="text-[9px] font-bold text-stone-300">AMEX</span>
-			<span class="text-[9px] font-bold text-emerald-400">• Yape</span>
-		</div>
-		<span class="font-bold text-amber-300/90 bg-amber-500/10 px-1.5 py-0.2 rounded text-[9px]">
-			0% Intereses
-		</span>
-	</div>
-)}
+<div
+	class:list={[
+		'flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-xs leading-relaxed text-stone-400',
+		variant === 'card' && 'pt-2 text-[11px]',
+		variant === 'checkout' && 'py-1',
+	]}
+>
+	<p class="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+		<span class="font-medium text-stone-300">Medios de pago:</span>
+		<span>Visa</span>
+		<span aria-hidden="true">·</span>
+		<span>Mastercard</span>
+		<span aria-hidden="true">·</span>
+		<span>Amex</span>
+		<span aria-hidden="true">·</span>
+		<span>Apple Pay</span>
+		<span aria-hidden="true">·</span>
+		<span>Google Pay</span>
+		<span aria-hidden="true">·</span>
+		<span>Yape / Plin</span>
+		<span aria-hidden="true">·</span>
+		<span>CIP Bancario</span>
+	</p>
+	{showInstallments && (
+		<span class="text-stone-400">Hasta 12 cuotas sin interés · SSL 256-bit</span>
+	)}
+</div>

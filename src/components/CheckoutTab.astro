@@ -2,203 +2,241 @@
 import PaymentBadges from './PaymentBadges.astro';
 ---
 
-<section id="tab-checkout" class="tab-panel hidden mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
-	<!-- Encabezado de la Pasarela de Pago Ficticia Estilo BandWerk -->
-	<div class="card-2rem rounded-[2rem] p-6 sm:p-8 border border-white/10 bg-[#0a0a0e]">
-		<div class="flex flex-wrap items-center justify-between gap-4">
-			<div>
-				<span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-emerald-400 border border-emerald-500/25">
-					<span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-					<span>Checkout Encriptado SSL 256-Bit • Garantía Oficial Directa</span>
-				</span>
-				<h2 class="mt-2 text-3xl sm:text-4xl font-black text-white">Pasarela de Pago y Resumen de Compra</h2>
-				<p class="mt-1 text-sm text-stone-300">
-					Inspecciona tus equipos seleccionados, verifica el cupón de descuento y simula tu orden de laboratorio en tiempo real.
-				</p>
-			</div>
-
-			<button
-				type="button"
-				data-tab-target="catalogo"
-				class="event-btn-pop cursor-pointer rounded-2xl border border-white/20 bg-white/5 px-4 py-2.5 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
-			>
-				&larr; Seguir explorando catálogo
-			</button>
+<section id="tab-checkout" class="tab-panel hidden mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-10">
+	<!-- Open header for checkout -->
+	<header class="flex flex-wrap items-end justify-between gap-6 border-b border-white/10 pb-7">
+		<div class="space-y-2.5">
+			<p class="text-[11px] font-semibold uppercase tracking-[.18em] text-[#ff5500]">
+				Checkout encriptado SSL 256-bit · Garantía oficial directa
+			</p>
+			<h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+				Pasarela de pago y resumen de compra
+			</h2>
+			<p class="text-sm leading-relaxed text-stone-400">
+				Revisa tus equipos seleccionados, aplica un cupón de descuento y confirma tu orden.
+			</p>
 		</div>
-	</div>
 
-	<div class="grid gap-8 lg:grid-cols-12">
-		<!-- Columna Izquierda: Formulario de Despacho y Pasarela -->
-		<div class="lg:col-span-7 space-y-6">
-			<form id="checkout-form" class="space-y-6">
-				<!-- Paso 1: Datos del Comprador y Despacho con Curvatura de 2rem -->
-				<div class="card-2rem rounded-[2rem] p-6 sm:p-8">
-					<h3 class="flex items-center gap-3 text-lg font-black text-white">
-						<span class="flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-black text-black">1</span>
-						<span>Datos de Despacho y Facturación</span>
-					</h3>
+		<button
+			type="button"
+			data-tab-target="catalogo"
+			class="event-btn-pop inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2.5 text-xs font-medium text-stone-300 transition hover:border-white/25 hover:text-white"
+		>
+			<span aria-hidden="true">←</span> Seguir explorando catálogo
+		</button>
+	</header>
 
-					<div class="mt-5 grid gap-4 sm:grid-cols-2">
-						<div>
-							<label class="block text-xs font-bold text-stone-300 mb-1.5">Nombre Completo *</label>
+	<div class="grid gap-8 lg:grid-cols-12 lg:gap-10 items-start">
+		<!-- Left column: Symmetric checkout steps -->
+		<div class="lg:col-span-7">
+			<form id="checkout-form" class="space-y-8">
+				<!-- Step 1: Buyer and delivery details -->
+				<section aria-labelledby="checkout-step-1-heading" class="surface-card p-6 sm:p-8 space-y-7">
+					<div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+						<div class="flex items-center gap-3.5">
+							<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.03] text-xs font-semibold text-stone-200">1</span>
+							<h3 id="checkout-step-1-heading" class="text-base sm:text-lg font-semibold tracking-tight text-white">
+								Datos de despacho y facturación
+							</h3>
+						</div>
+						<span class="text-[11px] font-medium text-stone-500">Despacho express asegurado</span>
+					</div>
+
+					<div class="grid gap-5 sm:grid-cols-2 sm:gap-6">
+						<div class="space-y-2">
+							<label for="buyer-name" class="block text-xs font-medium tracking-wide text-stone-300">Nombre completo *</label>
 							<input
 								type="text"
 								required
 								id="buyer-name"
+								name="buyer_name"
+								autocomplete="name"
 								placeholder="Ej. Carlos Mendoza"
 								value="Carlos Mendoza"
-								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:ring-1 focus:ring-[#ff5500] focus:outline-none transition"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 							/>
 						</div>
-						<div>
-							<label class="block text-xs font-bold text-stone-300 mb-1.5">Correo Electrónico *</label>
+						<div class="space-y-2">
+							<label for="buyer-email" class="block text-xs font-medium tracking-wide text-stone-300">Correo electrónico *</label>
 							<input
 								type="email"
 								required
 								id="buyer-email"
+								name="buyer_email"
+								autocomplete="email"
+								autocorrect="off"
+								autocapitalize="off"
+								spellcheck="false"
 								placeholder="carlos@empresa.com"
 								value="carlos@electronova.pe"
-								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:ring-1 focus:ring-[#ff5500] focus:outline-none transition"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 							/>
 						</div>
-						<div>
-							<label class="block text-xs font-bold text-stone-300 mb-1.5">Teléfono / WhatsApp *</label>
+						<div class="space-y-2">
+							<label for="buyer-phone" class="block text-xs font-medium tracking-wide text-stone-300">Teléfono / WhatsApp *</label>
 							<input
 								type="tel"
 								required
+								id="buyer-phone"
+								name="buyer_phone"
+								autocomplete="tel"
 								placeholder="+51 999 888 777"
 								value="+51 987 654 321"
-								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none transition"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 							/>
 						</div>
-						<div>
-							<label class="block text-xs font-bold text-stone-300 mb-1.5">Tipo de Comprobante</label>
-							<select class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white focus:border-[#ff5500] focus:outline-none transition">
+						<div class="space-y-2">
+							<label for="buyer-invoice-type" class="block text-xs font-medium tracking-wide text-stone-300">Tipo de comprobante</label>
+							<select
+								id="buyer-invoice-type"
+								name="invoice_type"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
+							>
 								<option value="boleta">Boleta Electrónica (DNI)</option>
 								<option value="factura">Factura Electrónica (RUC 20)</option>
 							</select>
 						</div>
-						<div class="sm:col-span-2">
-							<label class="block text-xs font-bold text-stone-300 mb-1.5">Dirección de Entrega en Lima / Provincias *</label>
+						<div class="sm:col-span-2 space-y-2">
+							<label for="buyer-address" class="block text-xs font-medium tracking-wide text-stone-300">Dirección de entrega en Lima / Provincias *</label>
 							<input
 								type="text"
 								required
 								id="buyer-address"
+								name="buyer_address"
+								autocomplete="street-address"
 								placeholder="Av. Javier Prado Este 2450, San Borja, Lima"
 								value="Av. Javier Prado Este 2450, San Borja, Lima"
-								class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none transition"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 							/>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<!-- Paso 2: Método de Pago con Curvatura de 2rem -->
-				<div class="card-2rem rounded-[2rem] p-6 sm:p-8">
-					<h3 class="flex items-center gap-3 text-lg font-black text-white">
-						<span class="flex h-7 w-7 items-center justify-center rounded-full bg-[#ff5500] text-xs font-black text-white">2</span>
-						<span>Selecciona tu Método de Pago</span>
-					</h3>
+				<!-- Step 2: Payment method selection and panels -->
+				<section aria-labelledby="checkout-step-2-heading" class="surface-card p-6 sm:p-8 space-y-7">
+					<div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+						<div class="flex items-center gap-3.5">
+							<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#ff5500] bg-[#ff5500]/10 text-xs font-semibold text-[#ff5500]">2</span>
+							<h3 id="checkout-step-2-heading" class="text-base sm:text-lg font-semibold tracking-tight text-white">
+								Selecciona tu método de pago
+							</h3>
+						</div>
+						<span class="text-[11px] font-mono text-stone-500">TLS 1.3 · 3D Secure</span>
+					</div>
 
-					<!-- Pestañas de Método de Pago -->
-					<div class="mt-4 grid grid-cols-3 gap-2.5">
+					<div class="grid grid-cols-1 sm:grid-cols-3 gap-3" role="group" aria-label="Método de pago">
 						<button
 							type="button"
 							data-pay-method="card"
-							class="pay-method-btn cursor-pointer rounded-2xl border border-[#ff5500] bg-[#ff5500]/15 p-3 text-center text-xs font-black text-white transition"
+							aria-pressed="true"
+							class="pay-method-btn is-active cursor-pointer rounded-xl px-4 py-3.5 text-center text-xs font-semibold"
 						>
 							Tarjeta Crédito / Débito
 						</button>
 						<button
 							type="button"
 							data-pay-method="qr"
-							class="pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition"
+							aria-pressed="false"
+							class="pay-method-btn cursor-pointer rounded-xl px-4 py-3.5 text-center text-xs font-medium"
 						>
 							Yape / Plin QR
 						</button>
 						<button
 							type="button"
 							data-pay-method="transfer"
-							class="pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition"
+							aria-pressed="false"
+							class="pay-method-btn cursor-pointer rounded-xl px-4 py-3.5 text-center text-xs font-medium"
 						>
 							Transferencia CIP
 						</button>
 					</div>
 
-					<!-- Panel 1: Tarjeta Interactiva con Acabado BandWerk Metálico -->
-					<div id="pay-panel-card" class="pay-panel mt-6 space-y-5">
-						<!-- Tarjeta Visual en Tiempo Real con Curvatura 2rem -->
-						<div class="metallic-gold-card relative mx-auto max-w-md overflow-hidden rounded-[2rem] p-6 text-white shadow-2xl">
-							<div class="flex items-center justify-between">
-								<span class="text-xs font-black uppercase tracking-widest text-[#ff5500]">ElectroNova Titanium</span>
-								<span id="card-brand-label" class="font-mono text-sm font-black italic text-white">VISA / MC</span>
+					<!-- Panel 1: Credit/Debit card -->
+					<div id="pay-panel-card" class="pay-panel space-y-7">
+						<div class="metallic-gold-card mx-auto max-w-md rounded-2xl border border-white/12 bg-gradient-to-br from-[#12121a] via-[#0b0b10] to-[#060609] p-6 sm:p-7 text-white shadow-xl">
+							<div class="flex items-center justify-between text-xs">
+								<span class="font-medium uppercase tracking-[0.14em] text-stone-400">ElectroNova Titanium</span>
+								<span id="card-brand-label" class="font-mono font-semibold text-white">VISA / MC</span>
 							</div>
-							<div class="mt-6 flex items-center gap-3">
-								<div class="h-8 w-11 rounded-lg bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 shadow-md"></div>
-								<span class="text-xs font-bold text-stone-300">Contactless NFC</span>
-							</div>
-							<p id="card-preview-number" class="mt-5 font-mono text-xl sm:text-2xl tracking-widest text-white font-black">
+							<p id="card-preview-number" class="my-6 font-mono text-lg sm:text-xl tracking-[0.2em] text-white font-semibold">
 								4539 •••• •••• 8842
 							</p>
-							<div class="mt-5 flex items-center justify-between text-xs">
-								<div>
-									<span class="block text-[10px] uppercase text-stone-400 font-semibold">Titular</span>
-									<span id="card-preview-holder" class="font-black tracking-wider uppercase text-white">CARLOS MENDOZA</span>
+							<div class="flex items-end justify-between gap-4 text-xs pt-1 border-t border-white/8">
+								<div class="space-y-1 pt-3">
+									<span class="block text-[10px] uppercase tracking-wider text-stone-500">Titular</span>
+									<span id="card-preview-holder" class="block font-medium tracking-wider uppercase text-stone-200">CARLOS MENDOZA</span>
 								</div>
-								<div>
-									<span class="block text-[10px] uppercase text-stone-400 font-semibold">Expira</span>
-									<span id="card-preview-expiry" class="font-mono font-bold text-white">09/29</span>
+								<div class="space-y-1 pt-3 text-right">
+									<span class="block text-[10px] uppercase tracking-wider text-stone-500">Expira</span>
+									<span id="card-preview-expiry" class="block font-mono font-medium text-stone-200">09/29</span>
 								</div>
 							</div>
 						</div>
 
-						<div class="grid gap-4 sm:grid-cols-2">
-							<div class="sm:col-span-2">
-								<label class="block text-xs font-bold text-stone-300 mb-1.5">Número de Tarjeta</label>
+						<div class="grid gap-5 sm:grid-cols-2 sm:gap-6">
+							<div class="sm:col-span-2 space-y-2">
+								<label for="input-card-number" class="block text-xs font-medium tracking-wide text-stone-300">Número de tarjeta</label>
 								<input
 									type="text"
 									id="input-card-number"
+									name="cc-number"
+									autocomplete="cc-number"
+									inputmode="numeric"
 									maxlength="19"
 									placeholder="4539 1488 2039 8842"
 									value="4539 1488 2039 8842"
-									class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+									class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 font-mono text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
 								/>
 							</div>
-							<div>
-								<label class="block text-xs font-bold text-stone-300 mb-1.5">Nombre en la Tarjeta</label>
+							<div class="space-y-2">
+								<label for="input-card-holder" class="block text-xs font-medium tracking-wide text-stone-300">Nombre en la tarjeta</label>
 								<input
 									type="text"
 									id="input-card-holder"
+									name="cc-name"
+									autocomplete="cc-name"
 									placeholder="CARLOS MENDOZA"
 									value="CARLOS MENDOZA"
-									class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm uppercase text-white focus:border-[#ff5500] focus:outline-none transition"
+									class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm uppercase text-white transition focus:border-[#ff5500] focus:outline-none"
 								/>
 							</div>
-							<div class="grid grid-cols-2 gap-3">
-								<div>
-									<label class="block text-xs font-bold text-stone-300 mb-1.5">Vencimiento</label>
+							<div class="grid grid-cols-2 gap-4">
+								<div class="space-y-2">
+									<label for="input-card-expiry" class="block text-xs font-medium tracking-wide text-stone-300">Vencimiento (MM/AA)</label>
 									<input
 										type="text"
 										id="input-card-expiry"
+										name="cc-exp"
+										autocomplete="cc-exp"
+										inputmode="numeric"
 										maxlength="5"
 										placeholder="09/29"
 										value="09/29"
-										class="w-full rounded-xl border border-white/15 bg-black/70 px-3 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+										class="w-full rounded-xl border border-white/12 bg-[#050507] px-3.5 py-3 font-mono text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
 									/>
 								</div>
-								<div>
-									<label class="block text-xs font-bold text-stone-300 mb-1.5">CVV</label>
+								<div class="space-y-2">
+									<label for="input-card-cvv" class="block text-xs font-medium tracking-wide text-stone-300">Código CVV</label>
 									<input
-										type="password"
+										type="text"
+										id="input-card-cvv"
+										name="cc-csc"
+										autocomplete="cc-csc"
+										inputmode="numeric"
 										maxlength="4"
-										placeholder="•••"
+										placeholder="849"
 										value="849"
-										class="w-full rounded-xl border border-white/15 bg-black/70 px-3 py-2.5 font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none transition"
+										class="w-full rounded-xl border border-white/12 bg-[#050507] px-3.5 py-3 font-mono text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
 									/>
 								</div>
 							</div>
-							<div class="sm:col-span-2">
-								<label class="block text-xs font-bold text-stone-300 mb-1.5">Plan de Cuotas Sin Intereses</label>
-								<select class="w-full rounded-xl border border-white/15 bg-black/70 px-3.5 py-2.5 text-sm text-white focus:border-[#ff5500] focus:outline-none transition">
+							<div class="sm:col-span-2 space-y-2">
+								<label for="input-card-installments" class="block text-xs font-medium tracking-wide text-stone-300">Plan de cuotas sin intereses</label>
+								<select
+									id="input-card-installments"
+									name="installments"
+									class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
+								>
 									<option value="1">Pago directo (1 cuota sin intereses)</option>
 									<option value="3">3 cuotas sin intereses (0% TCEA)</option>
 									<option value="6">6 cuotas sin intereses (0% TCEA)</option>
@@ -208,11 +246,11 @@ import PaymentBadges from './PaymentBadges.astro';
 						</div>
 					</div>
 
-					<!-- Panel 2: Pago QR (Yape / Plin) -->
-					<div id="pay-panel-qr" class="pay-panel hidden mt-6 rounded-[2rem] border border-white/10 bg-black/70 p-6 text-center">
-						<p class="text-sm font-bold text-white">Escanea el código QR desde Yape, Plin o tu banca móvil</p>
-						<div class="mx-auto my-4 flex h-44 w-44 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
-							<svg viewBox="0 0 100 100" class="h-full w-full text-black" fill="currentColor">
+					<!-- Panel 2: QR Payment (Yape / Plin) -->
+					<div id="pay-panel-qr" class="pay-panel hidden space-y-5 border-t border-white/10 pt-6 text-center">
+						<p class="text-sm font-medium text-white">Escanea el código QR desde Yape, Plin o tu banca móvil</p>
+						<div class="mx-auto flex h-44 w-44 items-center justify-center rounded-2xl bg-white p-3.5 shadow-lg">
+							<svg aria-hidden="true" viewBox="0 0 100 100" class="h-full w-full text-black" fill="currentColor">
 								<rect x="5" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6" />
 								<rect x="13" y="13" width="12" height="12" />
 								<rect x="67" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6" />
@@ -229,200 +267,214 @@ import PaymentBadges from './PaymentBadges.astro';
 								<rect x="82" y="76" width="12" height="18" />
 							</svg>
 						</div>
-						<p class="text-xs text-stone-400">A nombre de: <strong class="text-white">ELECTRONOVA HARDWARE LABS S.A.C.</strong></p>
-						<div class="mt-4 mx-auto max-w-xs">
-							<label class="block text-xs font-bold text-stone-300 mb-1">Código de aprobación (6 dígitos)</label>
+						<p class="text-xs text-stone-400">A nombre de: <strong class="font-medium text-white">ELECTRONOVA HARDWARE LABS S.A.C.</strong></p>
+						<div class="mx-auto max-w-xs space-y-2">
+							<label for="input-qr-code" class="block text-xs font-medium tracking-wide text-stone-300">Código de aprobación (6 dígitos)</label>
 							<input
 								type="text"
+								id="input-qr-code"
+								inputmode="numeric"
 								maxlength="6"
 								placeholder="Ej. 482910"
 								value="482910"
-								class="w-full rounded-xl border border-white/15 bg-black/80 px-3 py-2 text-center font-mono text-sm text-white focus:border-[#ff5500] focus:outline-none"
+								class="w-full rounded-xl border border-white/12 bg-[#050507] px-4 py-3 text-center font-mono text-sm text-white transition focus:border-[#ff5500] focus:outline-none"
 							/>
 						</div>
 					</div>
 
-					<!-- Panel 3: Transferencia / CIP -->
-					<div id="pay-panel-transfer" class="pay-panel hidden mt-6 rounded-[2rem] border border-white/10 bg-black/70 p-6 space-y-3">
-						<div class="flex items-center justify-between border-b border-white/10 pb-3">
+					<!-- Panel 3: Bank Transfer / CIP -->
+					<div id="pay-panel-transfer" class="pay-panel hidden space-y-4 border-t border-white/10 pt-6">
+						<div class="flex items-center justify-between rounded-xl border border-white/10 bg-[#050507] px-4 py-3.5">
 							<span class="text-xs text-stone-400">Código CIP PagoEfectivo:</span>
-							<span class="font-mono text-lg font-black text-[#ff5500]">928-441-092</span>
+							<span class="font-mono text-base font-semibold text-[#ff5500]">928-441-092</span>
 						</div>
-						<p class="text-xs text-stone-300 leading-relaxed">
-							Puedes abonar este código desde la app de BCP, BBVA, Interbank o Scotiabank. Tu reserva de stock de laboratorio se mantiene garantizada por 12 horas.
+						<p class="text-xs sm:text-sm text-stone-400 leading-relaxed">
+							Puedes abonar este código desde la aplicación de BCP, BBVA, Interbank o Scotiabank. Tu reserva de stock se mantiene garantizada por 12 horas.
 						</p>
 					</div>
 
-					<!-- Medios de Pago Aceptados al pie del formulario -->
-					<div class="mt-6 pt-5 border-t border-white/10">
-						<PaymentBadges variant="card" />
-					</div>
-				</div>
+					<div class="space-y-6 border-t border-white/10 pt-6">
+						<PaymentBadges variant="checkout" />
 
-				<!-- Botón Principal de Procesar Pago -->
-				<button
-					type="submit"
-					id="submit-payment-btn"
-					class="event-btn-pop cursor-pointer w-full flex items-center justify-center gap-3 rounded-2xl bg-white text-black hover:bg-stone-200 px-6 py-4 text-base font-black shadow-2xl hover:brightness-105 active:scale-[0.98] transition"
-				>
-					<svg class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-					</svg>
-					<span>Confirmar y Procesar Orden de Laboratorio</span>
-				</button>
+						<button
+							type="submit"
+							id="submit-payment-btn"
+							class="event-btn-pop w-full cursor-pointer flex items-center justify-center gap-2.5 rounded-full bg-white px-6 py-4 text-sm font-semibold text-black transition hover:bg-stone-200"
+						>
+							<svg aria-hidden="true" class="h-4 w-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+							</svg>
+							<span>Confirmar y procesar orden</span>
+						</button>
+					</div>
+				</section>
 			</form>
 		</div>
 
-		<!-- Columna Derecha: Resumen del Carrito con Curvatura de 2rem -->
-		<div class="lg:col-span-5 space-y-6">
-			<div class="card-2rem sticky top-24 rounded-[2rem] p-6 sm:p-7 shadow-2xl">
-				<div class="flex items-center justify-between border-b border-white/10 pb-4">
-					<h3 class="text-lg font-black text-white">Resumen de tu Bolsa</h3>
+		<!-- Right column: Sticky order summary with symmetric surface padding -->
+		<aside class="lg:col-span-5">
+			<div class="surface-card sticky top-24 p-6 sm:p-8 space-y-6">
+				<div class="flex items-center justify-between border-b border-white/10 pb-5">
+					<h3 class="text-base sm:text-lg font-semibold tracking-tight text-white">Resumen de tu bolsa</h3>
 					<button
 						type="button"
 						id="clear-cart-btn"
-						class="cursor-pointer text-xs font-bold text-rose-400 hover:text-rose-300 transition"
+						class="cursor-pointer text-xs font-medium text-stone-400 transition hover:text-rose-400"
 					>
 						Vaciar bolsa
 					</button>
 				</div>
 
-				<!-- Lista dinámica de items del carrito -->
-				<div id="checkout-cart-items" class="mt-4 max-h-80 space-y-3 overflow-y-auto pr-1"></div>
+				<div id="checkout-cart-items" class="max-h-80 divide-y divide-white/10 overflow-y-auto pr-1"></div>
 
-				<!-- Estado cuando el carrito está vacío -->
-				<div id="checkout-empty-state" class="hidden py-8 text-center space-y-3">
+				<div id="checkout-empty-state" class="hidden py-8 text-center space-y-4">
 					<p class="text-sm text-stone-400">Tu bolsa aún no tiene equipos seleccionados.</p>
-					<div class="flex flex-wrap justify-center gap-2">
+					<div class="flex flex-wrap justify-center gap-3">
 						<button
 							type="button"
 							data-tab-target="catalogo"
-							class="event-btn-pop cursor-pointer rounded-xl bg-white px-4 py-2 text-xs font-black text-black hover:bg-stone-200 transition"
+							class="event-btn-pop cursor-pointer rounded-full bg-white px-4 py-2.5 text-xs font-semibold text-black transition hover:bg-stone-200"
 						>
-							Ir al Catálogo
+							Ir al catálogo
 						</button>
 						<button
 							type="button"
 							id="load-demo-cart-btn"
-							class="event-btn-pop cursor-pointer rounded-xl border border-[#ff5500]/40 bg-[#ff5500]/10 px-4 py-2 text-xs font-bold text-[#ff5500] hover:bg-[#ff5500]/20 transition"
+							class="event-btn-pop cursor-pointer rounded-full border border-white/20 px-4 py-2.5 text-xs font-medium text-stone-300 transition hover:border-white/40 hover:text-white"
 						>
-							Cargar Equipos Demo
+							Cargar equipos demo
 						</button>
 					</div>
 				</div>
 
-				<!-- Validación de Cupones con Chips Rápidos para Probar la Arquitectura Zustand -->
-				<div class="mt-5 border-t border-white/10 pt-4">
-					<div class="flex items-center justify-between mb-1.5">
-						<label class="block text-xs font-bold text-stone-300">
-							Cupón Oficial de Descuento
+				<div class="space-y-3.5 border-t border-white/10 pt-5">
+					<div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+						<label for="coupon-input" class="font-medium tracking-wide text-stone-300">
+							Cupón de descuento
 						</label>
-						<span class="text-[10px] text-[#ff5500] font-bold">Validador Zustand</span>
+						<div class="flex flex-wrap items-center gap-2 text-[11px] text-stone-400">
+							<button
+								type="button"
+								data-coupon-quick="NOVA2026"
+								class="cursor-pointer font-mono hover:text-white transition"
+							>
+								NOVA2026
+							</button>
+							<span aria-hidden="true">·</span>
+							<button
+								type="button"
+								data-coupon-quick="TECH10"
+								class="cursor-pointer font-mono hover:text-white transition"
+							>
+								TECH10
+							</button>
+							<span aria-hidden="true">·</span>
+							<button
+								type="button"
+								data-coupon-quick="TITANIUM10"
+								class="cursor-pointer font-mono hover:text-white transition"
+							>
+								TITANIUM10
+							</button>
+							<span aria-hidden="true">·</span>
+							<button
+								type="button"
+								data-coupon-quick="DESPACHO"
+								class="cursor-pointer font-mono hover:text-white transition"
+							>
+								DESPACHO
+							</button>
+						</div>
 					</div>
 
-					<!-- Chips Rápidos Clickables -->
-					<div class="flex flex-wrap gap-1.5 mb-2.5">
-						<button
-							type="button"
-							data-coupon-quick="NOVA2026"
-							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
-						>
-							NOVA2026 (-$150)
-						</button>
-						<button
-							type="button"
-							data-coupon-quick="TITANIUM10"
-							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
-						>
-							TITANIUM10 (-10%)
-						</button>
-						<button
-							type="button"
-							data-coupon-quick="DESPACHO"
-							class="cursor-pointer rounded-lg border border-white/20 bg-white/5 px-2 py-1 text-[10px] font-mono font-bold text-stone-300 hover:border-[#ff5500] hover:text-[#ff5500] transition"
-						>
-							DESPACHO (-$50)
-						</button>
-					</div>
-
-					<div class="flex gap-2">
+					<div class="flex gap-2.5">
 						<input
 							type="text"
 							id="coupon-input"
+							autocorrect="off"
+							autocapitalize="off"
+							spellcheck="false"
 							placeholder="Ingresa código..."
-							class="flex-1 rounded-xl border border-white/15 bg-black/70 px-3 py-2 text-xs uppercase text-white focus:border-[#ff5500] focus:outline-none transition"
+							class="flex-1 rounded-xl border border-white/12 bg-[#050507] px-3.5 py-2.5 text-xs uppercase text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 						/>
 						<button
 							type="button"
 							id="apply-coupon-btn"
-							class="event-btn-pop cursor-pointer rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
+							class="event-btn-pop cursor-pointer rounded-xl border border-white/20 px-4 py-2.5 text-xs font-medium text-white transition hover:border-white/40"
 						>
 							Aplicar
 						</button>
 					</div>
-					<p id="coupon-feedback" class="mt-1.5 text-xs hidden"></p>
+					<p id="coupon-feedback" class="hidden text-xs" role="status" aria-live="polite"></p>
 				</div>
 
-				<!-- Desglose de Costos Computado desde Zustand -->
-				<div class="mt-5 space-y-2.5 border-t border-white/10 pt-4 text-sm">
+				<div class="space-y-3 border-t border-white/10 pt-5 text-xs sm:text-sm">
 					<div class="flex justify-between text-stone-400">
-						<span>Subtotal Equipos</span>
-						<span id="summary-subtotal" class="font-extrabold text-white">$0.00</span>
-					</div>
-					<div class="flex justify-between text-[#ff5500]">
-						<span>Descuento Aplicado</span>
-						<span id="summary-discount" class="font-bold">-$0.00</span>
+						<span>Subtotal equipos</span>
+						<span id="summary-subtotal" class="font-medium text-white">$0.00</span>
 					</div>
 					<div class="flex justify-between text-stone-400">
-						<span>Envío Express Asegurado</span>
-						<span class="font-bold text-emerald-400">GRATIS</span>
+						<span>Descuento aplicado</span>
+						<span id="summary-discount" class="font-medium text-[#ff5500]">-$0.00</span>
 					</div>
-					<div class="flex justify-between border-t border-white/10 pt-3 text-lg font-black text-white">
-						<span>Total a Pagar</span>
-						<span id="summary-total" class="text-2xl text-white font-black">$0.00</span>
+					<div class="flex justify-between text-stone-400">
+						<span>Envío express asegurado</span>
+						<span class="font-medium text-stone-200">Gratis</span>
+					</div>
+					<div class="flex justify-between items-baseline border-t border-white/10 pt-4 text-base font-semibold text-white">
+						<span>Total a pagar</span>
+						<span id="summary-total" class="text-xl font-semibold text-white">$0.00</span>
 					</div>
 				</div>
 			</div>
-		</div>
+		</aside>
 	</div>
 
-	<!-- Modal de Confirmación de Pago Exitoso con Curvatura de 2rem -->
+	<!-- Payment confirmation modal with a single clean surface -->
 	<div
 		id="payment-success-modal"
-		class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+		class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80"
 	>
-		<div id="payment-success-card" class="card-2rem w-full max-w-md rounded-[2rem] p-8 text-center shadow-2xl border border-white/20 bg-[#0e0e14]">
-			<div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#ff5500]/20 text-[#ff5500] border border-[#ff5500]/40">
-				<svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+		<div
+			id="payment-success-card"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="payment-success-title"
+			class="surface-card w-full max-w-md p-7 text-center space-y-5"
+		>
+			<div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#ff5500]/40 text-[#ff5500]">
+				<svg aria-hidden="true" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
 				</svg>
 			</div>
-			<h3 class="mt-4 text-2xl font-black text-white">¡Orden Registrada con Éxito!</h3>
-			<p class="mt-2 text-xs text-stone-300">
-				Tu pedido de hardware oficial ha sido verificado con la arquitectura del laboratorio y programado para despacho prioritario.
-			</p>
+			<div class="space-y-1.5">
+				<h3 id="payment-success-title" class="text-xl font-semibold text-white">Orden registrada con éxito</h3>
+				<p class="text-xs leading-relaxed text-stone-400">
+					Tu pedido de hardware oficial ha sido verificado y programado para despacho prioritario.
+				</p>
+			</div>
 
-			<div class="mt-5 rounded-2xl border border-white/10 bg-black/60 p-4 text-left text-xs space-y-2">
-				<div class="flex justify-between">
-					<span class="text-stone-400">N° de Orden:</span>
-					<span id="receipt-order-id" class="font-mono font-black text-[#ff5500]">#EN-2026-8941</span>
+			<div class="divide-y divide-white/10 border-y border-white/10 py-2 text-left text-xs">
+				<div class="flex justify-between py-2">
+					<span class="text-stone-400">N° de orden</span>
+					<span id="receipt-order-id" class="font-mono font-medium text-[#ff5500]">#EN-2026-8941</span>
 				</div>
-				<div class="flex justify-between">
-					<span class="text-stone-400">Cliente Titular:</span>
-					<span id="receipt-buyer" class="font-bold text-white">Carlos Mendoza</span>
+				<div class="flex justify-between py-2">
+					<span class="text-stone-400">Cliente titular</span>
+					<span id="receipt-buyer" class="font-medium text-white">Carlos Mendoza</span>
 				</div>
-				<div class="flex justify-between">
-					<span class="text-stone-400">Importe Total Pagado:</span>
-					<span id="receipt-total" class="font-black text-white text-sm">$0.00</span>
+				<div class="flex justify-between py-2">
+					<span class="text-stone-400">Importe total pagado</span>
+					<span id="receipt-total" class="font-semibold text-white">$0.00</span>
 				</div>
 			</div>
 
 			<button
 				type="button"
 				id="close-success-btn"
-				class="event-btn-pop cursor-pointer mt-6 w-full rounded-2xl bg-white text-black hover:bg-stone-200 py-3.5 text-sm font-black active:scale-95 transition"
+				class="event-btn-pop w-full cursor-pointer rounded-full bg-white py-3 text-xs font-semibold text-black transition hover:bg-stone-200"
 			>
-				Volver al Showroom Insignia
+				Volver al showroom
 			</button>
 		</div>
 	</div>

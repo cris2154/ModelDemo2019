@@ -34,13 +34,15 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	<!-- Toast Flotante de Notificación con Animación GSAP -->
 	<div
 		id="toast-notification"
-		class="pointer-events-none fixed bottom-6 right-6 z-50 flex translate-y-12 items-center gap-3 rounded-2xl border border-white/20 bg-[#0e0e14]/95 px-5 py-3.5 text-xs font-bold text-white opacity-0 shadow-2xl backdrop-blur-md"
+		role="status"
+		aria-live="polite"
+		class="pointer-events-none fixed bottom-6 right-6 z-50 flex translate-y-4 items-center gap-3 rounded-xl border border-white/15 bg-[#0a0a0e] px-4 py-3 text-xs font-medium text-white opacity-0"
 	>
-		<span id="toast-icon-badge" class="flex h-6 w-6 items-center justify-center rounded-full bg-[#ff5500] text-white font-black">✓</span>
+		<span id="toast-icon-badge" class="flex h-5 w-5 items-center justify-center rounded-full bg-[#ff5500] text-[10px] font-semibold text-white">✓</span>
 		<span id="toast-message">Equipo añadido a la bolsa</span>
 	</div>
 
-	<!-- Pie de página Oficial Reutilizando Mini-Pestañas Estilo BandWerk -->
+	<!-- Pie de página minimalista -->
 	<footer class="border-t border-white/10 bg-[#050507] py-14 text-stone-400">
 		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-10">
 			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-12">
@@ -49,80 +51,80 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 					<img
 						src="/images/logo-electronova.svg"
 						alt="ElectroNova Hardware Labs"
-						class="h-10 w-auto object-contain"
+						class="h-9 w-auto object-contain"
 					/>
 					<p class="text-xs text-stone-400 leading-relaxed max-w-sm">
 						{storeInfo.description}
 					</p>
-					<div class="flex items-center gap-3 text-xs text-stone-400">
-						<span class="inline-flex items-center gap-1.5 text-white font-bold">
-							<span class="h-2 w-2 rounded-full bg-[#ff5500]"></span>
-							Laboratorio & Showroom Abierto
+					<div class="flex items-center gap-2.5 text-xs text-stone-400">
+						<span class="inline-flex items-center gap-1.5 font-medium text-stone-200">
+							<span class="h-1.5 w-1.5 rounded-full bg-[#ff5500]"></span>
+							Showroom abierto
 						</span>
-						<span>•</span>
+						<span aria-hidden="true">·</span>
 						<span>San Borja, Lima</span>
 					</div>
 
-					<div class="pt-2">
+					<div class="pt-1">
 						<PaymentBadges variant="hero" showInstallments={false} />
 					</div>
 				</div>
 
-				<!-- Mini-Pestañas Reutilizadas en el Footer -->
+				<!-- Navegación en el Footer -->
 				<div class="lg:col-span-3 space-y-3">
-					<h4 class="text-xs font-black uppercase tracking-wider text-white">Navegación & Secciones</h4>
+					<h4 class="text-xs font-semibold uppercase tracking-wider text-stone-200">Navegación</h4>
 					<ul class="space-y-2 text-xs">
 						<li>
-							<button type="button" data-tab-target="landing" class="cursor-pointer hover:text-[#ff5500] transition">
-								1. Showroom Insignia
+							<button type="button" data-tab-target="landing" class="cursor-pointer transition hover:text-white">
+								Inicio
 							</button>
 						</li>
 						<li>
-							<button type="button" data-tab-target="catalogo" class="cursor-pointer hover:text-[#ff5500] transition">
-								2. Catálogo Oficial 2026
+							<button type="button" data-tab-target="catalogo" class="cursor-pointer transition hover:text-white">
+								Catálogo Oficial 2026
 							</button>
 						</li>
 						<li>
-							<button type="button" data-scroll-anchor="section-temporada" class="cursor-pointer hover:text-[#ff5500] transition flex items-center gap-1.5">
-								<span>3. Temporada Black Titanium</span>
-								<span class="rounded bg-[#ff5500]/20 px-1.5 py-0.2 text-[9px] font-black text-[#ff5500]">EDICIÓN</span>
+							<button type="button" data-scroll-anchor="section-temporada" class="cursor-pointer transition hover:text-white">
+								Temporada Black Titanium
 							</button>
 						</li>
 						<li>
-							<button type="button" data-scroll-anchor="section-nosotros" class="cursor-pointer hover:text-[#ff5500] transition">
-								4. Nosotros & Laboratorio
+							<button type="button" data-scroll-anchor="section-nosotros" class="cursor-pointer transition hover:text-white">
+								Nosotros y Laboratorio
 							</button>
 						</li>
 						<li>
-							<button type="button" data-scroll-anchor="section-contacto" class="cursor-pointer hover:text-[#ff5500] transition">
-								5. Contacto & Asesoría Directa
+							<button type="button" data-scroll-anchor="section-contacto" class="cursor-pointer transition hover:text-white">
+								Contacto y Asesoría
 							</button>
 						</li>
 					</ul>
 				</div>
 
-				<!-- Métodos y Respaldo de Compra -->
+				<!-- Garantía y Proceso de Compra -->
 				<div class="lg:col-span-4 space-y-3">
-					<h4 class="text-xs font-black uppercase tracking-wider text-white">Garantía & Proceso de Compra</h4>
+					<h4 class="text-xs font-semibold uppercase tracking-wider text-stone-200">Garantía y compra</h4>
 					<p class="text-xs text-stone-400 leading-relaxed">
-						La pasarela de pago se activa al seleccionar cualquier equipo en el showroom o catálogo. Certificación SSL 256-Bit con seguro contra daños.
+						La pasarela de pago se activa al seleccionar cualquier equipo en el showroom o catálogo. Certificación SSL 256-bit con seguro de transporte.
 					</p>
-					<div class="flex flex-wrap gap-2 pt-2">
+					<div class="pt-1">
 						<button
 							type="button"
 							data-tab-target="checkout"
-							class="event-btn-pop cursor-pointer inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3.5 py-2.5 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
+							class="event-btn-pop cursor-pointer inline-flex items-center gap-2 py-2 text-xs font-medium text-stone-200 transition hover:text-white"
 						>
-							<span>Ver Bolsa / Iniciar Checkout Seguro &rarr;</span>
+							<span>Ver bolsa e iniciar checkout</span>
+							<span aria-hidden="true">→</span>
 						</button>
 					</div>
 				</div>
 			</div>
 
 			<!-- Barra de Copyright -->
-			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-stone-400">
-				<p>© 2026 <strong class="text-white font-bold">ElectroNova Showroom S.A.C.</strong> RUC 20608920194 • Lima, Perú.</p>
-				<p class="font-mono text-[11px] text-stone-400">Astro • GSAP ScrollTrigger • Lenis Engine • Zustand Store</p>
+			<div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-stone-500">
+				<p>© 2026 <strong class="font-medium text-stone-300">ElectroNova Showroom S.A.C.</strong> RUC 20608920194 · Lima, Perú.</p>
+				<p class="font-mono text-[11px] text-stone-500">Astro · GSAP ScrollTrigger · Lenis · Zustand</p>
 			</div>
 		</div>
 	</footer>
@@ -163,61 +165,7 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	(window as any).__lenisInstance = lenis;
 
 	// ==============================================================
-	// 2. ANIMACIÓN 3D TILT + REFLEJO ESPECULAR EN CARDS (ESTILO BANDWERK)
-	// ==============================================================
-	function initCard3DTilt() {
-		const cards = document.querySelectorAll<HTMLElement>('.card-2rem');
-		cards.forEach((card) => {
-			// Evitar registrar múltiples listeners en rerenders
-			if ((card as any).__tiltInitialized) return;
-			(card as any).__tiltInitialized = true;
-
-			card.style.transformStyle = 'preserve-3d';
-
-			const onMouseMove = (e: MouseEvent) => {
-				const rect = card.getBoundingClientRect();
-				const x = e.clientX - rect.left;
-				const y = e.clientY - rect.top;
-				const centerX = rect.width / 2;
-				const centerY = rect.height / 2;
-
-				// Rotación 3D sutil (máximo ±6 grados para máxima elegancia)
-				const rotateX = ((y - centerY) / centerY) * -5.5;
-				const rotateY = ((x - centerX) / centerX) * 5.5;
-
-				gsap.to(card, {
-					rotateX,
-					rotateY,
-					y: -6,
-					transformPerspective: 1000,
-					duration: 0.2,
-					ease: 'power1.out',
-					overwrite: 'auto',
-				});
-
-				// Coordenadas relativas para el reflejo de luz especular
-				card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
-				card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
-			};
-
-			const onMouseLeave = () => {
-				gsap.to(card, {
-					rotateX: 0,
-					rotateY: 0,
-					y: 0,
-					duration: 0.55,
-					ease: 'elastic.out(1, 0.45)',
-					overwrite: 'auto',
-				});
-			};
-
-			card.addEventListener('mousemove', onMouseMove);
-			card.addEventListener('mouseleave', onMouseLeave);
-		});
-	}
-
-	// ==============================================================
-	// 3. COREOGRAFÍA HERO ENTRANCE (ESTILO FLAGSHIP LAUNCH)
+	// 2. COREOGRAFÍA HERO ENTRANCE (ESTILO FLAGSHIP LAUNCH)
 	// ==============================================================
 	function initHeroEntrance() {
 		const heroCard = document.querySelector('#tab-landing > div:first-child');
@@ -244,32 +192,165 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			{ opacity: 1, y: 0, duration: 0.6 },
 			'-=0.4'
 		);
+	}
 
-		tl.fromTo(
-			'#hero-image-parallax',
-			{ scale: 1.1, opacity: 0.8 },
-			{ scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out' },
-			'-=0.6'
-		);
+	// ==============================================================
+	// 3.5. INFINITE GSAP CAROUSEL FOR HERO SHOWCASE (20x14 SVG MATRIX MASK)
+	// ==============================================================
+	let cleanupHeroCarousel: (() => void) | undefined;
+	function initHeroCarousel() {
+		cleanupHeroCarousel?.();
+		const carousel = document.getElementById('hero-carousel');
+		const stage = document.getElementById('hero-carousel-stage');
+		const matrixMask = document.getElementById('hero-matrix-mask');
+		const prevBtn = document.getElementById('hero-carousel-prev');
+		const nextBtn = document.getElementById('hero-carousel-next');
+		if (!carousel || !stage || !matrixMask) return;
+
+		const slides = gsap.utils.toArray<HTMLElement>('.hero-carousel-slide', stage);
+		const matrixCells = gsap.utils.toArray<SVGRectElement>('.hero-matrix-cell', matrixMask);
+		if (slides.length <= 1 || matrixCells.length === 0) return;
+
+		const buttons = slides.map((s) => s.querySelector<HTMLElement>('.hero-slide-btn'));
+		let activeIdx = 0;
+		let activeTransition: gsap.core.Timeline | null = null;
+		let autoTimer: gsap.core.Tween | null = null;
+		let isPaused = false;
+		let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const setActiveSlideA11y = (idx: number) => {
+			slides.forEach((slide, i) => {
+				const isActive = i === idx;
+				slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+				slide.style.pointerEvents = isActive ? 'auto' : 'none';
+				slide.style.zIndex = isActive ? '10' : '0';
+				if (buttons[i]) {
+					buttons[i].setAttribute('tabindex', isActive ? '0' : '-1');
+				}
+			});
+		};
+
+		slides.forEach((slide, idx) => {
+			gsap.set(slide, { autoAlpha: idx === 0 ? 1 : 0 });
+		});
+		gsap.set(matrixCells, { opacity: 1 });
+		setActiveSlideA11y(0);
+
+		const scheduleNext = () => {
+			autoTimer?.kill();
+			if (prefersReducedMotion || isPaused) return;
+			autoTimer = gsap.delayedCall(3.2, () => {
+				goToSlide((activeIdx + 1) % slides.length);
+			});
+		};
+
+		const goToSlide = (targetIdx: number) => {
+			if (targetIdx === activeIdx) return;
+			autoTimer?.kill();
+
+			if (prefersReducedMotion) {
+				gsap.set(slides[activeIdx], { autoAlpha: 0 });
+				gsap.set(slides[targetIdx], { autoAlpha: 1 });
+				gsap.set(matrixCells, { opacity: 1 });
+				activeIdx = targetIdx;
+				setActiveSlideA11y(activeIdx);
+				return;
+			}
+
+			if (activeTransition?.isActive()) {
+				activeTransition.kill();
+				slides.forEach((slide, i) => {
+					gsap.set(slide, { autoAlpha: i === activeIdx ? 1 : 0 });
+				});
+			}
+
+			const currentIdx = activeIdx;
+			activeIdx = targetIdx;
+
+			const tl = gsap.timeline({
+				onComplete: () => {
+					activeTransition = null;
+					scheduleNext();
+				},
+			});
+			activeTransition = tl;
+
+			// 1. Small matrix mask squares turn transparent (opacity 1 -> 0), revealing the exact section background
+			tl.to(matrixCells, {
+				opacity: 0,
+				duration: 0.14,
+				ease: 'none',
+				stagger: { amount: 0.34, grid: [14, 20], from: 'random' },
+			});
+
+			// 2. Swap active slide in-place while 100% masked out (transparent)
+			tl.call(() => setActiveSlideA11y(targetIdx), [], 0.48);
+			tl.set(slides[currentIdx], { autoAlpha: 0 }, 0.48);
+			tl.set(slides[targetIdx], { autoAlpha: 1 }, 0.48);
+
+			// 3. Small matrix mask squares turn opaque (opacity 0 -> 1) to reveal 100% of the next slide
+			tl.to(
+				matrixCells,
+				{
+					opacity: 1,
+					duration: 0.16,
+					ease: 'none',
+					stagger: { amount: 0.36, grid: [14, 20], from: 'random' },
+				},
+				0.5
+			);
+		};
+
+		const handlePrev = () => {
+			goToSlide((activeIdx - 1 + slides.length) % slides.length);
+		};
+		const handleNext = () => {
+			goToSlide((activeIdx + 1) % slides.length);
+		};
+
+		const pause = () => {
+			isPaused = true;
+			autoTimer?.pause();
+		};
+		const resume = () => {
+			if (!carousel.matches(':hover') && !carousel.matches(':focus-within')) {
+				isPaused = false;
+				if (autoTimer?.paused()) {
+					autoTimer.resume();
+				} else if (!activeTransition?.isActive()) {
+					scheduleNext();
+				}
+			}
+		};
+
+		prevBtn?.addEventListener('click', handlePrev);
+		nextBtn?.addEventListener('click', handleNext);
+		carousel.addEventListener('pointerenter', pause);
+		carousel.addEventListener('pointerleave', resume);
+		carousel.addEventListener('focusin', pause);
+		carousel.addEventListener('focusout', resume);
+
+		scheduleNext();
+
+		const cleanup = () => {
+			autoTimer?.kill();
+			activeTransition?.kill();
+			prevBtn?.removeEventListener('click', handlePrev);
+			nextBtn?.removeEventListener('click', handleNext);
+			carousel.removeEventListener('pointerenter', pause);
+			carousel.removeEventListener('pointerleave', resume);
+			carousel.removeEventListener('focusin', pause);
+			carousel.removeEventListener('focusout', resume);
+			document.removeEventListener('astro:before-swap', cleanup);
+		};
+		cleanupHeroCarousel = cleanup;
+		document.addEventListener('astro:before-swap', cleanup, { once: true });
 	}
 
 	// ==============================================================
 	// 4. PARALLAX EN IMÁGENES SINCRONIZADO CON LENIS SCROLL
 	// ==============================================================
 	function initParallaxEffects() {
-		const heroImg = document.getElementById('hero-image-parallax');
-		if (heroImg) {
-			gsap.to(heroImg, {
-				yPercent: 12,
-				ease: 'none',
-				scrollTrigger: {
-					trigger: '#tab-landing',
-					start: 'top top',
-					end: 'bottom top',
-					scrub: 1,
-				},
-			});
-		}
 
 		gsap.utils.toArray<HTMLElement>('.milestone-parallax-img').forEach((img) => {
 			gsap.fromTo(
@@ -291,62 +372,147 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	}
 
 	// ==============================================================
-	// 5. ANIMACIONES DE ESCALA AL ENTRAR (ENTRANCE STAGGER)
+	// 5. TIMELINES DE ENTRADA Y SALIDA VINCULADOS AL SCROLL (GSAP TIMELINE)
 	// ==============================================================
+	function attachScrollEntranceExitTimeline(el: HTMLElement, animateChildren = false) {
+		const innerBlocks = animateChildren ? (Array.from(el.children) as HTMLElement[]) : [];
+		const tl = gsap.timeline({
+			defaults: { ease: 'power2.out' },
+			scrollTrigger: {
+				trigger: el,
+				start: 'top 92%',
+				end: 'bottom 8%',
+				scrub: 0.45,
+			},
+		});
+
+		tl.addLabel('intro', 0);
+		tl.addLabel('hold', 0.22);
+		tl.addLabel('outro', 0.78);
+
+		tl.fromTo(
+			el,
+			{ autoAlpha: 0, y: 16 },
+			{ autoAlpha: 1, y: 0, duration: 0.22, ease: 'power2.out' },
+			'intro'
+		);
+
+		if (innerBlocks.length > 1) {
+			tl.fromTo(
+				innerBlocks,
+				{ y: 10 },
+				{ y: 0, duration: 0.19, stagger: 0.03, ease: 'power2.out' },
+				'intro+=0.03'
+			);
+		}
+
+		tl.to(
+			el,
+			{ autoAlpha: 1, y: 0, duration: 0.56, ease: 'none', immediateRender: false },
+			'hold'
+		);
+
+		tl.to(
+			el,
+			{ autoAlpha: 0, y: -16, duration: 0.22, ease: 'power2.in', immediateRender: false },
+			'outro'
+		);
+
+		if (innerBlocks.length > 1) {
+			tl.to(
+				innerBlocks,
+				{ y: -8, duration: 0.22, ease: 'power2.in', immediateRender: false },
+				'outro'
+			);
+		}
+	}
+
+	function isElementInVisibleTab(el: HTMLElement): boolean {
+		if (el.classList.contains('hidden')) return false;
+		const panel = el.closest('.tab-panel');
+		return !panel || !panel.classList.contains('hidden');
+	}
+
+	let cleanupCardAnimations: (() => void) | undefined;
 	function initCardScrollAnimations() {
-		gsap.utils
-			.toArray<HTMLElement>('.featured-card, .seasonal-card, .benefit-card, .catalog-card')
-			.forEach((card) => {
-				gsap.fromTo(
-					card,
-					{ opacity: 0, scale: 0.88, y: 35 },
-					{
-						opacity: 1,
-						scale: 1,
-						y: 0,
-						duration: 0.7,
-						ease: 'power3.out',
-						scrollTrigger: {
-							trigger: card,
-							start: 'top 88%',
-							toggleActions: 'play none none none',
-						},
-					}
-				);
-			});
+		cleanupCardAnimations?.();
+		const media = gsap.matchMedia();
+
+		media.add(
+			{
+				canAnimate: '(prefers-reduced-motion: no-preference)',
+				reduceMotion: '(prefers-reduced-motion: reduce)',
+			},
+			(context) => {
+				const { canAnimate } = context.conditions as { canAnimate: boolean; reduceMotion: boolean };
+				const headers = gsap.utils
+					.toArray<HTMLElement>(
+						'#section-temporada > div:first-child, #section-destacados > div:first-child, #section-nosotros > div:first-child, #section-contacto > div > div:first-child'
+					)
+					.filter(isElementInVisibleTab);
+
+				const cards = gsap.utils
+					.toArray<HTMLElement>('.seasonal-card, .featured-card, .benefit-card, .catalog-card')
+					.filter(isElementInVisibleTab);
+
+				if (!canAnimate) {
+					gsap.set([...headers, ...cards], { clearProps: 'opacity,visibility,transform' });
+					return;
+				}
+
+				headers.forEach((header) => {
+					attachScrollEntranceExitTimeline(header, false);
+				});
+
+				cards.forEach((card) => {
+					const hasStructuredChildren = card.matches('.seasonal-card, .featured-card, .catalog-card');
+					attachScrollEntranceExitTimeline(card, hasStructuredChildren);
+				});
+			}
+		);
+
+		const cleanup = () => {
+			media.revert();
+			document.removeEventListener('astro:before-swap', cleanup);
+		};
+		cleanupCardAnimations = cleanup;
+		document.addEventListener('astro:before-swap', cleanup, { once: true });
 	}
 
 	// ==============================================================
-	// 6. ANIMACIÓN DE ESCALERA (STAIRCASE) EN LA SECCIÓN NOSOTROS
+	// 6. LECTURA SECUENCIAL DE HITOS EN LA SECCIÓN NOSOTROS (TIMELINE ENTRADA/SALIDA)
 	// ==============================================================
+	let cleanupStaircaseAnimation: (() => void) | undefined;
 	function initNosotrosStaircaseAnimation() {
-		const steps = gsap.utils.toArray<HTMLElement>('.staircase-step');
+		cleanupStaircaseAnimation?.();
+		const steps = gsap.utils.toArray<HTMLElement>('.staircase-step').filter(isElementInVisibleTab);
 		if (steps.length === 0) return;
 
-		steps.forEach((step, index) => {
-			gsap.fromTo(
-				step,
-				{
-					opacity: 0,
-					y: 60 + index * 12,
-					x: -30,
-					scale: 0.9,
-				},
-				{
-					opacity: 1,
-					y: 0,
-					x: 0,
-					scale: 1,
-					duration: 0.8,
-					ease: 'power3.out',
-					scrollTrigger: {
-						trigger: step,
-						start: 'top 85%',
-						toggleActions: 'play none none none',
-					},
+		const media = gsap.matchMedia();
+		media.add(
+			{
+				canAnimate: '(prefers-reduced-motion: no-preference)',
+				reduceMotion: '(prefers-reduced-motion: reduce)',
+			},
+			(context) => {
+				const { canAnimate } = context.conditions as { canAnimate: boolean; reduceMotion: boolean };
+				if (!canAnimate) {
+					gsap.set(steps, { clearProps: 'opacity,visibility,transform' });
+					return;
 				}
-			);
-		});
+
+				steps.forEach((step) => {
+					attachScrollEntranceExitTimeline(step, true);
+				});
+			}
+		);
+
+		const cleanup = () => {
+			media.revert();
+			document.removeEventListener('astro:before-swap', cleanup);
+		};
+		cleanupStaircaseAnimation = cleanup;
+		document.addEventListener('astro:before-swap', cleanup, { once: true });
 	}
 
 	// ==============================================================
@@ -379,114 +545,51 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	// ==============================================================
 	// 8. ANIMACIÓN: SKILLS SCROLL TIMELINE & SCROLL REACT
 	// ==============================================================
+	let cleanupSkillsTimeline: (() => void) | undefined;
 	function initSkillsScrollTimeline() {
-		const timelineSection = document.getElementById('skills-timeline-section');
-		const progressBar = document.getElementById('skills-timeline-progress');
+		cleanupSkillsTimeline?.();
+		const section = document.getElementById('skills-timeline-section');
+		if (!section) return;
 
-		if (timelineSection && progressBar) {
-			gsap.to(progressBar, {
-				height: '100%',
-				ease: 'none',
-				scrollTrigger: {
-					trigger: timelineSection,
-					start: 'top 75%',
-					end: 'bottom 85%',
-					scrub: 0.5,
-				},
+		const media = gsap.matchMedia();
+		media.add('(prefers-reduced-motion: no-preference)', () => {
+			const tree = section.querySelector<HTMLElement>('[data-skills-tree]');
+			const progress = section.querySelector<HTMLElement>('#skills-timeline-progress');
+			if (tree && progress) {
+				gsap.fromTo(progress, { scaleY: 0 }, {
+					scaleY: 1,
+					ease: 'none',
+					scrollTrigger: { trigger: tree, start: 'top 75%', end: 'bottom 65%', scrub: 0.4 },
+				});
+			}
+			section.querySelectorAll<HTMLElement>('.skill-timeline-item').forEach((item) => {
+				const branch = item.querySelector<HTMLElement>('.skill-branch');
+				const dot = item.querySelector<HTMLElement>('.skill-timeline-dot');
+				const reveal = gsap.timeline({
+					scrollTrigger: { trigger: item, start: 'top 80%', once: true },
+					defaults: { duration: 0.45, ease: 'power2.out' },
+				});
+				if (branch) reveal.fromTo(branch, { opacity: 0, y: 10 }, { opacity: 1, y: 0, clearProps: 'opacity,transform' });
+				if (dot) reveal.to(dot, { borderColor: '#ff5500', color: '#ff5500' }, 0);
 			});
-		}
+		}, section);
 
-		gsap.utils.toArray<HTMLElement>('.skill-timeline-item').forEach((item) => {
-			const card = item.querySelector('.skill-card') as HTMLElement | null;
-			const bar = item.querySelector('.skill-progress-bar') as HTMLElement | null;
-			const dot = item.querySelector('.skill-timeline-dot') as HTMLElement | null;
-			const targetWidth = bar?.getAttribute('data-target-width') || '90%';
-
-			if (card) {
-				gsap.fromTo(
-					card,
-					{ opacity: 0, scale: 0.85, y: 40 },
-					{
-						opacity: 1,
-						scale: 1,
-						y: 0,
-						duration: 0.75,
-						ease: 'back.out(1.2)',
-						scrollTrigger: {
-							trigger: item,
-							start: 'top 85%',
-							toggleActions: 'play none none none',
-						},
-					}
-				);
-			}
-
-			if (bar) {
-				gsap.to(bar, {
-					width: targetWidth,
-					duration: 1.1,
-					ease: 'power3.out',
-					scrollTrigger: {
-						trigger: item,
-						start: 'top 80%',
-						toggleActions: 'play none none none',
-					},
-				});
-			}
-
-			if (dot) {
-				ScrollTrigger.create({
-					trigger: item,
-					start: 'top 65%',
-					end: 'bottom 45%',
-					onEnter: () => {
-						gsap.to(dot, {
-							scale: 1.3,
-							backgroundColor: '#ff5500',
-							color: '#ffffff',
-							boxShadow: '0 0 20px rgba(255, 85, 0, 0.7)',
-							duration: 0.3,
-						});
-					},
-					onLeave: () => {
-						gsap.to(dot, {
-							scale: 1,
-							backgroundColor: '#0c0c10',
-							color: '#ff5500',
-							boxShadow: 'none',
-							duration: 0.3,
-						});
-					},
-					onEnterBack: () => {
-						gsap.to(dot, {
-							scale: 1.3,
-							backgroundColor: '#ff5500',
-							color: '#ffffff',
-							boxShadow: '0 0 20px rgba(255, 85, 0, 0.7)',
-							duration: 0.3,
-						});
-					},
-					onLeaveBack: () => {
-						gsap.to(dot, {
-							scale: 1,
-							backgroundColor: '#0c0c10',
-							color: '#ff5500',
-							boxShadow: 'none',
-							duration: 0.3,
-						});
-					},
-				});
-			}
-		});
+		// Restore original styles and remove scoped triggers before page navigation.
+		const cleanup = () => {
+			media.revert();
+			document.removeEventListener('astro:before-swap', cleanup);
+		};
+		cleanupSkillsTimeline = cleanup;
+		document.addEventListener('astro:before-swap', cleanup, { once: true });
 	}
 
 	// Ejecutar inicializaciones de animación al cargar
 	initHeroEntrance();
+	initHeroCarousel();
 	initParallaxEffects();
 	initCardScrollAnimations();
 	initNosotrosStaircaseAnimation();
 	initSkillsScrollTimeline();
-	initCard3DTilt();
 	initStatsCounters();
 
 	// ==============================================================
@@ -502,22 +605,21 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		if (badge) {
 			badge.textContent = isError ? '✕' : '✓';
 			badge.className = isError
-				? 'flex h-6 w-6 items-center justify-center rounded-full bg-rose-500 text-white font-black'
-				: 'flex h-6 w-6 items-center justify-center rounded-full bg-[#ff5500] text-white font-black';
+				? 'flex h-5 w-5 items-center justify-center rounded-full bg-rose-500 text-[10px] font-semibold text-white'
+				: 'flex h-5 w-5 items-center justify-center rounded-full bg-[#ff5500] text-[10px] font-semibold text-white';
 		}
 
 		gsap.killTweensOf(toast);
 		gsap.fromTo(
 			toast,
-			{ opacity: 0, y: 30, scale: 0.9 },
+			{ opacity: 0, y: 10 },
 			{
 				opacity: 1,
 				y: 0,
-				scale: 1,
-				duration: 0.35,
-				ease: 'back.out(1.4)',
+				duration: 0.25,
+				ease: 'power2.out',
 				onComplete: () => {
-					gsap.to(toast, { opacity: 0, y: 20, scale: 0.9, delay: 2.4, duration: 0.3 });
+					gsap.to(toast, { opacity: 0, y: 8, delay: 2.4, duration: 0.25, ease: 'power2.in' });
 				},
 			}
 		);
@@ -527,6 +629,10 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	// 10. NAVEGACIÓN ENTRE PESTAÑAS CON GSAP Y LENIS
 	// ==============================================================
 	function switchTab(tabName: 'landing' | 'catalogo' | 'checkout', onCompleteCallback?: () => void) {
+		const activeModalEl = document.getElementById('product-info-modal');
+		if (activeModalEl && !activeModalEl.classList.contains('hidden')) {
+			closeProductModal();
+		}
 		shopStore.getState().setActiveTab(tabName);
 
 		const panels: Record<string, HTMLElement | null> = {
@@ -535,26 +641,64 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			checkout: document.getElementById('tab-checkout'),
 		};
 
+		if (!onCompleteCallback) {
+			lenis.scrollTo(0, { immediate: true });
+			window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+		}
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 		Object.entries(panels).forEach(([key, panel]) => {
 			if (!panel) return;
 			if (key === tabName) {
 				panel.classList.remove('hidden');
-				gsap.fromTo(
+				const childBlocks = Array.from(panel.children) as HTMLElement[];
+				gsap.killTweensOf([panel, ...childBlocks]);
+
+				const finalizeTabSwitch = () => {
+					gsap.set([panel, ...childBlocks], { clearProps: 'opacity,visibility,transform' });
+					initCardScrollAnimations();
+					initNosotrosStaircaseAnimation();
+					ScrollTrigger.refresh();
+					if (onCompleteCallback) onCompleteCallback();
+				};
+
+				if (reduceMotion) {
+					finalizeTabSwitch();
+					return;
+				}
+
+				const tabTl = gsap.timeline({
+					defaults: { ease: 'expo.out' },
+					onComplete: finalizeTabSwitch,
+				});
+
+				tabTl.fromTo(
 					panel,
-					{ opacity: 0, y: 18, scale: 0.98 },
+					{ autoAlpha: 0, y: 72 },
 					{
-						opacity: 1,
+						autoAlpha: 1,
 						y: 0,
-						scale: 1,
-						duration: 0.45,
-						ease: 'power2.out',
-						onComplete: () => {
-							ScrollTrigger.refresh();
-							initCard3DTilt();
-							if (onCompleteCallback) onCompleteCallback();
-						},
-					}
+						duration: 0.65,
+						ease: 'expo.out',
+					},
+					0
 				);
+
+				if (childBlocks.length > 0) {
+					tabTl.fromTo(
+						childBlocks,
+						{ autoAlpha: 0, y: 48 },
+						{
+							autoAlpha: 1,
+							y: 0,
+							duration: 0.56,
+							stagger: 0.055,
+							ease: 'power3.out',
+						},
+						0.08
+					);
+				}
 			} else {
 				panel.classList.add('hidden');
 			}
@@ -562,18 +706,11 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 
 		document.querySelectorAll<HTMLElement>('.nav-tab-btn').forEach((btn) => {
 			const target = btn.getAttribute('data-tab-target');
-			if (target === tabName) {
-				btn.className =
-					'nav-tab-btn active-tab event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold transition-all duration-200 bg-white text-black shadow-md';
-			} else {
-				btn.className =
-					'nav-tab-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold text-stone-300 hover:text-white hover:bg-white/10 transition-all duration-200';
-			}
+			const active = target === tabName || (!target && tabName === 'catalogo');
+			btn.classList.toggle('active-tab', active);
+			if (active) btn.setAttribute('aria-current', 'page');
+			else btn.removeAttribute('aria-current');
 		});
-
-		if (!onCompleteCallback) {
-			lenis.scrollTo(0, { duration: 0.8 });
-		}
 	}
 
 	document.querySelectorAll<HTMLElement>('[data-tab-target]').forEach((btn) => {
@@ -625,14 +762,9 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		const normalizedQuery = query.trim().toLowerCase();
 
 		document.querySelectorAll<HTMLElement>('.cat-filter-btn').forEach((btn) => {
-			const btnCat = btn.getAttribute('data-filter-cat');
-			if (btnCat === category) {
-				btn.className =
-					'cat-filter-btn cursor-pointer rounded-xl px-4 py-2 text-xs font-bold transition bg-white text-black shadow-md';
-			} else {
-				btn.className =
-					'cat-filter-btn cursor-pointer rounded-xl px-4 py-2 text-xs font-bold transition border border-white/10 bg-white/5 text-stone-300 hover:border-white/30 hover:text-white';
-			}
+			const active = btn.getAttribute('data-filter-cat') === category;
+			btn.classList.toggle('is-active', active);
+			btn.setAttribute('aria-pressed', String(active));
 		});
 
 		let visibleCount = 0;
@@ -657,12 +789,26 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		const countEl = document.getElementById('catalog-count');
 		if (countEl) countEl.textContent = String(visibleCount);
 
+		initCardScrollAnimations();
+		ScrollTrigger.refresh();
+
 		if (visibleCards.length > 0) {
-			gsap.fromTo(
-				visibleCards,
-				{ opacity: 0, scale: 0.88, y: 20 },
-				{ opacity: 1, scale: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' }
-			);
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reduceMotion) {
+				gsap.fromTo(
+					visibleCards,
+					{ autoAlpha: 0, y: 8 },
+					{
+						autoAlpha: 1,
+						y: 0,
+						duration: 0.35,
+						stagger: 0.03,
+						ease: 'power2.out',
+					}
+				);
+			} else {
+				gsap.set(visibleCards, { clearProps: 'opacity,visibility,transform' });
+			}
 		}
 	}
 
@@ -681,12 +827,14 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 	// Modal de Producto
 	const modal = document.getElementById('product-info-modal');
 	const modalDialog = document.getElementById('modal-dialog');
+	let lastModalTrigger: HTMLElement | null = null;
 
-	function openProductModal(productId: string) {
+	function openProductModal(productId: string, triggerEl?: HTMLElement | null) {
 		const products = shopStore.getState().products;
 		const product = products.find((p) => p.id === productId);
 		if (!product || !modal || !modalDialog) return;
 
+		lastModalTrigger = triggerEl || (document.activeElement instanceof HTMLElement ? document.activeElement : null);
 		shopStore.getState().openModal(product.id);
 
 		const imgEl = document.getElementById('modal-img') as HTMLImageElement | null;
@@ -714,7 +862,7 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		if (titleEl) titleEl.textContent = product.name;
 		if (priceEl) priceEl.textContent = `$${product.price.toLocaleString()}`;
 		if (oldPriceEl) oldPriceEl.textContent = product.oldPrice ? `$${product.oldPrice.toLocaleString()}` : '';
-		if (stockEl) stockEl.textContent = `En Stock (${product.stock} disponibles)`;
+		if (stockEl) stockEl.textContent = `En stock (${product.stock} disponibles)`;
 		if (descEl) descEl.textContent = product.description;
 		if (warrantyEl) warrantyEl.textContent = product.warranty;
 
@@ -722,7 +870,7 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			highlightsEl.innerHTML = product.highlights
 				.map(
 					(h) =>
-						`<li class="flex items-start gap-2"><span class="text-[#ff5500] font-black">✓</span><span>${h}</span></li>`
+						`<li class="flex items-start gap-2"><span class="text-[#ff5500]" aria-hidden="true">·</span><span>${h}</span></li>`
 				)
 				.join('');
 		}
@@ -731,9 +879,9 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			specsEl.innerHTML = product.specs
 				.map(
 					(s) => `
-					<div class="grid grid-cols-1 sm:grid-cols-3 gap-1 px-4 py-2.5 text-xs">
-						<span class="font-bold text-stone-400">${s.label}</span>
-						<span class="sm:col-span-2 font-semibold text-white">${s.value}</span>
+					<div class="grid grid-cols-1 sm:grid-cols-3 gap-1 py-2.5 text-xs">
+						<span class="font-medium text-stone-400">${s.label}</span>
+						<span class="sm:col-span-2 text-stone-200">${s.value}</span>
 					</div>
 				`
 				)
@@ -741,38 +889,147 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		}
 
 		modal.classList.remove('hidden');
-		modal.classList.add('flex');
+		modal.classList.add('block');
+		modal.setAttribute('aria-hidden', 'false');
+		modal.scrollTop = 0;
+		document.body.style.overflow = 'hidden';
+		lenis.stop();
+		document.getElementById('modal-close-btn')?.focus();
 
-		gsap.fromTo(
-			modalDialog,
-			{ opacity: 0, scale: 0.88, y: 24 },
-			{ opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'power3.out' }
+		const backdropEl = document.getElementById('modal-backdrop');
+		const headerEl = modalDialog.querySelector<HTMLElement>('header');
+		const revealBlocks = gsap.utils.toArray<HTMLElement>(
+			'.grid > div > *',
+			modalDialog
 		);
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		gsap.killTweensOf([backdropEl, modalDialog, headerEl, ...revealBlocks].filter(Boolean));
+
+		if (!reduceMotion) {
+			const openTl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+			openTl.addLabel('enter', 0);
+
+			if (backdropEl) {
+				openTl.fromTo(
+					backdropEl,
+					{ autoAlpha: 0 },
+					{ autoAlpha: 1, duration: 0.38, ease: 'power2.out', clearProps: 'opacity,visibility' },
+					'enter'
+				);
+			}
+
+			openTl.fromTo(
+				modalDialog,
+				{ yPercent: 100, autoAlpha: 1 },
+				{
+					yPercent: 0,
+					autoAlpha: 1,
+					duration: 0.68,
+					ease: 'expo.out',
+					clearProps: 'opacity,visibility,transform',
+				},
+				'enter'
+			);
+
+			if (headerEl) {
+				openTl.fromTo(
+					headerEl,
+					{ autoAlpha: 0, y: 36 },
+					{
+						autoAlpha: 1,
+						y: 0,
+						duration: 0.5,
+						ease: 'power3.out',
+						clearProps: 'opacity,visibility,transform',
+					},
+					'enter+=0.14'
+				);
+			}
+
+			if (revealBlocks.length > 0) {
+				openTl.fromTo(
+					revealBlocks,
+					{ autoAlpha: 0, y: 48 },
+					{
+						autoAlpha: 1,
+						y: 0,
+						duration: 0.56,
+						stagger: 0.045,
+						ease: 'power3.out',
+						clearProps: 'opacity,visibility,transform',
+					},
+					'enter+=0.18'
+				);
+			}
+		} else {
+			gsap.set([backdropEl, modalDialog, headerEl, ...revealBlocks].filter(Boolean), {
+				clearProps: 'opacity,visibility,transform',
+			});
+		}
 	}
 
 	function closeProductModal() {
 		if (!modal || !modalDialog) return;
 		shopStore.getState().closeModal();
-		gsap.to(modalDialog, {
-			opacity: 0,
-			scale: 0.92,
-			duration: 0.2,
-			onComplete: () => {
-				modal.classList.add('hidden');
-				modal.classList.remove('flex');
-			},
+		modal.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = '';
+		lenis.start();
+
+		const backdropEl = document.getElementById('modal-backdrop');
+		const headerEl = modalDialog.querySelector<HTMLElement>('header');
+		const revealBlocks = gsap.utils.toArray<HTMLElement>(
+			'.grid > div > *',
+			modalDialog
+		);
+
+		const finishClose = () => {
+			modal.classList.add('hidden');
+			modal.classList.remove('block', 'flex');
+			gsap.set([backdropEl, modalDialog, headerEl, ...revealBlocks].filter(Boolean), {
+				clearProps: 'opacity,visibility,transform',
+			});
+			lastModalTrigger?.focus();
+			lastModalTrigger = null;
+		};
+
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (reduceMotion) {
+			finishClose();
+			return;
+		}
+
+		gsap.killTweensOf([backdropEl, modalDialog, headerEl, ...revealBlocks].filter(Boolean));
+
+		const closeTl = gsap.timeline({
+			defaults: { ease: 'power3.inOut' },
+			onComplete: finishClose,
 		});
+		closeTl.addLabel('exit', 0);
+		closeTl.to(
+			modalDialog,
+			{ yPercent: 100, duration: 0.46, ease: 'expo.in' },
+			'exit'
+		);
+		if (backdropEl) {
+			closeTl.to(backdropEl, { autoAlpha: 0, duration: 0.36, ease: 'power2.in' }, 'exit+=0.08');
+		}
 	}
 
 	document.querySelectorAll<HTMLElement>('[data-open-modal]').forEach((el) => {
 		el.addEventListener('click', () => {
 			const id = el.getAttribute('data-open-modal');
-			if (id) openProductModal(id);
+			if (id) openProductModal(id, el);
 		});
 	});
 
 	document.getElementById('modal-close-btn')?.addEventListener('click', closeProductModal);
 	document.getElementById('modal-backdrop')?.addEventListener('click', closeProductModal);
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+			closeProductModal();
+		}
+	});
 
 	// VALIDACIÓN ZUSTAND: Añadir al carrito desde el modal
 	document.getElementById('modal-add-cart-btn')?.addEventListener('click', () => {
@@ -819,7 +1076,6 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		const navTotal = document.getElementById('nav-cart-total');
 		if (navBadge) {
 			navBadge.textContent = String(totalCount);
-			gsap.fromTo(navBadge, { scale: 1.5 }, { scale: 1, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
 		}
 		if (navTotal) navTotal.textContent = `$${finalTotal.toLocaleString()}`;
 
@@ -835,16 +1091,16 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 				itemsContainer.innerHTML = state.cart
 					.map(
 						(item) => `
-						<div class="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/60 p-3">
-							<img src="${item.product.image}" alt="${item.product.name}" class="h-14 w-14 rounded-xl object-cover border border-white/10 shrink-0" />
+						<div class="flex items-center justify-between gap-3 py-3">
+							<img src="${item.product.image}" alt="${item.product.name}" class="h-12 w-12 rounded-xl bg-[#050507] object-cover shrink-0" />
 							<div class="min-w-0 flex-1">
-								<p class="truncate text-xs font-bold text-white">${item.product.name}</p>
-								<p class="text-[11px] text-[#ff5500] font-bold">$${item.product.price.toLocaleString()} c/u</p>
+								<p class="truncate text-xs font-medium text-white">${item.product.name}</p>
+								<p class="text-[11px] text-stone-400">$${item.product.price.toLocaleString()} c/u</p>
 							</div>
 							<div class="flex items-center gap-1.5">
-								<button type="button" data-cart-dec="${item.product.id}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-xs font-bold text-white hover:border-[#ff5500]">-</button>
-								<span class="w-5 text-center text-xs font-bold text-white">${item.qty}</span>
-								<button type="button" data-cart-inc="${item.product.id}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-xs font-bold text-white hover:border-[#ff5500]">+</button>
+								<button type="button" data-cart-dec="${item.product.id}" aria-label="Disminuir cantidad de ${item.product.name}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-md border border-white/15 text-xs font-medium text-stone-300 hover:border-white/35 hover:text-white">-</button>
+								<span class="w-5 text-center text-xs font-medium text-white">${item.qty}</span>
+								<button type="button" data-cart-inc="${item.product.id}" aria-label="Aumentar cantidad de ${item.product.name}" class="event-btn-pop cursor-pointer flex h-6 w-6 items-center justify-center rounded-md border border-white/15 text-xs font-medium text-stone-300 hover:border-white/35 hover:text-white">+</button>
 							</div>
 						</div>
 					`
@@ -907,8 +1163,8 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 		feedback.classList.remove('hidden');
 		feedback.textContent = result.message;
 		feedback.className = result.success
-			? 'mt-1.5 text-xs font-bold text-white bg-white/10 p-2 rounded-lg border border-white/20'
-			: 'mt-1.5 text-xs font-bold text-rose-400 bg-rose-500/10 p-2 rounded-lg border border-rose-500/20';
+			? 'mt-1.5 text-xs font-medium text-stone-200'
+			: 'mt-1.5 text-xs font-medium text-rose-400';
 		showToast(result.message, !result.success);
 	}
 
@@ -931,13 +1187,9 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			const method = btn.getAttribute('data-pay-method');
 
 			document.querySelectorAll<HTMLElement>('.pay-method-btn').forEach((b) => {
-				if (b.getAttribute('data-pay-method') === method) {
-					b.className =
-						'pay-method-btn cursor-pointer rounded-2xl border border-[#ff5500] bg-[#ff5500]/15 p-3 text-center text-xs font-black text-white transition';
-				} else {
-					b.className =
-						'pay-method-btn cursor-pointer rounded-2xl border border-white/10 bg-black/60 p-3 text-center text-xs font-bold text-stone-400 hover:text-white transition';
-				}
+				const active = b.getAttribute('data-pay-method') === method;
+				b.classList.toggle('is-active', active);
+				b.setAttribute('aria-pressed', String(active));
 			});
 
 			document.getElementById('pay-panel-card')?.classList.toggle('hidden', method !== 'card');
@@ -1022,8 +1274,8 @@ import PaymentBadges from '../components/PaymentBadges.astro';
 			successModal.classList.add('flex');
 			gsap.fromTo(
 				successCard,
-				{ opacity: 0, scale: 0.82, y: 30 },
-				{ opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'back.out(1.5)' }
+				{ opacity: 0, y: 10 },
+				{ opacity: 1, y: 0, duration: 0.35, ease: 'power2.out', clearProps: 'transform' }
 			);
 		}
 	});
