@@ -1,667 +1,460 @@
 ---
-import { products, categories, skills, seasonalOffers, storeInfo } from '../data/products';
+import { products, skills, seasonalOffers, storeInfo } from '../data/products';
 import Icon from './icons/Icon.astro';
 import PaymentBadges from './PaymentBadges.astro';
+import ProductCard from './ProductCard.astro';
+import SeasonalOfferCard from './SeasonalOfferCard.astro';
 
 const featuredProducts = products.slice(0, 3);
+
+const heroSlides = [
+	{
+		id: 'laptop-nova-pro-16',
+		title: 'NovaBook Pro 16″',
+		spec: 'OLED · Titanium',
+		image: '/images/hero-electronics.png',
+		alt: 'Laptop y audífonos del ecosistema ElectroNova',
+		objectPos: 'object-[52%_50%]',
+	},
+	{
+		id: 'smartphone-titan-x',
+		title: 'TitanPhone X Pro Max',
+		spec: '200MP · Titanium',
+		image: '/images/smartphone-ultra.png',
+		alt: 'Smartphone TitanPhone X Pro Max en acabado titanio',
+		objectPos: 'object-[50%_38%]',
+	},
+	{
+		id: 'headphones-sonic-anc',
+		title: 'SonicPulse Studio ANC',
+		spec: 'ANC -48dB · Berilio',
+		image: '/images/headphones-anc.png',
+		alt: 'Audífonos SonicPulse Studio ANC Pro de alta fidelidad',
+		objectPos: 'object-[50%_52%]',
+	},
+];
 ---
 
-<section id="tab-landing" class="tab-panel mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-24">
-	<!-- ============================================================== -->
-	<!-- 1. HERO BANDWERK: MINIMALISMO ALEMÁN, NEGRO, BLANCO Y NARANJA -->
-	<!-- ============================================================== -->
-	<div class="card-2rem relative overflow-hidden rounded-[2rem] p-6 sm:p-10 lg:p-14 shadow-2xl border border-white/10 bg-gradient-to-br from-[#121217] via-[#08080b] to-[#040406]">
-		<!-- Resplandores ambientales de estudio BandWerk -->
-		<div class="pointer-events-none absolute -top-40 -right-40 h-[520px] w-[520px] rounded-full bg-[#ff5500]/12 blur-3xl"></div>
-		<div class="pointer-events-none absolute -bottom-40 -left-40 h-[520px] w-[520px] rounded-full bg-white/3 blur-3xl"></div>
-
-		<div class="relative z-10 grid items-center gap-12 lg:grid-cols-12">
-			<!-- Columna de Texto del Hero -->
-			<div class="lg:col-span-6 space-y-6">
-				<div class="inline-flex items-center gap-2.5 rounded-full border border-[#ff5500]/40 bg-[#ff5500]/10 px-4 py-1.5 text-xs font-black tracking-widest text-[#ff5500] uppercase">
-					<span class="h-2 w-2 rounded-full bg-[#ff5500] animate-ping"></span>
-					<span>INGENIERÍA DE PRECISIÓN • SERIE TITANIUM 2026</span>
-				</div>
-
-				<h1 class="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.05]">
-					Poder sin Concesiones. <br />
-					<span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-stone-200 to-[#ff5500]">
-						Perfección en Cada Milímetro.
-					</span>
-				</h1>
-
-				<p class="max-w-xl text-base sm:text-lg text-stone-300 leading-relaxed font-normal">
-					Laptops OLED con semiconductores de 3nm, chasis forjados en titanio aeroespacial y transductores acústicos de berilio. Diseñados con el rigor de la manufactura alemana para profesionales que exigen el estándar definitivo.
-				</p>
-
-				<!-- Botones de Acción de Alto Impacto Estilo BandWerk -->
-				<div class="flex flex-wrap items-center gap-4 pt-1">
+<section id="tab-landing" class="tab-panel mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8 space-y-24">
+	<!-- Open hero; preserve the existing entrance and image animation hooks. -->
+	<div class="grid items-center gap-10 py-6 sm:py-10 lg:min-h-[calc(100svh-8rem)] lg:grid-cols-2 lg:gap-16 lg:py-6">
+		<div class="space-y-6">
+			<div class="flex max-w-xl items-center justify-between gap-4">
+				<p class="text-[11px] font-semibold uppercase tracking-[.18em] text-[#ff5500]">ElectroNova · Titanium 2026</p>
+				<div class="flex items-center gap-1.5" role="group" aria-label="Controles de equipo destacado">
 					<button
+						id="hero-carousel-prev"
 						type="button"
-						data-tab-target="catalogo"
-						class="event-btn-pop cursor-pointer inline-flex items-center gap-2.5 rounded-2xl bg-white text-black px-8 py-4 text-sm font-black shadow-xl hover:bg-stone-200 active:scale-95 transition"
+						aria-label="Equipo anterior"
+						class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-white/10 text-stone-400 transition hover:border-[#ff5500]/50 hover:text-white"
 					>
-						<span>Explorar Catálogo de Élite</span>
-						<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+						<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m0 0l6-6m-6 6l6 6" />
 						</svg>
 					</button>
-
 					<button
+						id="hero-carousel-next"
 						type="button"
-						data-scroll-anchor="section-temporada"
-						class="event-btn-pop cursor-pointer inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-[#121218] px-6 py-4 text-sm font-bold text-white transition hover:border-[#ff5500]/70 hover:text-[#ff5500]"
+						aria-label="Siguiente equipo"
+						class="inline-flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-white/10 text-stone-400 transition hover:border-[#ff5500]/50 hover:text-white"
 					>
-						<span class="h-2 w-2 rounded-full bg-[#ff5500]"></span>
-						<span>Ver Edición de Temporada</span>
+						<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0l-6-6m6 6l-6 6" />
+						</svg>
 					</button>
 				</div>
-
-				<!-- Medios de Pago Aceptados de Manera Realista en el Hero -->
-				<div class="pt-2">
-					<PaymentBadges variant="hero" showInstallments={true} />
-				</div>
-
-				<!-- Estadísticas Oficiales con Animación Numérica GSAP -->
-				<div class="grid grid-cols-3 gap-4 border-t border-white/10 pt-5">
-					<div>
-						<p class="text-2xl sm:text-3xl font-black text-white">
-							<span data-counter-target="15800" data-counter-prefix="+" data-counter-suffix="">15,800+</span>
-						</p>
-						<p class="text-[11px] text-stone-400 font-semibold uppercase tracking-wider">Equipos Calibrados</p>
-					</div>
-					<div>
-						<p class="text-2xl sm:text-3xl font-black text-[#ff5500]">
-							<span data-counter-target="24" data-counter-prefix="" data-counter-suffix=" Horas">24 Horas</span>
-						</p>
-						<p class="text-[11px] text-stone-400 font-semibold uppercase tracking-wider">Despacho Asegurado</p>
-					</div>
-					<div>
-						<p class="text-2xl sm:text-3xl font-black text-white">
-							<span data-counter-target="2" data-counter-prefix="" data-counter-suffix=" Años">2 Años</span>
-						</p>
-						<p class="text-[11px] text-stone-400 font-semibold uppercase tracking-wider">Garantía Directa</p>
-					</div>
-				</div>
 			</div>
-
-			<!-- Columna Visual del Hero -->
-			<div class="lg:col-span-6">
-				<div class="relative mx-auto max-w-lg lg:max-w-none">
-					<div class="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0c0c10] shadow-2xl relative group">
-						<img
-							id="hero-image-parallax"
-							src="/images/hero-electronics.png"
-							alt="Ecosistema de Equipos Electrónicos ElectroNova"
-							class="h-[360px] sm:h-[420px] w-full object-cover object-center transition duration-700 group-hover:scale-105 will-change-transform"
-						/>
-						<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
-
-						<!-- Chips HUD Flotantes de Especificaciones en la Imagen -->
-						<div class="absolute top-4 right-4 flex flex-col gap-2 pointer-events-none">
-							<span class="rounded-xl border border-[#ff5500]/40 bg-black/85 px-3 py-1 text-[11px] font-black text-[#ff5500] backdrop-blur-md shadow-lg">
-								Chip Nova X12 • 3nm
-							</span>
-							<span class="rounded-xl border border-white/20 bg-black/85 px-3 py-1 text-[11px] font-bold text-white backdrop-blur-md shadow-lg">
-								OLED 4K 120Hz ProMotion
-							</span>
-							<span class="rounded-xl border border-white/20 bg-black/85 px-3 py-1 text-[11px] font-bold text-stone-300 backdrop-blur-md shadow-lg">
-								Titanio Grado 5 Unibody
-							</span>
-						</div>
-					</div>
-
-					<!-- Tarjeta Flotante con Curvatura 2rem y Acabado Realista -->
-					<div class="mt-4 sm:mt-0 sm:absolute sm:-bottom-7 sm:left-6 sm:right-6 flex items-center justify-between gap-4 card-2rem rounded-[2rem] p-4.5 shadow-2xl border border-white/10 bg-[#0e0e14]">
-						<div class="min-w-0">
-							<span class="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#ff5500]">
-								<span class="h-1.5 w-1.5 rounded-full bg-[#ff5500] animate-pulse"></span>
-								OFERTA FLASH DE LANZAMIENTO
-							</span>
-							<p class="truncate text-sm sm:text-base font-black text-white">NovaBook Pro 16" OLED Ultra</p>
-							<p class="text-xs text-stone-400">Ahorra $300 hoy + Seguro de Transporte 100% Cubierto</p>
-						</div>
-						<button
-							type="button"
-							data-open-modal="laptop-nova-pro-16"
-							class="event-btn-pop cursor-pointer shrink-0 rounded-xl bg-[#ff5500] text-white px-4 py-2.5 text-xs font-black shadow-md transition hover:bg-[#ff6a1a] active:scale-95"
+			<h1 class="max-w-xl text-[clamp(2.5rem,4.5vw,4.25rem)] font-semibold leading-[1.06] tracking-tight text-white">
+				Potencia para<br />
+				<span class="text-[#ff5500]">ir más lejos.</span>
+			</h1>
+			<p class="max-w-xl text-sm leading-relaxed text-stone-400 sm:text-base">
+				Laptops, audio y tecnología para lo que viene. Diseño preciso, rendimiento sin límites y dos años de garantía.
+			</p>
+			<div class="flex flex-wrap items-center gap-x-7 gap-y-4 pt-1">
+				<button type="button" data-tab-target="catalogo" class="event-btn-pop inline-flex cursor-pointer items-center gap-4 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-stone-200">
+					Explorar catálogo <span aria-hidden="true">↗</span>
+				</button>
+				<button type="button" data-scroll-anchor="section-temporada" class="event-btn-pop cursor-pointer py-3 text-sm font-medium text-stone-300 transition hover:text-white">
+					Ver temporada <span aria-hidden="true">→</span>
+				</button>
+			</div>
+			<p class="pt-2 text-xs leading-relaxed text-stone-500">Envío asegurado · Hasta 12 cuotas sin interés<br />Visa, Mastercard, Apple Pay y Yape / Plin</p>
+		</div>
+		<div
+			id="hero-carousel"
+			class="min-w-0"
+			aria-roledescription="carousel"
+			aria-label="Equipos destacados ElectroNova"
+		>
+			<svg class="pointer-events-none absolute h-0 w-0 overflow-hidden" aria-hidden="true">
+				<defs>
+					<mask id="hero-matrix-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+						{Array.from({ length: 14 }).map((_, row) =>
+							Array.from({ length: 20 }).map((__, col) => (
+								<rect
+									class="hero-matrix-cell"
+									x={(col / 20 - 0.0015).toFixed(5)}
+									y={(row / 14 - 0.0015).toFixed(5)}
+									width={(1 / 20 + 0.003).toFixed(5)}
+									height={(1 / 14 + 0.003).toFixed(5)}
+									fill="#ffffff"
+								/>
+							))
+						)}
+					</mask>
+				</defs>
+			</svg>
+			<div
+				id="hero-carousel-stage"
+				class="relative grid grid-cols-1 grid-rows-1 items-center"
+				style="-webkit-mask: url(#hero-matrix-mask); mask: url(#hero-matrix-mask);"
+			>
+				{heroSlides.map((slide, index) => (
+					<figure
+						class:list={[
+							'hero-carousel-slide col-start-1 row-start-1 min-w-0 w-full',
+							index === 0 ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none',
+						]}
+						aria-hidden={index === 0 ? 'false' : 'true'}
+					>
+						<div
+							class="relative mx-auto aspect-[4/3] max-h-[min(48svh,440px)] w-full overflow-hidden"
+							style="-webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 48%, rgba(0,0,0,0.68) 72%, rgba(0,0,0,0.18) 89%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 48%, rgba(0,0,0,0.68) 72%, rgba(0,0,0,0.18) 89%, transparent 100%);"
 						>
-							Ficha Técnica
-						</button>
-					</div>
-				</div>
+							<img
+								src={slide.image}
+								alt={slide.alt}
+								fetchpriority={index === 0 ? 'high' : 'low'}
+								class:list={[
+									'hero-carousel-img block h-full w-full object-cover',
+									slide.objectPos,
+								]}
+							/>
+						</div>
+						<figcaption class="relative mt-5 flex flex-wrap items-center justify-between gap-3 text-xs">
+							<span class="text-stone-400">
+								{slide.title} <span class="ml-2 text-stone-600">{slide.spec}</span>
+							</span>
+							<button
+								type="button"
+								data-open-modal={slide.id}
+								tabindex={index === 0 ? 0 : -1}
+								class="hero-slide-btn event-btn-pop cursor-pointer py-2 font-medium text-stone-300 transition hover:text-white"
+							>
+								Ver detalles <span aria-hidden="true">↗</span>
+							</button>
+						</figcaption>
+					</figure>
+				))}
 			</div>
 		</div>
 	</div>
 
-	<!-- ============================================================== -->
-	<!-- 2. CATEGORÍAS DE HARDWARE (NEGRO, BLANCO Y DETALLE NARANJA)    -->
-	<!-- ============================================================== -->
-	<div>
-		<div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-			<div>
-				<span class="text-xs font-black uppercase tracking-widest text-[#ff5500]">Ecosistemas de Precisión</span>
-				<h2 class="text-2xl sm:text-3xl font-black text-white">Líneas de Hardware Certificado</h2>
-				<p class="text-xs text-stone-400 mt-1">Componentes diseñados con tolerancias micrométricas y acabados en titanio cepillado.</p>
+	<!-- Open benchmark branches with a restrained scroll timeline. -->
+	<section id="skills-timeline-section" class="mx-auto max-w-5xl scroll-mt-24">
+		<header class="mb-8 max-w-2xl space-y-3 sm:mb-10">
+			<p class="text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">Tecnología en detalle</p>
+			<h2 class="text-2xl font-semibold tracking-tight text-white sm:text-3xl">Rendimiento que se nota.</h2>
+			<p class="text-sm leading-relaxed text-stone-400">Conoce la potencia, los materiales y los detalles detrás de cada equipo.</p>
+		</header>
+		<div class="relative" data-skills-tree>
+			<div class="pointer-events-none absolute bottom-3 left-3 top-3 w-px -translate-x-1/2 bg-white/10 sm:left-1/2" aria-hidden="true">
+				<div id="skills-timeline-progress" class="h-full w-full origin-top bg-[#ff5500]/70"></div>
+			</div>
+			<div class="space-y-10 sm:space-y-14">
+				{skills.map((skill, index) => (
+					<article class="skill-timeline-item relative grid pl-12 sm:grid-cols-2 sm:gap-16 sm:pl-0">
+						<span class="skill-timeline-dot absolute left-3 top-0 z-10 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full border border-white/20 bg-[#08080b] text-[10px] font-medium text-stone-400 sm:left-1/2" aria-hidden="true">{index + 1}</span>
+						<span class:list={['absolute left-3 top-3 h-px w-6 bg-white/15 sm:left-1/2 sm:w-8', { 'sm:-translate-x-full': index % 2 === 0 }]} aria-hidden="true"></span>
+						<div class:list={['skill-branch space-y-3', { 'sm:col-start-2': index % 2 !== 0 }]}>
+							<p class="text-xs font-medium text-[#ff5500]">{skill.category}</p>
+							<h3 class="text-lg font-semibold tracking-tight text-white">{skill.title}</h3>
+							<p class="text-sm leading-relaxed text-stone-400">{skill.desc}</p>
+							<p class="text-xs leading-relaxed text-stone-500">{skill.tags.join(' · ')}</p>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Seasonal offers with a single flat surface per combo -->
+	<section id="section-temporada" class="scroll-mt-24 space-y-8">
+		<div class="flex flex-wrap items-end justify-between gap-4">
+			<div class="space-y-2">
+				<p class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">
+					<Icon name="flame" class="h-3.5 w-3.5 text-[#ff5500]" />
+					<span>Edición Limitada · Serie Black Titanium 2026</span>
+				</p>
+				<h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+					Colección de temporada con bonificación directa
+				</h2>
+				<p class="max-w-2xl text-sm text-stone-400">
+					Configuraciones insignia combinadas con accesorios de alta fidelidad y hasta $450 de ahorro.
+				</p>
+			</div>
+			<p class="text-xs font-medium text-[#ff5500]">
+				Evento oficial activo
+			</p>
+		</div>
+
+		<div class="grid gap-x-10 gap-y-12 md:grid-cols-2">
+			{seasonalOffers.map((offer) => (
+				<SeasonalOfferCard offer={offer} />
+			))}
+		</div>
+	</section>
+
+	<!-- Featured products sharing the open ProductCard layout -->
+	<section id="section-destacados" class="space-y-8">
+		<div class="flex flex-wrap items-end justify-between gap-4">
+			<div class="space-y-2">
+				<p class="text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">
+					Selección de alta demanda
+				</p>
+				<h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+					Equipos más solicitados por profesionales
+				</h2>
 			</div>
 			<button
 				type="button"
 				data-tab-target="catalogo"
-				class="cursor-pointer text-xs sm:text-sm font-bold text-white hover:text-[#ff5500] transition"
+				class="event-btn-pop cursor-pointer py-2 text-xs font-medium text-stone-300 transition hover:text-white"
 			>
-				Ver catálogo completo &rarr;
+				Ir al catálogo completo <span aria-hidden="true">→</span>
 			</button>
 		</div>
 
-		<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-			{categories.map((cat) => (
-				<button
-					type="button"
-					data-jump-category={cat.name}
-					class="card-2rem event-btn-pop cursor-pointer group flex flex-col items-start rounded-[2rem] p-5 text-left transition hover:-translate-y-1.5 hover:border-[#ff5500]/60"
-				>
-					<span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white group-hover:scale-110 group-hover:bg-[#ff5500]/20 group-hover:border-[#ff5500]/50 group-hover:text-[#ff5500] transition duration-300">
-						<Icon name={cat.iconName} class="h-6 w-6" />
-					</span>
-					<span class="mt-4 font-black text-white group-hover:text-[#ff5500] transition text-sm">{cat.name}</span>
-					<span class="mt-1 text-[11px] text-stone-400 line-clamp-1">{cat.desc}</span>
-					<span class="mt-3 inline-block rounded-lg bg-white/5 border border-white/10 px-2.5 py-1 text-[10px] font-bold text-stone-300 group-hover:border-[#ff5500]/40 group-hover:text-white">
-						{cat.count}
-					</span>
-				</button>
+		<div class="grid gap-x-8 gap-y-10 md:grid-cols-3">
+			{featuredProducts.map((product) => (
+				<ProductCard product={product} context="featured" />
 			))}
 		</div>
-	</div>
 
-	<!-- ============================================================== -->
-	<!-- 3. SKILLS SCROLL TIMELINE & SCROLL REACT CON GSAP              -->
-	<!-- ============================================================== -->
-	<div id="skills-timeline-section" class="relative pt-4">
-		<div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
-			<div class="inline-flex items-center gap-2 rounded-full border border-[#ff5500]/40 bg-[#ff5500]/10 px-4 py-1.5 text-xs font-black tracking-wider text-[#ff5500] uppercase">
-				<Icon name="cpu" class="h-3.5 w-3.5" />
-				<span>BENCHMARKS & CERTIFICACIÓN DE LABORATORIO</span>
-			</div>
-			<h2 class="text-3xl sm:text-4xl font-black text-white tracking-tight">
-				La Ciencia del Rendimiento. <br />
-				<span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-stone-200 to-[#ff5500]">
-					Especificaciones Validadas en Estrés
-				</span>
+		<PaymentBadges variant="hero" />
+	</section>
+
+	<!-- Open institutional history, statistics, milestones, and pillars -->
+	<section id="section-nosotros" class="scroll-mt-24 space-y-14 border-t border-white/10 pt-16">
+		<div class="max-w-3xl space-y-3">
+			<p class="text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">
+				{storeInfo.about.badge}
+			</p>
+			<h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white">
+				{storeInfo.about.title}
 			</h2>
-			<p class="text-sm text-stone-300 leading-relaxed">
-				Desplaza la pantalla para explorar los benchmarks certificados por nuestro laboratorio independiente. Cada tarjeta y medidor reacciona en tiempo real a tu scroll.
+			<p class="text-sm sm:text-base leading-relaxed text-stone-400">
+				{storeInfo.about.lead}
 			</p>
 		</div>
 
-		<!-- Contenedor del Scroll Timeline -->
-		<div class="relative mx-auto max-w-5xl">
-			<!-- Línea central de la línea de tiempo en blanco/naranja -->
-			<div class="absolute left-4 sm:left-1/2 top-4 bottom-4 w-1 -translate-x-1/2 bg-white/10 rounded-full hidden sm:block z-0">
-				<div
-					id="skills-timeline-progress"
-					class="w-full bg-gradient-to-b from-[#ff5500] via-white to-[#ff5500] rounded-full orange-track-glow transition-all duration-75"
-					style="height: 0%;"
-				></div>
+		<div class="grid grid-cols-2 gap-6 border-y border-white/10 py-8 sm:grid-cols-4">
+			{storeInfo.about.stats.map((st) => (
+				<div class="space-y-1">
+					<p class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">{st.value}</p>
+					<p class="text-xs text-stone-400">{st.label}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="space-y-8">
+			<div class="flex flex-wrap items-end justify-between gap-4">
+				<div class="space-y-1">
+					<h3 class="text-xl sm:text-2xl font-semibold tracking-tight text-white">
+						Cronología de innovación: nuestra trayectoria
+					</h3>
+					<p class="text-sm text-stone-400">
+						Cuatro hitos que definieron nuestro estándar en hardware de precisión.
+					</p>
+				</div>
+				<span class="text-xs font-medium text-stone-500">2021 — 2026</span>
 			</div>
 
-			<!-- Lista de Tarjetas de Capacidades / Skills con 2rem de curvatura -->
-			<div class="space-y-8 sm:space-y-12 relative z-10">
-				{skills.map((skill, index) => {
-					const isEven = index % 2 === 0;
+			<div id="nosotros-staircase" class="divide-y divide-white/10 border-t border-white/10">
+				{storeInfo.about.milestones.map((milestone, idx) => {
+					const stepIndentClass = idx === 0
+						? 'lg:ml-0'
+						: idx === 1
+							? 'lg:ml-8'
+							: idx === 2
+								? 'lg:ml-16'
+								: 'lg:ml-24';
 					return (
-						<div
-							class="skill-timeline-item relative grid grid-cols-1 sm:grid-cols-2 gap-6 items-center"
-							data-skill-index={index}
+						<article
+							class={`staircase-step py-8 ${stepIndentClass}`}
+							data-step-index={idx}
 						>
-							<!-- Marcador central en el eje de la línea de tiempo -->
-							<div class="hidden sm:flex absolute left-1/2 -translate-x-1/2 h-10 w-10 items-center justify-center rounded-full border-2 border-[#ff5500] bg-[#0c0c10] text-[#ff5500] font-black text-xs shadow-lg shadow-[#ff5500]/30 z-20 skill-timeline-dot transition-transform duration-300">
-								{index + 1}
-							</div>
-
-							<!-- Contenido según par o impar para formato zigzag -->
-							<div class={isEven ? 'sm:col-start-1 sm:pr-8' : 'sm:col-start-2 sm:pl-8'}>
-								<div class="card-2rem skill-card rounded-[2rem] p-6 sm:p-7 relative overflow-hidden transition-all duration-300">
-									<div class="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-[#ff5500]/10 blur-2xl pointer-events-none"></div>
-
-									<!-- Cabecera de la skill -->
-									<div class="flex items-center justify-between gap-3 text-xs mb-3">
-										<span class="font-extrabold text-[#ff5500] uppercase tracking-wider">{skill.category}</span>
-										<span class="rounded-full bg-white/10 border border-white/20 px-3 py-1 font-black text-white text-[11px]">
-											{skill.badge}
-										</span>
-									</div>
-
-									<div class="flex items-start gap-3.5">
-										<span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white">
-											<Icon name={skill.iconName} class="h-5 w-5" />
-										</span>
-										<div>
-											<h3 class="text-lg sm:text-xl font-black text-white">{skill.title}</h3>
-											<p class="text-xs font-mono font-bold text-[#ff5500] mt-0.5">Indicador de Rendimiento: {skill.metric}</p>
-										</div>
-									</div>
-
-									<p class="mt-3 text-xs sm:text-sm text-stone-300 leading-relaxed">
-										{skill.desc}
-									</p>
-
-									<!-- Medidor de capacidad reactivo al scroll -->
-									<div class="mt-5 space-y-1.5">
-										<div class="flex justify-between text-xs font-bold">
-											<span class="text-stone-400">Eficiencia Operativa Validada</span>
-											<span class="text-white font-mono skill-percent-label">{skill.percentage}%</span>
-										</div>
-										<div class="h-2.5 w-full rounded-full bg-black/60 border border-white/10 overflow-hidden">
-											<div
-												class="skill-progress-bar h-full rounded-full bg-gradient-to-r from-white via-[#ff5500] to-white transition-all duration-700"
-												data-target-width={`${skill.percentage}%`}
-												style="width: 0%;"
-											></div>
-										</div>
-									</div>
-
-									<!-- Etiquetas de tecnología -->
-									<div class="mt-4 flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
-										{skill.tags.map((tag) => (
-											<span class="rounded-lg bg-white/5 border border-white/10 px-2.5 py-1 text-[11px] font-semibold text-stone-300">
-												#{tag}
-											</span>
-										))}
-									</div>
+							<div class="grid gap-6 lg:grid-cols-12 items-center">
+								<div class="milestone-img-container lg:col-span-5 aspect-[16/10] overflow-hidden rounded-2xl bg-[#0a0a0e]">
+									<img
+										src={milestone.image}
+										alt={milestone.title}
+										loading="lazy"
+										class="milestone-parallax-img h-full w-full object-cover will-change-transform"
+									/>
 								</div>
-							</div>
 
-							<!-- Espaciador complementario -->
-							<div class={isEven ? 'hidden sm:block sm:col-start-2 sm:pl-8' : 'hidden sm:block sm:col-start-1 sm:pr-8'}>
-								<div class="p-6 rounded-[2rem] border border-dashed border-white/15 bg-black/40 text-stone-400 text-xs flex flex-col justify-center h-full">
-									<span class="text-[#ff5500] font-black text-xs uppercase tracking-wider mb-1">
-										Protocolo de Laboratorio #{index + 1}
-									</span>
-									<p class="text-stone-300">
-										Certificación de fatiga de 72 horas continuas con cargas sintéticas extremas sin estrangulamiento térmico ni pérdida de paquetes.
+								<div class="lg:col-span-7 space-y-2.5">
+									<p class="text-xs text-stone-400">
+										<span class="font-medium text-[#ff5500]">Fase {milestone.step} · {milestone.year}</span>
+										<span class="mx-2 text-stone-600">·</span>
+										<span>{milestone.phase}</span>
+										<span class="mx-2 text-stone-600">·</span>
+										<span class="text-stone-500">{milestone.tag}</span>
+									</p>
+									<h4 class="text-lg sm:text-xl font-semibold tracking-tight text-white">
+										{milestone.title}
+									</h4>
+									<p class="text-sm leading-relaxed text-stone-400">
+										{milestone.description}
 									</p>
 								</div>
 							</div>
-						</div>
+						</article>
 					);
 				})}
 			</div>
 		</div>
-	</div>
 
-	<!-- ============================================================== -->
-	<!-- 4. TEMPORADA 2026: EDICIÓN LIMITADA BLACK TITANIUM SERIES       -->
-	<!-- ============================================================== -->
-	<section id="section-temporada" class="scroll-mt-24 space-y-6">
-		<div class="flex flex-wrap items-end justify-between gap-4">
-			<div>
-				<span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-[#ff5500]">
-					<Icon name="flame" class="h-3.5 w-3.5 text-[#ff5500]" />
-					EDICIÓN LIMITADA • SERIE BLACK TITANIUM 2026
-				</span>
-				<h2 class="text-3xl sm:text-4xl font-black text-white">Colección de Temporada con Bonificación Directa</h2>
-				<p class="text-sm text-stone-400">Configuraciones insignia combinadas con accesorios de alta fidelidad y hasta $450 de ahorro.</p>
-			</div>
-			<div class="rounded-xl border border-[#ff5500]/40 bg-[#ff5500]/10 px-4 py-2 text-xs font-black text-[#ff5500] flex items-center gap-2">
-				<span class="h-2 w-2 rounded-full bg-[#ff5500] animate-pulse"></span>
-				<span>Evento Oficial Activo</span>
-			</div>
-		</div>
-
-		<div class="grid gap-6 md:grid-cols-2">
-			{seasonalOffers.map((offer) => (
-				<article class="card-2rem seasonal-card group flex flex-col justify-between rounded-[2rem] p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
-					<div class="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-[#ff5500]/10 blur-3xl pointer-events-none"></div>
-
-					<div>
-						<div class="flex items-center justify-between text-xs mb-4">
-							<span class="rounded-full bg-white/10 border border-white/20 px-3 py-1 font-black text-white uppercase tracking-wider text-[11px]">
-								{offer.tag}
-							</span>
-							<span class="text-[#ff5500] font-bold bg-[#ff5500]/10 border border-[#ff5500]/30 px-2.5 py-1 rounded-lg text-xs">
-								Ahorro Directo: ${offer.discountAmount}
-							</span>
-						</div>
-
-						<div class="grid sm:grid-cols-12 gap-5 items-center">
-							<div class="sm:col-span-5 relative overflow-hidden rounded-[1.5rem] bg-black aspect-square border border-white/10">
-								<img src={offer.image} alt={offer.title} class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-								<span class="absolute bottom-2 left-2 rounded-md bg-black/90 px-2 py-0.5 text-[10px] font-bold text-white border border-white/10">
-									Quedan {offer.stockUnits} unid.
-								</span>
-							</div>
-
-							<div class="sm:col-span-7 space-y-2">
-								<span class="text-[11px] font-bold text-stone-400 uppercase tracking-widest">{offer.seasonName}</span>
-								<h3 class="text-xl font-black text-white group-hover:text-[#ff5500] transition">{offer.title}</h3>
-								<p class="text-xs text-stone-300 leading-relaxed">{offer.description}</p>
-							</div>
-						</div>
+		<div class="grid gap-8 border-t border-white/10 pt-10 sm:grid-cols-3">
+			{storeInfo.about.pillars.map((pil, idx) => (
+				<div class="space-y-2">
+					<div class="flex items-center gap-2 text-sm font-semibold text-white">
+						<span class="text-[#ff5500]">
+							<Icon name={idx === 0 ? 'shield' : idx === 1 ? 'truck' : 'headset'} class="h-4 w-4" />
+						</span>
+						<span>{pil.title}</span>
 					</div>
-
-					<!-- Medios de Pago en la Tarjeta de Temporada -->
-					<div class="mt-5">
-						<PaymentBadges variant="card" />
-					</div>
-
-					<div class="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-						<div>
-							<span class="text-[11px] text-stone-400 block font-semibold">Precio de Temporada</span>
-							<div class="flex items-baseline gap-2">
-								<span class="text-2xl font-black text-white">${offer.price.toLocaleString()}</span>
-								<span class="text-xs text-stone-500 line-through">${offer.originalPrice.toLocaleString()}</span>
-							</div>
-						</div>
-
-						<button
-							type="button"
-							data-tab-target="checkout"
-							class="event-btn-pop cursor-pointer rounded-2xl bg-white text-black hover:bg-stone-200 px-5 py-3 text-xs font-black shadow-lg hover:brightness-110 active:scale-95 transition"
-						>
-							Iniciar Compra de Temporada &rarr;
-						</button>
-					</div>
-				</article>
+					<p class="text-xs sm:text-sm leading-relaxed text-stone-400">{pil.desc}</p>
+				</div>
 			))}
 		</div>
 	</section>
 
-	<!-- ============================================================== -->
-	<!-- 5. EQUIPOS DESTACADOS EN SHOWROOM CON MEDIOS DE PAGO           -->
-	<!-- ============================================================== -->
-	<div>
-		<div class="flex flex-wrap items-end justify-between gap-4 mb-6">
-			<div>
-				<span class="text-xs font-black uppercase tracking-wider text-[#ff5500]">Selección de Alta Demanda</span>
-				<h2 class="text-2xl sm:text-3xl font-black text-white">Equipos Más Solicitados por Profesionales</h2>
-			</div>
-			<button
-				type="button"
-				data-tab-target="catalogo"
-				class="cursor-pointer rounded-2xl border border-white/10 bg-[#121218] px-4 py-2.5 text-xs font-bold text-white hover:border-[#ff5500]/60 transition"
-			>
-				Ir al Catálogo Completo
-			</button>
-		</div>
-
-		<div class="grid gap-6 md:grid-cols-3">
-			{featuredProducts.map((product) => (
-				<article class="card-2rem featured-card group flex flex-col justify-between rounded-[2rem] p-6 transition duration-300">
-					<div>
-						<div class="relative overflow-hidden rounded-[1.5rem] bg-black aspect-[4/3] border border-white/10">
-							<img
-								src={product.image}
-								alt={product.name}
-								class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-							/>
-							{product.badge && (
-								<span class="absolute top-3 left-3 rounded-full bg-[#ff5500] px-3 py-1 text-[11px] font-black text-white shadow-md">
-									{product.badge}
-								</span>
-							)}
-						</div>
-
-						<div class="mt-4 flex items-center justify-between text-xs">
-							<span class="font-black text-white uppercase tracking-wider">{product.category}</span>
-							<span class="text-[#ff5500] font-bold">★ {product.rating} <span class="text-stone-500 font-normal">({product.reviews})</span></span>
-						</div>
-
-						<h3 class="mt-2 text-xl font-black text-white group-hover:text-[#ff5500] transition">{product.name}</h3>
-						<p class="mt-1 text-xs text-stone-400 line-clamp-2">{product.shortDesc}</p>
-
-						<!-- Medios de Pago Aceptados en cada Card Destacada -->
-						<PaymentBadges variant="card" />
-					</div>
-
-					<div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between gap-2">
-						<div>
-							<span class="text-2xl font-black text-white">${product.price.toLocaleString()}</span>
-							{product.oldPrice && (
-								<span class="ml-1.5 text-xs text-stone-500 line-through">${product.oldPrice.toLocaleString()}</span>
-							)}
-						</div>
-						<div class="flex items-center gap-2">
-							<button
-								type="button"
-								data-open-modal={product.id}
-								class="event-btn-pop cursor-pointer rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-xs font-bold text-white hover:border-[#ff5500] hover:text-[#ff5500] transition"
-							>
-								Ficha
-							</button>
-							<button
-								type="button"
-								data-add-cart={product.id}
-								class="event-btn-pop cursor-pointer rounded-xl bg-white text-black hover:bg-stone-200 px-3.5 py-2 text-xs font-black shadow-md active:scale-95 transition"
-							>
-								+ Carrito
-							</button>
-						</div>
-					</div>
-				</article>
-			))}
-		</div>
-	</div>
-
-	<!-- ============================================================== -->
-	<!-- 6. SECCIÓN NOSOTROS: HISTORIA REALISTA & ANIMACIÓN DE ESCALERA -->
-	<!-- ============================================================== -->
-	<section id="section-nosotros" class="scroll-mt-24 space-y-12">
-		<div class="card-2rem rounded-[2rem] p-6 sm:p-10 lg:p-14 relative overflow-hidden">
-			<div class="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-[#ff5500]/10 blur-3xl pointer-events-none"></div>
-
-			<!-- Encabezado de la Historia -->
-			<div class="max-w-3xl space-y-4">
-				<span class="inline-block rounded-full bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white">
-					{storeInfo.about.badge}
-				</span>
-				<h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-					{storeInfo.about.title}
-				</h2>
-				<p class="text-stone-300 leading-relaxed text-sm sm:text-base font-normal">
-					{storeInfo.about.lead}
-				</p>
-			</div>
-
-			<!-- Estadísticas de la Entidad Nosotros -->
-			<div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4 border-t border-white/10 pt-6">
-				{storeInfo.about.stats.map((st) => (
-					<div class="rounded-2xl border border-white/10 bg-black/40 p-4">
-						<p class="text-2xl sm:text-3xl font-black text-white">{st.value}</p>
-						<p class="text-xs text-stone-400 font-medium mt-1 uppercase tracking-wider">{st.label}</p>
-					</div>
-				))}
-			</div>
-
-			<!-- ============================================================== -->
-			<!-- ANIMACIÓN DE ESCALERA (STAIRCASE TIMELINE CON IMÁGENES REALISTAS) -->
-			<!-- ============================================================== -->
-			<div class="mt-14 space-y-6">
-				<div class="flex items-center justify-between border-b border-white/10 pb-4">
-					<div>
-						<h3 class="text-xl sm:text-2xl font-black text-white">Cronología de Innovación: Nuestra Trayectoria</h3>
-						<p class="text-xs text-stone-400">Cuatro hitos que definieron nuestro estándar en hardware de precisión.</p>
-					</div>
-					<span class="hidden sm:inline-block rounded-lg bg-white/10 border border-white/20 px-3 py-1 text-xs font-bold text-white">
-						2021 — 2026
-					</span>
-				</div>
-
-				<!-- Contenedor con Efecto de Escalera Progresiva (Staircase) -->
-				<div id="nosotros-staircase" class="space-y-6 pt-4">
-					{storeInfo.about.milestones.map((milestone, idx) => {
-						const stepIndentClass = idx === 0 
-							? 'lg:ml-0' 
-							: idx === 1 
-								? 'lg:ml-10' 
-								: idx === 2 
-									? 'lg:ml-20' 
-									: 'lg:ml-28';
-						return (
-							<div
-								class={`staircase-step card-2rem rounded-[2rem] p-6 sm:p-8 relative overflow-hidden transition-all duration-300 ${stepIndentClass}`}
-								data-step-index={idx}
-							>
-								<div class="grid gap-6 lg:grid-cols-12 items-center">
-									<!-- Imagen Complementaria de la Historia con Parallax GSAP -->
-									<div class="milestone-img-container lg:col-span-5 relative overflow-hidden rounded-[1.5rem] bg-black aspect-[16/10] border border-white/10 shadow-inner group">
-										<img
-											src={milestone.image}
-											alt={milestone.title}
-											class="milestone-parallax-img h-full w-full object-cover transition duration-700 group-hover:scale-105 will-change-transform"
-										/>
-										<div class="absolute top-3 left-3 rounded-full bg-black/90 border border-white/20 px-3 py-1 text-xs font-black text-white">
-											Fase {milestone.step} • {milestone.year}
-										</div>
-									</div>
-
-									<!-- Contenido del Paso de la Escalera -->
-									<div class="lg:col-span-7 space-y-3">
-										<div class="flex items-center gap-2">
-											<span class="rounded bg-[#ff5500]/20 border border-[#ff5500]/30 px-2 py-0.5 text-[10px] font-black text-[#ff5500] uppercase tracking-widest">
-												{milestone.tag}
-											</span>
-											<span class="text-xs font-bold text-stone-400">{milestone.phase}</span>
-										</div>
-
-										<h4 class="text-xl sm:text-2xl font-black text-white">{milestone.title}</h4>
-										<p class="text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
-											{milestone.description}
-										</p>
-									</div>
-								</div>
-							</div>
-						);
-					})}
-				</div>
-			</div>
-
-			<!-- Pilares de Confianza Institucional -->
-			<div class="mt-12 grid gap-4 sm:grid-cols-3">
-				{storeInfo.about.pillars.map((pil, idx) => (
-					<div class="rounded-2xl border border-white/10 bg-black/50 p-5">
-						<div class="flex items-center gap-2.5 text-white font-black text-sm">
-							<span class="text-[#ff5500]">
-								<Icon name={idx === 0 ? 'shield' : idx === 1 ? 'truck' : 'headset'} class="h-4 w-4" />
-							</span>
-							<span>{pil.title}</span>
-						</div>
-						<p class="mt-2 text-xs text-stone-400 leading-relaxed">{pil.desc}</p>
-					</div>
-				))}
-			</div>
-		</div>
-	</section>
-
-	<!-- ============================================================== -->
-	<!-- 7. SELLOS DE CONFIANZA Y GARANTÍA                             -->
-	<!-- ============================================================== -->
-	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-		<div class="card-2rem benefit-card rounded-[2rem] p-6">
-			<div class="text-white font-black text-sm flex items-center gap-2.5">
-				<span class="text-[#ff5500]"><Icon name="truck" class="h-5 w-5" /></span>
+	<!-- Lightweight trust and warranty blocks -->
+	<div class="grid gap-8 border-y border-white/10 py-10 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="benefit-card space-y-2">
+			<div class="flex items-center gap-2 text-sm font-semibold text-white">
+				<span class="text-[#ff5500]"><Icon name="truck" class="h-4 w-4" /></span>
 				<span>Envío Express Asegurado</span>
 			</div>
-			<p class="mt-2 text-xs text-stone-400 leading-relaxed">Entrega en 24h a domicilio con póliza de seguro de transporte contra pérdidas o daños.</p>
+			<p class="text-xs sm:text-sm leading-relaxed text-stone-400">
+				Entrega en 24h a domicilio con póliza de seguro de transporte contra pérdidas o daños.
+			</p>
 		</div>
 
-		<div class="card-2rem benefit-card rounded-[2rem] p-6">
-			<div class="text-white font-black text-sm flex items-center gap-2.5">
-				<span class="text-[#ff5500]"><Icon name="lock" class="h-5 w-5" /></span>
+		<div class="benefit-card space-y-2">
+			<div class="flex items-center gap-2 text-sm font-semibold text-white">
+				<span class="text-[#ff5500]"><Icon name="lock" class="h-4 w-4" /></span>
 				<span>Pasarela Encriptada 256-bit</span>
 			</div>
-			<p class="mt-2 text-xs text-stone-400 leading-relaxed">Aceptamos tarjetas de crédito sin intereses, transferencias inmediatas y códigos QR.</p>
+			<p class="text-xs sm:text-sm leading-relaxed text-stone-400">
+				Aceptamos tarjetas de crédito sin intereses, transferencias inmediatas y códigos QR.
+			</p>
 		</div>
 
-		<div class="card-2rem benefit-card rounded-[2rem] p-6">
-			<div class="text-white font-black text-sm flex items-center gap-2.5">
-				<span class="text-[#ff5500]"><Icon name="warranty" class="h-5 w-5" /></span>
+		<div class="benefit-card space-y-2">
+			<div class="flex items-center gap-2 text-sm font-semibold text-white">
+				<span class="text-[#ff5500]"><Icon name="warranty" class="h-4 w-4" /></span>
 				<span>Garantía Directa Oficial</span>
 			</div>
-			<p class="mt-2 text-xs text-stone-400 leading-relaxed">Productos nuevos, precintados de fábrica con servicio técnico certificado y repuestos originales.</p>
+			<p class="text-xs sm:text-sm leading-relaxed text-stone-400">
+				Productos nuevos, precintados de fábrica con servicio técnico certificado y repuestos originales.
+			</p>
 		</div>
 
-		<div class="card-2rem benefit-card rounded-[2rem] p-6">
-			<div class="text-white font-black text-sm flex items-center gap-2.5">
-				<span class="text-[#ff5500]"><Icon name="headset" class="h-5 w-5" /></span>
+		<div class="benefit-card space-y-2">
+			<div class="flex items-center gap-2 text-sm font-semibold text-white">
+				<span class="text-[#ff5500]"><Icon name="headset" class="h-4 w-4" /></span>
 				<span>Asesoría Técnica 1 a 1</span>
 			</div>
-			<p class="mt-2 text-xs text-stone-400 leading-relaxed">Especialistas en hardware disponibles en tiempo real para resolver dudas de compatibilidad.</p>
+			<p class="text-xs sm:text-sm leading-relaxed text-stone-400">
+				Especialistas en hardware disponibles en tiempo real para resolver dudas de compatibilidad.
+			</p>
 		</div>
 	</div>
 
-	<!-- ============================================================== -->
-	<!-- 8. SECCIÓN CONTACTO DIRECTO & SHOWROOM PRESENCIAL              -->
-	<!-- ============================================================== -->
-	<section id="section-contacto" class="scroll-mt-24 space-y-6">
-		<div class="card-2rem rounded-[2rem] p-6 sm:p-10 lg:p-12">
-			<div class="grid gap-8 lg:grid-cols-12 items-center">
-				<div class="lg:col-span-6 space-y-4">
-					<span class="inline-block rounded-full bg-white/10 border border-white/20 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-white">
-						Atención Inmediata
-					</span>
-					<h2 class="text-3xl sm:text-4xl font-black text-white">
-						Contacto Directo & Showroom Presencial
+	<!-- Open contact section without nested outer/inner cards -->
+	<section id="section-contacto" class="scroll-mt-24">
+		<div class="grid gap-10 lg:grid-cols-12 items-start">
+			<div class="lg:col-span-6 space-y-5">
+				<div class="space-y-2">
+					<p class="text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">
+						Atención inmediata
+					</p>
+					<h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+						Contacto directo y showroom presencial
 					</h2>
-					<p class="text-sm text-stone-300 leading-relaxed">
+					<p class="text-sm leading-relaxed text-stone-400">
 						¿Tienes requerimientos especiales de configuración o compras corporativas? Nuestro equipo de ingenieros de hardware está a tu disposición en nuestro espacio de San Borja.
 					</p>
-
-					<div class="space-y-3 pt-2 text-xs">
-						<div class="flex items-center gap-3 text-stone-300">
-							<span class="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white font-bold">
-								<Icon name="pin" class="h-4 w-4" />
-							</span>
-							<span>{storeInfo.contact.address}</span>
-						</div>
-						<div class="flex items-center gap-3 text-stone-300">
-							<span class="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white font-bold">
-								<Icon name="phone" class="h-4 w-4" />
-							</span>
-							<span>Central Telefónica: <strong class="text-white">{storeInfo.contact.phone}</strong></span>
-						</div>
-						<div class="flex items-center gap-3 text-stone-300">
-							<span class="flex h-8 w-8 items-center justify-center rounded-xl bg-[#ff5500]/15 text-[#ff5500] font-bold">
-								<Icon name="whatsapp" class="h-4 w-4" />
-							</span>
-							<span>WhatsApp Oficial: <strong class="text-[#ff5500]">{storeInfo.contact.whatsapp}</strong></span>
-						</div>
-						<div class="flex items-center gap-3 text-stone-300">
-							<span class="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white font-bold">
-								<Icon name="clock" class="h-4 w-4" />
-							</span>
-							<span>Horario Showroom: {storeInfo.contact.hours}</span>
-						</div>
-					</div>
 				</div>
 
-				<div class="lg:col-span-6">
-					<div class="rounded-2xl border border-white/10 bg-black/60 p-6 sm:p-7 space-y-4 shadow-xl">
-						<h3 class="text-base font-black text-white">Solicita Asesoría Técnica con un Ingeniero</h3>
-						<div class="space-y-3">
-							<input
-								type="text"
-								placeholder="Tu nombre completo"
-								class="w-full rounded-xl border border-white/15 bg-[#121216] px-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none"
-							/>
-							<input
-								type="email"
-								placeholder="correo@empresa.com"
-								class="w-full rounded-xl border border-white/15 bg-[#121216] px-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none"
-							/>
-							<textarea
-								rows="3"
-								placeholder="¿Qué equipo o requerimiento estás buscando?"
-								class="w-full rounded-xl border border-white/15 bg-[#121216] px-3.5 py-2.5 text-xs text-white placeholder-stone-500 focus:border-[#ff5500] focus:outline-none"
-							></textarea>
-							<button
-								type="button"
-								onclick="alert('¡Gracias! Un especialista en hardware te responderá en menos de 15 minutos.')"
-								class="event-btn-pop w-full cursor-pointer rounded-xl bg-white text-black hover:bg-stone-200 py-3 text-xs font-black active:scale-95 transition"
-							>
-								Enviar Consulta a Soporte Especializado &rarr;
-							</button>
-						</div>
+				<div class="space-y-3 pt-1 text-xs sm:text-sm text-stone-300">
+					<div class="flex items-center gap-3">
+						<Icon name="pin" class="h-4 w-4 shrink-0 text-[#ff5500]" />
+						<span>{storeInfo.contact.address}</span>
 					</div>
+					<div class="flex items-center gap-3">
+						<Icon name="phone" class="h-4 w-4 shrink-0 text-[#ff5500]" />
+						<span>Central telefónica: <strong class="font-medium text-white">{storeInfo.contact.phone}</strong></span>
+					</div>
+					<div class="flex items-center gap-3">
+						<Icon name="whatsapp" class="h-4 w-4 shrink-0 text-[#ff5500]" />
+						<span>WhatsApp oficial: <strong class="font-medium text-white">{storeInfo.contact.whatsapp}</strong></span>
+					</div>
+					<div class="flex items-center gap-3">
+						<Icon name="clock" class="h-4 w-4 shrink-0 text-[#ff5500]" />
+						<span>Horario showroom: {storeInfo.contact.hours}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="lg:col-span-6 space-y-4">
+				<h3 class="text-base font-semibold text-white">
+					Solicita asesoría técnica con un ingeniero
+				</h3>
+				<div class="space-y-3">
+					<div>
+						<label for="contact-name" class="block text-xs font-medium text-stone-400 mb-1.5">Nombre completo</label>
+						<input
+							id="contact-name"
+							name="contact_name"
+							type="text"
+							autocomplete="name"
+							placeholder="Tu nombre completo"
+							class="w-full rounded-xl border border-white/15 bg-[#0a0a0e] px-3.5 py-2.5 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
+						/>
+					</div>
+					<div>
+						<label for="contact-email" class="block text-xs font-medium text-stone-400 mb-1.5">Correo electrónico</label>
+						<input
+							id="contact-email"
+							name="contact_email"
+							type="email"
+							autocomplete="email"
+							placeholder="correo@empresa.com"
+							class="w-full rounded-xl border border-white/15 bg-[#0a0a0e] px-3.5 py-2.5 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
+						/>
+					</div>
+					<div>
+						<label for="contact-message" class="block text-xs font-medium text-stone-400 mb-1.5">Requerimiento técnico</label>
+						<textarea
+							id="contact-message"
+							name="contact_message"
+							rows="3"
+							placeholder="¿Qué equipo o requerimiento estás buscando?"
+							class="w-full rounded-xl border border-white/15 bg-[#0a0a0e] px-3.5 py-2.5 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
+						></textarea>
+					</div>
+					<button
+						type="button"
+						onclick="alert('¡Gracias! Un especialista en hardware te responderá en menos de 15 minutos.')"
+						class="event-btn-pop w-full cursor-pointer rounded-full bg-white py-3 text-xs font-semibold text-black transition hover:bg-stone-200"
+					>
+						Enviar consulta a soporte especializado <span aria-hidden="true">→</span>
+					</button>
 				</div>
 			</div>
 		</div>

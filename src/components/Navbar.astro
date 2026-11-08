@@ -1,8 +1,8 @@
 ---
 ---
 
-<header class="sticky top-0 z-40 border-b border-white/10 bg-[#060608]/90 backdrop-blur-xl">
-	<div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
+<header id="store-header" class="sticky top-0 z-40 bg-[#060608]/90 backdrop-blur-xl">
+	<div class="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
 		<!-- Logo Realista con Fondo Transparente -->
 		<button
 			type="button"
@@ -17,105 +17,152 @@
 			/>
 		</button>
 
-		<!-- Menú de Navegación Estilo BandWerk (Negro, Blanco y Acentos Naranja) -->
-		<nav
-			aria-label="Navegación principal de la tienda"
-			class="hidden md:flex items-center gap-1 rounded-[1.5rem] border border-white/10 bg-[#0e0e12]/90 p-1.5 shadow-inner"
-		>
-			<!-- Pestaña 1: Showroom -->
-			<button
-				type="button"
-				data-tab-target="landing"
-				class="nav-tab-btn active-tab event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold transition-all duration-200 bg-white text-black shadow-md"
-			>
-				<span>Showroom</span>
-			</button>
+        <button type="button" class="mobile-nav-toggle nav-link" aria-expanded="false" aria-controls="store-navigation">Menú <span aria-hidden="true">＋</span></button>
+        <nav id="store-navigation" aria-label="Navegación principal de la tienda">
+            <div class="nav-group">
+                <button type="button" class="nav-link nav-tab-btn active-tab" data-tab-target="landing" aria-current="page">Inicio</button>
+            </div>
+            <div class="nav-group" data-dropdown>
+                <button type="button" class="nav-link nav-tab-btn" data-dropdown-trigger aria-expanded="false" aria-controls="catalog-navigation">Catálogo <span class="nav-chevron" aria-hidden="true">⌄</span></button>
+                <div id="catalog-navigation" class="nav-dropdown" inert>
+                    <p>Explora el catálogo</p>
+                    {['Todos', 'Laptops', 'Smartphones', 'Audio', 'Wearables', 'Gaming', 'Drones'].map((category) => (
+                        <button type="button" data-jump-category={category}>{category === 'Todos' ? 'Ver todos los equipos' : category}<span aria-hidden="true">↗</span></button>
+                    ))}
+                </div>
+            </div>
+            <div class="nav-group" data-dropdown>
+                <button type="button" class="nav-link" data-dropdown-trigger aria-expanded="false" aria-controls="discover-navigation">Descubre <span class="nav-chevron" aria-hidden="true">⌄</span></button>
+                <div id="discover-navigation" class="nav-dropdown" inert>
+                    <p>Todo sobre ElectroNova</p>
+                    <button type="button" data-scroll-anchor="section-temporada">Temporada 2026 <span aria-hidden="true">↗</span></button>
+                    <button type="button" data-scroll-anchor="skills-timeline-section">Tecnología y experiencia <span aria-hidden="true">↗</span></button>
+                    <button type="button" data-scroll-anchor="section-nosotros">Nosotros <span aria-hidden="true">↗</span></button>
+                    <button type="button" data-scroll-anchor="section-contacto">Contacto <span aria-hidden="true">↗</span></button>
+                </div>
+            </div>
+            <button type="button" class="nav-link" data-scroll-anchor="section-temporada">Temporada 2026</button>
+            <button type="button" class="nav-link" data-scroll-anchor="section-nosotros">Nosotros</button>
+            <button type="button" class="nav-link" data-scroll-anchor="section-contacto">Contacto</button>
+        </nav>
 
-			<!-- Pestaña 2: Catálogo -->
-			<button
-				type="button"
-				data-tab-target="catalogo"
-				class="nav-tab-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-4 py-1.5 text-xs font-bold text-stone-300 hover:text-white hover:bg-white/10 transition-all duration-200"
-			>
-				<span>Catálogo</span>
-			</button>
-
-			<!-- Mini-Pestaña 3: Temporada -->
-			<button
-				type="button"
-				data-scroll-anchor="section-temporada"
-				class="mini-nav-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-3.5 py-1.5 text-xs font-semibold text-stone-300 hover:text-[#ff5500] hover:bg-white/5 transition-all duration-200"
-			>
-				<span class="h-1.5 w-1.5 rounded-full bg-[#ff5500] animate-pulse"></span>
-				<span>Temporada 2026</span>
-				<span class="rounded bg-[#ff5500]/20 px-1.5 py-0.2 text-[9px] font-black text-[#ff5500] uppercase tracking-wider">Edición</span>
-			</button>
-
-			<!-- Mini-Pestaña 4: Nosotros -->
-			<button
-				type="button"
-				data-scroll-anchor="section-nosotros"
-				class="mini-nav-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-3.5 py-1.5 text-xs font-semibold text-stone-300 hover:text-white hover:bg-white/5 transition-all duration-200"
-			>
-				<span>Nosotros</span>
-			</button>
-
-			<!-- Mini-Pestaña 5: Contacto -->
-			<button
-				type="button"
-				data-scroll-anchor="section-contacto"
-				class="mini-nav-btn event-btn-pop cursor-pointer flex items-center gap-1.5 rounded-2xl px-3.5 py-1.5 text-xs font-semibold text-stone-300 hover:text-white hover:bg-white/5 transition-all duration-200"
-			>
-				<span>Contacto</span>
-			</button>
-		</nav>
-
-		<!-- Botón de Carrito Realista con Badge Naranja BandWerk -->
-		<div class="flex items-center gap-2">
-			<!-- Mini links rápidos en mobile -->
-			<div class="flex md:hidden items-center gap-1">
-				<button
-					type="button"
-					data-tab-target="catalogo"
-					class="event-btn-pop rounded-xl border border-white/10 bg-[#121216] px-2.5 py-1.5 text-xs font-bold text-white"
-				>
-					Catálogo
-				</button>
-				<button
-					type="button"
-					data-scroll-anchor="section-temporada"
-					class="event-btn-pop rounded-xl border border-[#ff5500]/30 bg-[#ff5500]/10 px-2 py-1.5 text-[11px] font-bold text-[#ff5500]"
-				>
-					Temporada
-				</button>
-			</div>
-
+		<!-- Minimal cart summary; IDs are updated by the cart store. -->
 			<button
 				type="button"
 				id="nav-cart-trigger"
 				data-tab-target="checkout"
-				class="event-btn-pop cursor-pointer group flex items-center gap-2.5 sm:gap-3 rounded-[1.5rem] border border-white/15 bg-[#121218]/90 px-3.5 sm:px-4 py-2 text-xs font-medium text-white transition hover:border-[#ff5500]/70 hover:bg-[#1a1a22] shadow-md"
-				title="Iniciar proceso de compra"
+				class="event-btn-pop cursor-pointer flex items-center gap-3 border-0 bg-transparent py-2 text-white transition-colors hover:text-stone-300"
+				title="Ver carrito e iniciar compra"
 			>
-				<div class="relative flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white group-hover:bg-[#ff5500] group-hover:text-white transition">
-					<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-						<path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+					<svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l2.4 12h11.2l2-8H6M9 20h.01M18 20h.01" />
 					</svg>
-					<span
-						id="nav-cart-badge"
-						class="absolute -top-1 -right-1 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#ff5500] px-1 text-[10px] font-black text-white shadow-sm transition-transform"
-					>
-						2
-					</span>
-				</div>
-				<div class="text-left hidden sm:block">
-					<span class="block text-[9px] text-stone-400 uppercase tracking-wider font-bold">Bolsa</span>
-					<span id="nav-cart-total" class="font-black text-white">$2,248</span>
-				</div>
-				<span class="hidden lg:inline-block rounded-lg bg-[#ff5500]/20 px-2 py-1 text-[10px] font-black text-[#ff5500] border border-[#ff5500]/30 group-hover:bg-[#ff5500] group-hover:text-white transition">
-					Pagar &rarr;
+				<span class="flex flex-col gap-0.5 text-left leading-tight">
+					<span id="nav-cart-total" class="text-xs font-semibold">$2,248</span>
+					<span class="text-[10px] font-medium text-stone-400"><span id="nav-cart-badge" class="inline-block">2</span> productos</span>
 				</span>
 			</button>
-		</div>
 	</div>
 </header>
+
+<style>
+    #store-navigation { display: flex; align-items: center; gap: 1.25rem; }
+    .nav-group { position: static; }
+    .nav-link { position: relative; display: inline-flex; align-items: center; gap: .35rem; padding: .65rem 0; border: 0; background: transparent; color: #a8a8ae; font-size: .75rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+    .nav-link::after { content: ''; position: absolute; bottom: .2rem; left: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(var(--underline, 0)); transform-origin: left; }
+    .nav-link.active-tab, .nav-link[aria-expanded="true"] { color: #fff; }
+    .nav-link.active-tab::after { transform: scaleX(1); }
+    button:focus-visible { outline: 2px solid #d4d4d8; outline-offset: 5px; }
+    .nav-chevron { display: inline-block; }
+    .nav-dropdown { position: absolute; top: 100%; left: 0; width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 2rem; padding: 1.5rem 2rem 2rem; border-bottom: 1px solid #ffffff1a; border-radius: 0 0 2rem 2rem; background: #060608; opacity: 0; visibility: hidden; }
+    .nav-dropdown p { grid-column: 1 / -1; margin: 0 0 .75rem; color: #a8a8ae; font-size: .75rem; font-weight: 600; }
+    .nav-dropdown::before { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: 1rem; }
+    .nav-dropdown button { display: flex; justify-content: space-between; gap: 1rem; width: 100%; padding: .75rem 0; color: #a8a8ae; font-family: inherit; font-size: .75rem; font-weight: 600; text-align: left; cursor: pointer; }
+    .nav-dropdown button:hover, .nav-dropdown button:focus-visible { color: #fff; }
+    .nav-dropdown button span { color: #777780; }
+    .mobile-nav-toggle { display: none; }
+    @media (max-width: 1100px) {
+        .mobile-nav-toggle { display: inline-flex; margin-left: auto; }
+        #store-navigation { display: none; order: 3; width: 100%; align-items: stretch; flex-direction: column; gap: .25rem; padding: .75rem 0; border-top: 1px solid #303035; }
+        #store-navigation.is-open { display: flex; }
+        .nav-link { font-size: .85rem; }
+        .nav-dropdown { position: static; width: 100%; display: none; margin: .25rem 0 .5rem; padding: .75rem 1rem; }
+        .nav-dropdown p, .nav-dropdown button { font-size: .85rem; }
+        .nav-dropdown::before { display: none; }
+        .nav-dropdown.is-open { display: block; }
+    }
+</style>
+
+<script>
+    import { gsap } from 'gsap';
+
+    const header = document.querySelector<HTMLElement>('#store-header')!;
+    const nav = header.querySelector<HTMLElement>('#store-navigation')!;
+    const mobileToggle = header.querySelector<HTMLButtonElement>('.mobile-nav-toggle')!;
+    const mobile = window.matchMedia('(max-width: 1100px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const duration = () => reducedMotion.matches ? 0 : .25;
+    const groups = Array.from(nav.querySelectorAll<HTMLElement>('[data-dropdown]'));
+
+    function setDropdown(group: HTMLElement, open: boolean) {
+        const trigger = group.querySelector<HTMLButtonElement>('[data-dropdown-trigger]')!;
+        const panel = group.querySelector<HTMLElement>('.nav-dropdown')!;
+        if ((trigger.getAttribute('aria-expanded') === 'true') === open) return;
+        trigger.setAttribute('aria-expanded', String(open));
+        panel.inert = !open;
+        gsap.killTweensOf([panel, ...panel.querySelectorAll('button')]);
+        if (open) {
+            groups.filter((other) => other !== group).forEach((other) => setDropdown(other, false));
+            panel.classList.add('is-open');
+            // Keep opening items focusable when ArrowDown moves focus immediately.
+            gsap.set(panel, { visibility: 'visible' });
+            gsap.timeline().fromTo(panel, { opacity: 0, y: reducedMotion.matches ? 0 : 8 }, { opacity: 1, y: 0, duration: duration(), ease: 'power2.out' })
+                .fromTo(panel.querySelectorAll('button'), { opacity: 0, y: reducedMotion.matches ? 0 : 5 }, { opacity: 1, y: 0, duration: duration(), stagger: reducedMotion.matches ? 0 : .025 }, 0);
+        } else {
+            gsap.to(panel, { autoAlpha: 0, y: reducedMotion.matches ? 0 : 5, duration: duration(), overwrite: true, onComplete: () => { panel.classList.remove('is-open'); } });
+        }
+        gsap.to(trigger.querySelector('.nav-chevron'), { rotation: open ? 180 : 0, duration: duration(), overwrite: true });
+    }
+
+    function closeNavigation() {
+        groups.forEach((group) => setDropdown(group, false));
+        nav.classList.remove('is-open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+    }
+    mobileToggle.addEventListener('click', () => {
+        const open = mobileToggle.getAttribute('aria-expanded') !== 'true';
+        if (!open) closeNavigation();
+        else { nav.classList.add('is-open'); mobileToggle.setAttribute('aria-expanded', 'true'); }
+    });
+    groups.forEach((group) => {
+        const trigger = group.querySelector<HTMLButtonElement>('[data-dropdown-trigger]')!;
+        group.addEventListener('pointerenter', (event) => { if (!mobile.matches && event.pointerType === 'mouse') setDropdown(group, true); });
+        trigger.addEventListener('click', () => setDropdown(group, trigger.getAttribute('aria-expanded') !== 'true'));
+        trigger.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                setDropdown(group, true);
+                group.querySelector<HTMLButtonElement>('.nav-dropdown button')?.focus();
+            }
+        });
+        group.addEventListener('focusout', (event) => { if (!group.contains(event.relatedTarget as Node | null)) setDropdown(group, false); });
+    });
+    nav.querySelectorAll<HTMLElement>('.nav-link').forEach((link) => {
+        const animate = (active: boolean) => gsap.to(link, { '--underline': active ? 1 : 0, color: active ? '#ffffff' : '', duration: duration(), overwrite: 'auto' });
+        link.addEventListener('pointerenter', () => animate(true));
+        link.addEventListener('pointerleave', () => animate(false));
+        link.addEventListener('focus', () => animate(true));
+        link.addEventListener('blur', () => animate(false));
+    });
+    nav.addEventListener('click', (event) => {
+        if ((event.target as HTMLElement).closest('[data-tab-target], [data-jump-category], [data-scroll-anchor]')) closeNavigation();
+    });
+    document.addEventListener('pointerdown', (event) => { if (!header.contains(event.target as Node)) closeNavigation(); });
+    header.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        const group = groups.find((item) => item.querySelector('[aria-expanded="true"]'));
+        if (group) { setDropdown(group, false); group.querySelector<HTMLButtonElement>('[data-dropdown-trigger]')?.focus(); }
+        else if (mobile.matches && nav.classList.contains('is-open')) { closeNavigation(); mobileToggle.focus(); }
+    });
+    mobile.addEventListener('change', closeNavigation);
+</script>
