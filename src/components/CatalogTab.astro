@@ -1,166 +1,70 @@
 ---
 import { products } from '../data/products';
+import ProductCard from './ProductCard.astro';
 import PaymentBadges from './PaymentBadges.astro';
 
 const categories = ['Todos', 'Laptops', 'Smartphones', 'Audio', 'Wearables', 'Gaming', 'Drones'];
 ---
 
-<section id="tab-catalogo" class="tab-panel hidden mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
-	<!-- Encabezado del Catálogo con Curvatura 2rem y Acabado BandWerk -->
-	<div class="card-2rem rounded-[2rem] p-6 sm:p-8 border border-white/10 bg-[#0c0c10]">
-		<div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-			<div>
-				<span class="inline-block rounded-full bg-[#ff5500]/15 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-[#ff5500] border border-[#ff5500]/30">
-					Catálogo Oficial 2026 • Hardware Calibrado
-				</span>
-				<h2 class="mt-2 text-3xl sm:text-4xl font-black text-white">Equipos de Alta Gama para Profesionales</h2>
-				<p class="mt-1 text-sm text-stone-300">
-					Inspecciona las especificaciones de laboratorio haciendo clic en <strong class="text-[#ff5500]">"Ficha Card"</strong>.
+<section id="tab-catalogo" class="tab-panel hidden mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-10">
+	<header class="space-y-6 border-b border-white/10 pb-6">
+		<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+			<div class="space-y-2">
+				<p class="text-[11px] font-semibold uppercase tracking-[.16em] text-[#ff5500]">
+					Catálogo Oficial 2026
+				</p>
+				<h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+					Equipos calibrados para profesionales
+				</h2>
+				<p class="text-sm text-stone-400">
+					Explora especificaciones completas seleccionando <span class="text-stone-200 font-medium">Ver ficha</span> en cada equipo.
 				</p>
 			</div>
 
-			<!-- Buscador Estilizado en Blanco y Negro -->
 			<div class="relative w-full lg:w-80">
+				<label for="catalog-search" class="sr-only">Buscar equipos en el catálogo</label>
 				<input
 					id="catalog-search"
 					type="search"
+					autocorrect="off"
+					autocapitalize="off"
+					spellcheck="false"
 					placeholder="Buscar laptop, titanio, drone, OLED..."
-					class="w-full rounded-2xl border border-white/15 bg-black/60 py-3 pl-10 pr-4 text-sm text-white placeholder-stone-500 focus:border-[#ff5500] focus:ring-1 focus:ring-[#ff5500] focus:outline-none transition"
+					class="w-full rounded-xl border border-white/15 bg-[#0a0a0e] py-2.5 pl-10 pr-4 text-sm text-white placeholder-stone-500 transition focus:border-[#ff5500] focus:outline-none"
 				/>
-				<svg class="absolute left-3.5 top-3.5 h-4 w-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<svg aria-hidden="true" class="pointer-events-none absolute left-3.5 top-3 h-4 w-4 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 					<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 				</svg>
 			</div>
 		</div>
 
-		<!-- Filtros por Categoría Estilo BandWerk -->
-		<div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
-			<div class="flex flex-wrap items-center gap-2" id="category-filters">
+		<div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+			<div class="flex flex-wrap items-center gap-x-5 gap-y-2" id="category-filters" role="group" aria-label="Filtrar por categoría">
 				{categories.map((cat, idx) => (
 					<button
 						type="button"
 						data-filter-cat={cat}
-						class={`cat-filter-btn cursor-pointer rounded-xl px-4 py-2 text-xs font-bold transition ${
-							idx === 0
-								? 'bg-white text-black shadow-md'
-								: 'border border-white/10 bg-white/5 text-stone-300 hover:border-white/30 hover:text-white'
-						}`}
+						aria-pressed={idx === 0 ? 'true' : 'false'}
+						class:list={['cat-filter-btn cursor-pointer', { 'is-active': idx === 0 }]}
 					>
 						{cat}
 					</button>
 				))}
 			</div>
 
-			<div class="flex items-center gap-2 text-xs text-stone-400 font-medium">
-				<span>Mostrando <strong id="catalog-count" class="text-white font-extrabold">{products.length}</strong> equipos certificados</span>
-			</div>
+			<p class="text-xs text-stone-400">
+				Mostrando <strong id="catalog-count" class="font-semibold text-white">{products.length}</strong> equipos certificados
+			</p>
 		</div>
+	</header>
+
+	<div id="catalog-grid" class="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+		{products.map((product) => (
+			<ProductCard product={product} context="catalog" />
+		))}
 	</div>
 
-	<!-- Grid de Cards de Productos con Curvatura de 2rem y Medios de Pago Reales -->
-	<div id="catalog-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-		{products.map((product) => (
-			<article
-				data-card-category={product.category}
-				data-card-name={`${product.name} ${product.shortDesc} ${product.category}`.toLowerCase()}
-				class="catalog-card card-2rem group flex flex-col justify-between rounded-[2rem] p-6 shadow-xl transition duration-300"
-			>
-				<div>
-					<!-- Imagen + Badges dentro de la card de 2rem -->
-					<div
-						data-open-modal={product.id}
-						class="cursor-pointer relative overflow-hidden rounded-[1.5rem] bg-black aspect-[4/3] border border-white/10"
-					>
-						<img
-							src={product.image}
-							alt={product.name}
-							class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-						/>
-						{product.badge && (
-							<span class="absolute top-3 left-3 rounded-full bg-[#ff5500] px-3 py-1 text-[11px] font-black text-white shadow-md">
-								{product.badge}
-							</span>
-						)}
-						<span class="absolute bottom-3 right-3 rounded-lg bg-black/90 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-md border border-white/20">
-							Stock: {product.stock} unid.
-						</span>
-					</div>
-
-					<!-- Meta Categoría y Rating -->
-					<div class="mt-4 flex items-center justify-between text-xs">
-						<span class="rounded-lg bg-white/10 px-2.5 py-1 font-black text-white border border-white/20 uppercase tracking-wider text-[11px]">
-							{product.category}
-						</span>
-						<span class="font-bold text-[#ff5500]">
-							★ {product.rating} <span class="text-stone-500 font-normal">({product.reviews} reseñas)</span>
-						</span>
-					</div>
-
-					<!-- Título y Descripción -->
-					<h3
-						data-open-modal={product.id}
-						class="cursor-pointer mt-3 text-xl font-black text-white group-hover:text-[#ff5500] transition"
-					>
-						{product.name}
-					</h3>
-					<p class="mt-1 text-[11px] font-mono text-stone-500">SKU: {product.sku}</p>
-					<p class="mt-2 text-xs text-stone-300 leading-relaxed line-clamp-2">{product.shortDesc}</p>
-
-					<!-- Mini Specs dentro de la Card con Curvatura de 2rem -->
-					<div class="mt-4 space-y-1.5 rounded-2xl bg-black/60 p-3.5 border border-white/10">
-						<p class="text-[10px] font-black uppercase tracking-wider text-white">Especificaciones Clave:</p>
-						{product.specs.slice(0, 3).map((spec) => (
-							<div class="flex items-center justify-between text-xs gap-2">
-								<span class="text-stone-400 shrink-0 font-medium">{spec.label}:</span>
-								<span class="font-bold text-stone-200 truncate text-right">{spec.value}</span>
-							</div>
-						))}
-					</div>
-
-					<!-- Medios de Pago Aceptados de Manera Realista en la Card -->
-					<PaymentBadges variant="card" />
-				</div>
-
-				<!-- Precio y Botones de Acción -->
-				<div class="mt-5 pt-4 border-t border-white/10">
-					<div class="flex items-baseline justify-between mb-4">
-						<div>
-							<span class="text-[11px] text-stone-400 block font-semibold">Precio Oficial</span>
-							<span class="text-2xl font-black text-white">${product.price.toLocaleString()}</span>
-							{product.oldPrice && (
-								<span class="ml-2 text-xs text-stone-500 line-through">${product.oldPrice.toLocaleString()}</span>
-							)}
-						</div>
-						<span class="text-[11px] font-bold text-white bg-white/10 border border-white/20 px-2.5 py-1 rounded-lg">
-							Envío Express
-						</span>
-					</div>
-
-					<div class="grid grid-cols-2 gap-2.5">
-						<button
-							type="button"
-							data-open-modal={product.id}
-							class="event-btn-pop cursor-pointer flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/5 px-3 py-2.5 text-xs font-bold text-white transition hover:border-[#ff5500] hover:text-[#ff5500]"
-						>
-							<svg class="h-4 w-4 text-[#ff5500]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-							</svg>
-							<span>Ficha Card</span>
-						</button>
-
-						<button
-							type="button"
-							data-add-cart={product.id}
-							class="event-btn-pop cursor-pointer flex items-center justify-center gap-1.5 rounded-xl bg-white text-black hover:bg-stone-200 px-3 py-2.5 text-xs font-black shadow-md transition active:scale-95"
-						>
-							<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-								<path d="M12 4v16m8-8H4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
-							</svg>
-							<span>+ Carrito</span>
-						</button>
-					</div>
-				</div>
-			</article>
-		))}
+	<div class="border-t border-white/10 pt-6">
+		<PaymentBadges variant="hero" />
 	</div>
 </section>

@@ -1,0 +1,63 @@
+---
+import type { SeasonalOffer } from '../data/products';
+
+interface Props {
+	offer: SeasonalOffer;
+}
+
+const { offer } = Astro.props;
+---
+
+<article class="seasonal-card group flex flex-col justify-between gap-6 border-t border-white/10 pt-6">
+	<div class="space-y-5">
+		<div class="flex flex-wrap items-center justify-between gap-2 text-xs text-stone-400">
+			<span class="font-medium text-stone-300">
+				{offer.seasonName} <span class="text-stone-500">· {offer.tag}</span>
+			</span>
+			<span class="font-medium text-[#ff5500]">
+				Ahorro ${offer.discountAmount} · Quedan {offer.stockUnits} unid.
+			</span>
+		</div>
+
+		<div class="grid gap-6 sm:grid-cols-12 items-center">
+			<div class="sm:col-span-5 aspect-[4/3] sm:aspect-square overflow-hidden rounded-2xl bg-[#0a0a0e]">
+				<img
+					src={offer.image}
+					alt={offer.title}
+					loading="lazy"
+					class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+				/>
+			</div>
+
+			<div class="sm:col-span-7 space-y-2.5">
+				<h3 class="text-lg sm:text-xl font-semibold tracking-tight text-white">
+					{offer.title}
+				</h3>
+				<p class="text-[13px] sm:text-sm leading-relaxed text-stone-400">
+					{offer.description}
+				</p>
+				<p class="text-xs text-stone-500">
+					{offer.validUntil}
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex flex-wrap items-end justify-between gap-4 border-t border-white/10 pt-4">
+		<div>
+			<span class="block text-[11px] text-stone-400">Precio de temporada</span>
+			<div class="mt-0.5 flex items-baseline gap-2">
+				<span class="text-2xl font-semibold text-white">${offer.price.toLocaleString()}</span>
+				<span class="text-xs text-stone-500 line-through">${offer.originalPrice.toLocaleString()}</span>
+			</div>
+		</div>
+
+		<button
+			type="button"
+			data-tab-target="checkout"
+			class="event-btn-pop cursor-pointer rounded-full bg-white px-5 py-2.5 text-xs font-semibold text-black transition hover:bg-stone-200"
+		>
+			Iniciar compra de temporada <span aria-hidden="true">→</span>
+		</button>
+	</div>
+</article>
